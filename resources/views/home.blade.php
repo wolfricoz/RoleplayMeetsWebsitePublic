@@ -1,5 +1,6 @@
 <x-layout.header>
-    <div class="bg-red-700">
-        test
-    </div>
+    <form action="{{route('logout')}}" method="post">
+        @csrf
+        <button type="submit">logout</button>
+    </form>
 </x-layout.header>
