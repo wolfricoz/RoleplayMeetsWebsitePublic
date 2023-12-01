@@ -4,28 +4,33 @@
     <nav class="flex flex-row basis-full w-full border-b border-stone-200 bg-gray-100 h-12">
 
         <div class="inline-flex w-full h-full">
-                <a href="{{ route('home') }}" class="w-44 h-full  dark:text-white text-center text-gray-700 hover:cursor-pointer  hover:text-black transition-all ease-in-out">
-                    <h1 class="text-lg font-bold">Roleplay Meets</h1>
-                    <h6 class="text-sm">Where roleplayers meet.</h6>
-                </a>
+            <a href="{{ route('home') }}"
+               class="w-44 h-full text-center text-gray-700 hover:cursor-pointer  hover:text-indigo-900 transition-all ease-in-out">
+                <h1 class="text-lg font-bold">Roleplay Meets</h1>
+                <h6 class="text-sm">Where roleplayers meet.</h6>
+            </a>
 
-                <a x-on:click="open = !open">
-                    Hide Sidebar
-                </a>
+            <a class="hover:cursor-pointer ">
+                <x-layout.SVG.sidebar-icon/>
+            </a>
         </div>
         <div
-            class="inline-flex w-fit min-w-[150px] max-w-xl h-full text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black content-right">
+            class="inline-flex w-fit min-w-[200px] max-w-xl h-full text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black content-right">
             @auth()
 
                 <span
-                    class="ml-auto py-3.5 px-0.5 overflow-hidden {{ strlen(auth()->user()->global_name) > 15 ? "text-xs pt-4" : "py-3.5"}} text-sm ">{{ auth()->user()->global_name }}</span>
+                    class="ml-auto py-3.5 px-0.5 overflow-hidden {{ strlen(auth()->user()->global_name) > 15 ? "text-xs pt-4" : "py-3.5"}} ">{{ auth()->user()->global_name }}</span>
 
                 <img class=" h-8 w-8 mt-2 mx-2 rounded-full object-cover border border-gray-200"
                      src="{{ Auth::user()->getAvatar(['extension' => 'webp', 'size' => 32]) }}"
                      alt="{{ Auth::user()->getTagAttribute() }}"/>
             @else
-                <a href="{{ route('login') }}">
-                    Login
+                <a href="{{ route('login') }}" class="py-3 px-0.5">
+                    <x-layout.SVG.login-icon/>
+
+
+
+
                 </a>
 
             @endauth
@@ -34,7 +39,8 @@
 
     </nav>
     <div class="flex h-full w-full">
-        <aside class="flex flex-col h-screen border border-stone-200 bg-gray-100" :class="{'w-fit': !open, 'w-48': open}">
+        <aside class="flex flex-col h-screen border border-stone-200 bg-gray-100 "
+               :class="{'w-fit': !open, 'w-48': open}">
             <x-layout.components.sidenavbutton>
                 <x-slot name="icon">
                     <x-layout.SVG.home-icon/>
