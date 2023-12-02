@@ -14,10 +14,12 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased h-full w-full">
-<x-layout.nav-bar>
-    {{ $slot }}
-</x-layout.nav-bar>
+<body class="font-sans antialiased h-screen w-screen " x-data="{
+open: window.screen.width > 900,
+dropdown: false }" x-cloak>
+    <x-layout.nav-bar>
+        {{ $slot }}
+    </x-layout.nav-bar>
 
 </body>
 </html>

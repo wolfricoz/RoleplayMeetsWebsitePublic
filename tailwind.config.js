@@ -11,6 +11,9 @@ export default {
 
     theme: {
         extend: {
+            gridTemplateRows: {
+                '18': 'repeat(18, minmax(0, 48px))',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },

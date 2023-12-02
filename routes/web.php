@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('home');
 })->name("home");
 
+Route::get('/test', function () {
+    return view('test');
+})->name("test");
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');

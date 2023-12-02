@@ -1,6 +1,12 @@
 <x-layout.header>
-    <form action="{{route('logout')}}" method="post">
-        @csrf
-        <button type="submit">logout</button>
-    </form>
+    <div class="m-2">
+
+    </div>
+
+
+
+
+
+
+
 </x-layout.header>
