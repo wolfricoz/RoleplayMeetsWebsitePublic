@@ -15,9 +15,7 @@ use Jakyeru\Larascord\Http\Controllers\DiscordController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name("home");
+Route::get('/', [\App\Http\Controllers\PostController::class, 'index'])->name("home");
 
 Route::get('/test', function () {
     return view('test');
@@ -25,6 +23,9 @@ Route::get('/test', function () {
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
+Route::group(['prefix' => 'posts'],function (){
+    Route::get('/{id}', [\App\Http\Controllers\PostController::class, 'index'])->name("posts.show");
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('premium_type')->nullable()->after('mfa_enabled');
             $table->string('public_flags')->nullable()->after('premium_type');
             $table->boolean('verified')->nullable()->change();
+            $table->softDeletes();
         });
     }
 
