@@ -24,7 +24,9 @@ Route::get('/test', function () {
 //    return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
 Route::group(['prefix' => 'posts'],function (){
-    Route::get('/{id}', [\App\Http\Controllers\PostController::class, 'index'])->name("posts.show");
+    Route::get('/view/{id}', [\App\Http\Controllers\PostController::class, 'show'])->name("posts.show");
+    Route::get('/create', [\App\Http\Controllers\PostController::class, 'create'])->name("posts.create");
+    Route::put('/create', [\App\Http\Controllers\PostController::class, 'store'])->name("posts.store");
 });
 
 Route::middleware('auth')->group(function () {

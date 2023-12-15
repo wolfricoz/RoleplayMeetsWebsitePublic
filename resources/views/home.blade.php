@@ -4,25 +4,27 @@
         lg:justify-between lg:inline-flex">
 
 
-
             <div class="hidden lg:inline-flex">
                 <div class="m-2.5 mx-0.5 text-sm bg-transparent  text-gray-700 font-bold py-1 px-2
             cursor-pointer">
                     Layout:
                 </div>
-                <div class=" m-2.5 mx-0.5 text-sm bg-transparent  text-gray-700 font-semibold hover:text-white py-1 px-2 border border-gray-500
-            hover:border-transparent hover:bg-indigo-900 rounded cursor-pointer" x-on:click="layout = 'grid'"
-                     x-bind:class="{'bg-indigo-400': layout === 'grid'}">
-                    grid
-                </div>
-                <div class="m-2.5 mx-0.5 text-sm bg-transparent  text-gray-700 font-semibold hover:text-white py-1 px-2 border border-gray-500
-            hover:border-transparent hover:bg-indigo-900 rounded cursor-pointer" x-on:click="layout = 'list'"
-                     x-bind:class="{'bg-indigo-400': layout === 'list'}">
+                <x-button :layout="'grid'">
+                    Grid
+                </x-button>
+                <x-button :layout="'list'">
                     List
-                </div>
+                </x-button>
 
             </div>
             <x-search :search="request('search')"/>
+            @auth()
+            <x-button href="{{ route('posts.create') }}">
+                Create Post
+            </x-button>
+
+            @endauth()
+
         </div>
         @foreach($posts as $post)
             <div class="w-full bg-gray-100 rounded-xl"

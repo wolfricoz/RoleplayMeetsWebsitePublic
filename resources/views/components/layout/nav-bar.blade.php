@@ -1,8 +1,7 @@
 {{--Alright, we will be making a nav bar here, one on top and one on the side.--}}
 
 <div class="flex-wrap h-full w-full">
-    <nav class="flex flex-row justify-between basis-full w-full border-b border-stone-200 bg-gray-100 h-12"
-         x-on:mouseleave="dropdown = false">
+    <nav class="flex flex-row justify-between basis-full w-full border-b border-stone-200 bg-gray-100 h-12">
 
         <div class="inline-flex ">
             <a href="{{ route('home') }}"
@@ -18,7 +17,7 @@
 
         </div>
         <div
-            class="inline-flex w-fit lg:min-w-[208px] max-w-xl h-full text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black content-right"
+            class="inline-flex w-fit lg:min-w-[208px] max-w-xl h-full text-center text-gray-700 hover:bg-gray-50 hover:border-indigo-800 hover:border-b hover:cursor-pointer  hover:text-black content-right"
             x-on:click="dropdown = !dropdown"
         >
             @auth()
@@ -37,23 +36,24 @@
             @endauth
 
         </div>
-        @auth()
-            <div x-show="dropdown" class="" x-cloak>
-                <div class="flex flex-col absolute right-0 top-12 w-52 border-stone-200 bg-gray-100">
-                    <a href=""
-                       class="w-full h-full p-2 text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black hover:border-b hover:border-indigo-900 content-right ">
-                        <form action="{{route('logout')}}" method="post">
-                            @csrf
-                            <button type="submit">logout</button>
-                        </form>
-                    </a>
-                </div>
 
-
-            </div>
-        @endauth
 
     </nav>
+    @auth()
+        <div x-show="dropdown" class="" x-cloak>
+            <div class="flex flex-col absolute right-0 top-12 w-52 border-stone-200 bg-gray-100">
+                <a href=""
+                   class="w-full h-full p-2 text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black hover:border-b hover:border-indigo-900 content-right ">
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button type="submit">logout</button>
+                    </form>
+                </a>
+            </div>
+
+
+        </div>
+    @endauth
     <div class="flex h-full max-h-[95vh] w-full">
         <aside class="flex flex-col h-full border border-stone-200 bg-gray-100 "
                :class="{'w-fit': !open, 'w-48': open}" x-cloak>
@@ -76,7 +76,7 @@
                 Groups
             </x-layout.components.sidenavbutton>
         </aside>
-        <div class="w-full  h-full max-w-full overflow-y-scroll">
+        <div class="w-full  h-full max-w-full overflow-y-scroll" x-on:mouseenter="dropdown = false">
             {{ $slot }}
 
 

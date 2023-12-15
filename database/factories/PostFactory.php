@@ -24,6 +24,8 @@ class PostFactory extends Factory
             'genre_id' => Genres::get()->random()->id,
             'title' => $this->faker->sentence,
             'content' => $this->faker->paragraph,
+            'charage' => $this->faker->numberBetween(18, 100),
+            'partnerage' => $this->faker->numberBetween(18, 100),
 
         ];
     }
