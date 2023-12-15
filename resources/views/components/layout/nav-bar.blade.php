@@ -1,9 +1,10 @@
 {{--Alright, we will be making a nav bar here, one on top and one on the side.--}}
 
-<div class="flex-wrap h-full w-full" >
-    <nav class="flex flex-row basis-full w-full border-b border-stone-200 bg-gray-100 h-12" x-on:mouseleave="dropdown = false">
+<div class="flex-wrap h-full w-full">
+    <nav class="flex flex-row justify-between basis-full w-full border-b border-stone-200 bg-gray-100 h-12"
+         x-on:mouseleave="dropdown = false">
 
-        <div class="inline-flex w-full h-full ">
+        <div class="inline-flex ">
             <a href="{{ route('home') }}"
                class="w-32 lg:w-44 h-full text-center text-gray-700 hover:cursor-pointer  hover:text-indigo-900 transition-all ease-in-out">
                 <h1 class="pt-2.5 lg:pt-0 lg:text-lg  font-bold">Roleplay Meets</h1>
@@ -13,7 +14,6 @@
             <a class="hover:cursor-pointer ">
                 <x-layout.SVG.sidebar-icon/>
             </a>
-
 
 
         </div>
@@ -30,37 +30,40 @@
                      src="{{ Auth::user()->getAvatar(['extension' => 'webp', 'size' => 32]) }}"
                      alt="{{ Auth::user()->getTagAttribute() }}"/>
             @else
-                <a href="{{ route('login') }}" class="py-3 px-0.5">
+                <a href="{{ route('login') }}" class="mt-2 h-8 py-1 px-2 inline-flex border rounded-full bg-transparent  text-gray-700 font-semibold hover:text-white border-gray-500
+            hover:border-transparent hover:bg-indigo-900 cursor-pointer">
                     <x-layout.SVG.login-icon/>
                 </a>
             @endauth
 
         </div>
-        <div x-show="dropdown" class="" x-cloak>
-            <div class="flex flex-col absolute right-0 top-12 w-52 border-stone-200 bg-gray-100">
-                <a href=""
-                   class="w-full h-full p-2 text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black hover:border-b hover:border-indigo-900 content-right ">
-                    <form action="{{route('logout')}}" method="post">
-                        @csrf
-                        <button type="submit">logout</button>
-                    </form>
-                </a>
+        @auth()
+            <div x-show="dropdown" class="" x-cloak>
+                <div class="flex flex-col absolute right-0 top-12 w-52 border-stone-200 bg-gray-100">
+                    <a href=""
+                       class="w-full h-full p-2 text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black hover:border-b hover:border-indigo-900 content-right ">
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit">logout</button>
+                        </form>
+                    </a>
+                </div>
+
+
             </div>
-
-
-        </div>
+        @endauth
 
     </nav>
     <div class="flex h-full max-h-[95vh] w-full">
         <aside class="flex flex-col h-full border border-stone-200 bg-gray-100 "
                :class="{'w-fit': !open, 'w-48': open}" x-cloak>
-            <x-layout.components.sidenavbutton>
+            <x-layout.components.sidenavbutton href="{{ route('home') }}">
                 <x-slot name="icon">
                     <x-layout.SVG.home-icon/>
                 </x-slot>
                 Home
             </x-layout.components.sidenavbutton>
-            <x-layout.components.sidenavbutton>
+            <x-layout.components.sidenavbutton href="">
                 <x-slot name="icon">
                     <x-layout.SVG.rules-icon/>
                 </x-slot>

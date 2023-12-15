@@ -1,28 +1,70 @@
 <!--This component needs to calculate the height of the text div and if its beyond a certain amount of pixels, it has to show 'read more'. The read more link leads to the full post.-->
-<div>
+<template>
+    <div>
 
-    <div class="text" v-html="post.text" ref="text"></div>
+        <div class="collapsable text p-4 overflow-hidden to-transparent" v-html="post.content" ref="text">
 
-    <div v-if="showMore" class="show-more">
-        <a :href="{ name: 'post', params: { id: post.id } }">Read more</a>
+        </div>
+
+        <div v-if="showMore"
+             class="show-more w-full text-center text-blue-500 p-2 border-t border-gray-300 hover:bg-gray-200">
+            <button @click="changeText" ref="button">Read more</button>
+        </div>
     </div>
-</div>
+</template>
 
 <script>
-    export default {
-        props: ['post'],
-        data() {
-            return {
-                showMore: false
+export default {
+    props: ['post'],
+    data() {
+        return {
+            showMore: false,
+            expanded: false,
+        }
+    },
+    methods: {
+        changeText() {
+            if (!this.expanded) {
+                this.expandText()
+
+            } else {
+                this.retractText()
             }
         },
-        mounted() {
-            this.$nextTick(() => {
-                if (this.$refs.text.clientHeight > 128) {
-                    this.showMore = true;
-                }
-            });
-        }
+        expandText() {
+            this.expanded = !this.expanded
+            this.$refs.text.classList.toggle("collapsed")
+            this.$refs.button.textContent = "Read Less"
+        },
+        retractText() {
+            this.expanded = !this.expanded
+            this.$refs.text.classList.toggle("collapsed")
+            this.$refs.button.textContent = "Read More"
+        },
+    },
+    mounted() {
+        this.$nextTick(() => {
+            console.log(this.$refs.text.clientHeight);
+
+            if (this.$refs.text.clientHeight > 120) {
+                this.showMore = true;
+            }
+        });
     }
+}
 </script>
 
+<style scoped>
+div.collapsable {
+    max-height: 128px;
+    transition: all 500ms ease;
+    overflow: hidden;
+}
+
+div.collapsed {
+    max-height: 2000px;
+    height: fit-content;
+    transition: all 1000ms ease;
+
+}
+</style>
