@@ -16,7 +16,7 @@
 
 <template>
     <div class="bg-white my-2">
-        <textarea id="summernote" v-bind:name="name" class="h-32 "></textarea>
+        <textarea id="summernote" v-bind:name="name" class="h-32" required></textarea>
     </div>
 
 </template>

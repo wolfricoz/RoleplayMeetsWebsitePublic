@@ -24,7 +24,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', [
+            'genres' => \App\Models\Genres::all(),
+        ]);
     }
 
     /**
@@ -32,7 +34,16 @@ class PostController extends Controller
      */
     public function store()
     {
-        dd(request());
+        $attributes = request()->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'charage' => 'required',
+            'partnerage' => 'required',
+            'genre_id' => 'required',
+        ]);
+        $attributes['user_id'] = auth()->id();
+        Post::create($attributes);
+        return redirect('/');
     }
 
     /**

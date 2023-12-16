@@ -8,13 +8,49 @@
                     @method('put')
                     <label for="title">Title</label>
                     <input type="text" name="title" id="title" class="w-full border border-gray-300 rounded-md p-2"
-                           value="{{ old('title') }}"/>
+                           value="{{ old('title') }}"
+                           required
+                    />
 {{--                    @error('title')--}}
                     <h1>Body</h1>
-                    <summernote :name="'body'">
+                    <summernote :name="'content'">
 
                     </summernote>
-                    <button type="submit" class="bg-indigo-900 text-white rounded-md p-2">Create</button>
+                    <div class="flex gap-4 my-3">
+
+                        <div class="w-36">
+
+                            <label for="genre" >Genre</label>
+                            <select name="genre_id" id="genre" class="w-full border border-gray-300 rounded-md p-2" required>
+                                @foreach($genres as $genre)
+                                    <option value="{{$genre->id}}">{{$genre->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="w-36">
+                            <label for="charage" class="">Min. Character age</label><br>
+                            <input type="number" name="charage" id="charage" class="w-full border border-gray-300 rounded-md p-2"
+                            value="{{ old('charage') }} required"/>
+                        </div>
+                        <div class="w-36">
+                            <label for="partnerage">Min. Partner age</label>
+                            <input type="number" name="partnerage" id="partnerage" class="w-full border border-gray-300 rounded-md p-2"
+                            value="{{ old('partnerage') }}" required />
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="mt-2 bg-indigo-900 text-white rounded-md p-2">Create</button>
+                    @if($errors->any())
+                        <div class="text-red-500">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li class="text-red-500 text-sm">{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                 </form>
             </div>
         </div>

@@ -22,7 +22,10 @@
             <x-button href="{{ route('posts.create') }}">
                 Create Post
             </x-button>
+            @else
+                <div>
 
+                </div>
             @endauth()
 
         </div>
@@ -35,8 +38,7 @@
                     </a>
                 </h1>
                 <div class="grid grid-cols-3 justify-between border-t border-gray-300">
-                    <a href="" class="col-span-2 p-2 text-left">Created at: {{ $post->created_at->format("m/d/y H:i") }}
-                        <br>{{ $post->updated_at }}</a>
+                    <a href="" class="col-span-2 p-2 text-left text-sm">Created at: {{ $post->created_at->format("m/d/y H:i") }} Updated at: {{ $post->updated_at->format("m/d/y H:i") }}</a>
                     <a href="#"
                        class="text-sm col-span-1 p-2 text-right hover:text-indigo-900">Genre: {{ $post->genre->name }}</a>
                 </div>
