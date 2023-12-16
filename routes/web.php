@@ -28,6 +28,10 @@ Route::group(['prefix' => 'posts'],function (){
     Route::get('/create', [\App\Http\Controllers\PostController::class, 'create'])->name("posts.create");
     Route::put('/create', [\App\Http\Controllers\PostController::class, 'store'])->name("posts.store");
 });
+Route::group(['prefix' => 'users'],function (){
+    Route::get('/home', [\App\Http\Controllers\UserController::class, 'index'])->middleware('auth')->name("users.home");
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

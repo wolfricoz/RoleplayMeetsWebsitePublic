@@ -42,13 +42,21 @@
     @auth()
         <div x-show="dropdown" class="" x-cloak>
             <div class="flex flex-col absolute right-0 top-12 w-52 border-stone-200 bg-gray-100">
-                <a href=""
-                   class="w-full h-full p-2 text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black hover:border-b hover:border-indigo-900 content-right ">
+                <x-layout.components.dropdown-button href="{{ route('users.home') }}">
+                    Profile [WIP]
+                </x-layout.components.dropdown-button>
+
+                <x-layout.components.dropdown-button href="">
+                    Settings [WIP]
+                </x-layout.components.dropdown-button>
+
+                <x-layout.components.dropdown-button href="">
                     <form action="{{route('logout')}}" method="post">
                         @csrf
                         <button type="submit">logout</button>
                     </form>
-                </a>
+                </x-layout.components.dropdown-button>
+
             </div>
 
 

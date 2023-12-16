@@ -7,7 +7,7 @@
             <div class="hidden lg:inline-flex">
                 <div class="m-2.5 mx-0.5 text-sm bg-transparent  text-gray-700 font-bold py-1 px-2
             cursor-pointer">
-                    Layout:
+                    USER Layout:
                 </div>
                 <x-button :layout="'grid'">
                     Grid

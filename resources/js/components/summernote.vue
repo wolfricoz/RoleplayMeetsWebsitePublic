@@ -5,6 +5,23 @@
         mounted() {
             $('#summernote').summernote({
                 height: 128,
+                toolbar: [
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['forecolor','backcolor']],
+                    ['para', ['ul', 'ol']],
+                    ['para', ['ul', 'ol']],
+                    // ['table', ['table']],
+                    ['insert', ['link']],
+                    // ['view', ['fullscreen', 'codeview', 'help']],
+                    ['back', ['undo', 'redo']]
+                ],
+                shortcuts: false,
+                disableDragAndDrop: true,
+                codeviewFilter: false,
+                codeviewIframeFilter: true
+
             });
         },
         beforeDestroy() {

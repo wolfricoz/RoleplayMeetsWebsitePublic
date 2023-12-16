@@ -42,6 +42,7 @@ class PostController extends Controller
             'genre_id' => 'required',
         ]);
         $attributes['user_id'] = auth()->id();
+        $attributes['content'] = clean(trim(request('content')));
         Post::create($attributes);
         return redirect('/');
     }

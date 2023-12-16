@@ -1,6 +1,6 @@
 <x-layout.header>
-    <div id="app" class="m-4 flex justify-center">
-        <div class="w-2/3 h-fit bg-gray-100 p-4">
+    <div id="app" class="m-1 lg:m-4 flex justify-center">
+        <div class="w-full lg:w-2/3 h-fit bg-gray-100 p-4">
             <div>
                 <h1 class="text-2xl text-center">Create Post</h1>
                 <form method="post" action="">
@@ -16,7 +16,7 @@
                     <summernote :name="'content'">
 
                     </summernote>
-                    <div class="flex gap-4 my-3">
+                    <div class="flex flex-col lg:flex-row gap-4 my-3">
 
                         <div class="w-36">
 

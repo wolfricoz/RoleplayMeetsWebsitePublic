@@ -2,8 +2,8 @@
 <template>
     <div>
 
-        <div class="collapsable text p-4 overflow-hidden to-transparent" v-html="post.content" ref="text">
-
+        <div class="collapsable text p-4 overflow-hidden to-transparent note-editable" ref="text">
+            <slot/>
         </div>
 
         <div v-if="showMore"
