@@ -29,7 +29,8 @@ Route::group(['prefix' => 'posts'],function (){
     Route::put('/create', [\App\Http\Controllers\PostController::class, 'store'])->name("posts.store");
 });
 Route::group(['prefix' => 'users'],function (){
-    Route::get('/home', [\App\Http\Controllers\UserController::class, 'index'])->middleware('auth')->name("users.home");
+    Route::get('/dashboard', [\App\Http\Controllers\UserController::class, 'index'])->middleware('auth')->name("users.home");
+    Route::get('view/{id}', [\App\Http\Controllers\UserController::class, 'show'])->name("users.show");
 
 });
 
