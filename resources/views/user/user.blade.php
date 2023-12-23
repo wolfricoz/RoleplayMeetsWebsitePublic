@@ -1,4 +1,5 @@
 <x-layout.header>
+{{--  Make this a component, maybe make the component controller grab the genres  --}}
     <div id="app" class="grid grid-cols-3 m-6 gap-4" x-data="{'layout': 'list'}">
         <div class="flex h-12 col-span-3 bg-gray-200 rounded-full px-2 gap-4
         lg:justify-center lg:inline-flex">
@@ -21,11 +22,11 @@
                 </x-button>
 
             </div>
-            <x-search :search="request('search')"/>
+            <x-search :genres="$genres"/>
             @auth()
                 @if($user->id === auth()->user()->id)
-                    <x-button href="{{ route('users.edit', $user->id) }}">
-                        Edit Profile
+                    <x-button href="{{ route('posts.create') }}">
+                        Create Post
                     </x-button>
                     @else
                     <div>

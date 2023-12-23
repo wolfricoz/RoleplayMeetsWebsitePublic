@@ -12,11 +12,10 @@ class search extends Component
      * Create a new component instance.
      */
 
-    public $search;
-
-    public function __construct($search)
+    public $genres;
+    public function __construct($genres)
     {
-        $this->search = $search;
+        $this->genres = $genres;
     }
 
     /**

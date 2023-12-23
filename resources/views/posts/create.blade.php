@@ -13,8 +13,7 @@
                     />
 {{--                    @error('title')--}}
                     <h1>Body</h1>
-                    <summernote :name="'content'">
-
+                    <summernote :name="'content'" :value="{{ json_encode(old('content')) }}">
                     </summernote>
                     <div class="flex flex-col lg:flex-row gap-4 my-3">
 
@@ -30,7 +29,7 @@
                         <div class="w-36">
                             <label for="charage" class="">Min. Character age</label><br>
                             <input type="number" name="charage" id="charage" class="w-full border border-gray-300 rounded-md p-2"
-                            value="{{ old('charage') }} required"/>
+                            value="{{ old('charage') }}" required/>
                         </div>
                         <div class="w-36">
                             <label for="partnerage">Min. Partner age</label>

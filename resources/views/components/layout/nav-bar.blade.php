@@ -17,7 +17,7 @@
 
         </div>
         <div
-            class="inline-flex w-fit lg:min-w-[208px] max-w-xl h-full text-center text-gray-700 hover:bg-gray-50 hover:border-indigo-800 hover:border-b hover:cursor-pointer  hover:text-black content-right"
+            class="inline-flex w-fit lg:min-w-[208px] max-w-xl h-full text-center text-gray-700 hover:bg-gray-50 hover:cursor-pointer  hover:text-black content-right"
             x-on:click="dropdown = !dropdown"
         >
             @auth()
@@ -75,19 +75,17 @@
                 <x-slot name="icon">
                     <x-layout.SVG.rules-icon/>
                 </x-slot>
-                rules
+                rules [WIP]
             </x-layout.components.sidenavbutton>
             <x-layout.components.sidenavbutton>
                 <x-slot name="icon">
                     <x-layout.SVG.groups-icon/>
                 </x-slot>
-                Groups
+                Groups [WIP]
             </x-layout.components.sidenavbutton>
         </aside>
         <div class="w-full  h-full max-w-full overflow-y-scroll" x-on:mouseenter="dropdown = false">
             {{ $slot }}
-
-
         </div>
     </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Genres;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -13,9 +14,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->filter(request(['search']))->paginate(12);
+        $posts = Post::latest()->filter(request(['search', 'genre']))->paginate(12);
+
         return view('home', [
             'posts' => $posts,
+            'genres' => Genres::all(),
         ]);
     }
 
@@ -25,7 +28,7 @@ class PostController extends Controller
     public function create()
     {
         return view('posts.create', [
-            'genres' => \App\Models\Genres::all(),
+            'genres' => Genres::all(),
         ]);
     }
 
@@ -37,8 +40,8 @@ class PostController extends Controller
         $attributes = request()->validate([
             'title' => 'required',
             'content' => 'required',
-            'charage' => 'required',
-            'partnerage' => 'required',
+            'charage' => 'required|numeric|min:18|max:999',
+            'partnerage' => 'required|numeric|min:18|max:999',
             'genre_id' => 'required',
         ]);
         $attributes['user_id'] = auth()->id();

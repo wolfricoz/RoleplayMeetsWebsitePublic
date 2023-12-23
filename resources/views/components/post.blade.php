@@ -7,11 +7,24 @@
         </a>
     </div>
     <div class="grid grid-cols-5 px-2 text-xs lg:text-sm border-b border-gray-200 text-center">
-        <span class="grid-cols-1 text-left">{!!   $post->updated_at > $post->created_at ? "Updated: <br>{$post->updated_at->format('m/d/y H:i')}" : "Created:  <br>{$post->created_at->format('m/d/y H:i')}" !!}</span>
-        <span class="grid-cols-1 ">character age: <br>{{ $post->charage }}+</span>
-        <span class="grid-cols-1 ">Author: <br>{{ $post->user->global_name }}</span>
-        <span class="grid-cols-1 ">partner Age: <br>{{ $post->partnerage}}+</span>
-        <span class="grid-cols-1 text-right">Genre: <br>{{ $post->genre->name }}</span>
+        <span
+            class="grid-cols-1 text-left">
+            {!!   $post->updated_at > $post->created_at ? "Updated: <br>{$post->updated_at->format('m/d/y H:i')}" : "Created:  <br>{$post->created_at->format('m/d/y H:i')}" !!}
+        </span>
+        <span class="grid-cols-1 ">
+            character age: <br>{{ $post->charage }}+
+        </span>
+        <span class="grid-cols-1 ">Author: <br>
+            <a class="hover:text-indigo-900 hover:underline" href="{{ route('users.show', $post->user_id) }}">{{ $post->user->global_name }}</a>
+        </span>
+        <span class="grid-cols-1 ">
+            partner Age: <br>
+            {{ $post->partnerage}}+
+        </span>
+        <span class="grid-cols-1 text-right">
+            Genre: <br>
+            <a class="hover:text-indigo-900 hover:underline" href="{{ route('home', ['search'=>request('search'), 'genre'=>$post->genre_id]) }}">{{ $post->genre->name }}</a>
+        </span>
     </div>
     <show-more :post="{{ json_encode($post) }}">
         {!!

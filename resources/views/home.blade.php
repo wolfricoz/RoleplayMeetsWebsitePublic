@@ -17,7 +17,7 @@
                 </x-button>
 
             </div>
-            <x-search :search="request('search')"/>
+            <x-search :genres="$genres"/>
             @auth()
             <x-button href="{{ route('posts.create') }}">
                 Create Post

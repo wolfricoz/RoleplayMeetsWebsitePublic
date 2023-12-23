@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Genres;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,8 @@ class UserController extends Controller
         }
         return view('user.dashboard', [
             'user' => auth()->user(),
-            'posts' => auth()->user()->posts()->latest()->paginate(10),
+            'posts' => auth()->user()->posts()->latest()->filter(['genre', 'search'])->paginate(10),
+            'genres' => Genres::all(),
         ]);
     }
 
@@ -25,9 +26,9 @@ class UserController extends Controller
         return view('user.user', [
             'user' => $user,
             'posts' => $user->posts()->latest()->paginate(10),
+            'genres' => Genres::all(),
         ]);
     }
-
 
 
 }
