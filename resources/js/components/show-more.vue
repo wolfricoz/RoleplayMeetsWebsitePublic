@@ -2,7 +2,7 @@
 <template>
     <div>
 
-        <div class="collapsable text p-4 overflow-hidden to-transparent note-editable" ref="text">
+        <div class="collapsable text p-4 overflow-hidden to-transparent note-editable break-words" ref="text">
             <slot/>
         </div>
 

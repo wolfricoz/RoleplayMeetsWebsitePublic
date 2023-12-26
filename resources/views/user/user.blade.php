@@ -5,42 +5,9 @@
         lg:justify-center lg:inline-flex">
             <h1 class="m-2 text-2xl font-bold text-center">{{ $user->global_name }}'s Profile</h1>
         </div>
-        <div class="flex h-12 col-span-3 bg-gray-200 rounded-full px-4 gap-4
-        lg:justify-between lg:inline-flex">
+        <x-postoptionsnav :genres="$genres">
 
-
-            <div class="hidden lg:inline-flex">
-                <div class="m-2.5 mx-0.5 text-sm bg-transparent  text-gray-700 font-bold py-1 px-2
-            cursor-pointer">
-                    USER Layout:
-                </div>
-                <x-button :layout="'grid'">
-                    Grid
-                </x-button>
-                <x-button :layout="'list'">
-                    List
-                </x-button>
-
-            </div>
-            <x-search :genres="$genres"/>
-            @auth()
-                @if($user->id === auth()->user()->id)
-                    <x-button href="{{ route('posts.create') }}">
-                        Create Post
-                    </x-button>
-                    @else
-                    <div>
-
-                    </div>
-
-                @endif
-            @else
-                <div>
-
-                </div>
-            @endauth()
-
-        </div>
+        </x-postoptionsnav>
         @foreach($posts as $post)
             <x-post :post="$post"/>
         @endforeach

@@ -49,7 +49,11 @@
                 <x-layout.components.dropdown-button href="">
                     Settings [WIP]
                 </x-layout.components.dropdown-button>
-
+                @if(auth()->user()->group->access_dashboard)
+                    <x-layout.components.dropdown-button href="{{ route('admin.dashboard') }}">
+                        Admin
+                    </x-layout.components.dropdown-button>
+                @endif
                 <x-layout.components.dropdown-button href="">
                     <form action="{{route('logout')}}" method="post">
                         @csrf
@@ -71,11 +75,11 @@
                 </x-slot>
                 Home
             </x-layout.components.sidenavbutton>
-            <x-layout.components.sidenavbutton href="">
+            <x-layout.components.sidenavbutton href="{{ route('rules') }}">
                 <x-slot name="icon">
                     <x-layout.SVG.rules-icon/>
                 </x-slot>
-                rules [WIP]
+                rules
             </x-layout.components.sidenavbutton>
             <x-layout.components.sidenavbutton>
                 <x-slot name="icon">

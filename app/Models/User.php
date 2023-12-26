@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -73,4 +75,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function group(): BelongsTo
+    {
+        return $this->belongsTo(groups::class, 'group_id', 'id');
+    }
+
+//    public function group(): HasOne
+//    {
+//        return $this->hasOne(groups::class);
+//    }
 }

@@ -2,6 +2,11 @@
 export default {
     name: "summernote",
     props: ['name', 'value'],
+    data() {
+        return {
+            charCount: 0
+        }
+    },
     mounted() {
         $('#summernote').summernote({
             height: 128,
@@ -20,21 +25,38 @@ export default {
             codeviewFilter: false,
             codeviewIframeFilter: true,
             placeholder: this.value,
+            callbacks: {
+                onKeyup: (e) => {
+                    let text = $('#summernote').summernote('code');
+                    let plainText = text.replace(/<[^>]*>?/gm, ''); // remove HTML tags
+                    if (plainText.length > 10000) {
+                        // If the text is longer than the limit, truncate it
+                        plainText = plainText.substring(0, 10000);
+                        $('#summernote').summernote('code', plainText);
+                    }
+                    this.charCount = plainText.length;
+                }
+
+            }
         }).summernote('code', this.value);
 
     },
+
     beforeDestroy() {
         $('#summernote').summernote('destroy');
     }
 }
 </script>
 
-
+<!--TODO: Add a character counter-->
 <template>
     <div class="bg-white my-2">
-        <textarea id="summernote" v-bind:name="name" class="h-32" required>
+        <textarea id="summernote" class="h-32" required v-bind:name="name">
 
         </textarea>
+    </div>
+    <div class="text-right text-xs text-gray-500">
+        <span>{{ charCount }}</span> / 10000 characters
     </div>
 
 </template>

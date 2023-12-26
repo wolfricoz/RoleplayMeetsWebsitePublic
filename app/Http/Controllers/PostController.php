@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Genres;
 use App\Models\Post;
@@ -38,12 +37,17 @@ class PostController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'title' => 'required',
+            'title' => 'required|min:10|max:255',
             'content' => 'required',
             'charage' => 'required|numeric|min:18|max:999',
             'partnerage' => 'required|numeric|min:18|max:999',
             'genre_id' => 'required',
         ]);
+        if (strlen(preg_replace('/<[^>]*>/', '', $attributes['content'])) > 10000) {
+            return back()->withErrors(['content' => 'Your post may not exceed 10000 characters.']);
+        }
+
+
         $attributes['user_id'] = auth()->id();
         $attributes['content'] = clean(trim(request('content')));
         Post::create($attributes);
@@ -53,7 +57,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Post $post): void
     {
         //
     }
@@ -61,7 +65,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Post $post): void
     {
         //
     }
@@ -69,7 +73,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post): void
     {
         //
     }
@@ -77,7 +81,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): void
     {
         //
     }
