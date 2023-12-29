@@ -36,8 +36,11 @@ Route::group(['prefix' => 'users'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->middleware('auth')->name("admin.dashboard");
-
+    Route::get('/dashboard', [AdminController::class, 'index'])->name("admin.dashboard");
+    Route::get('/queue', [AdminController::class, 'queue'])->name("admin.queue");
+    Route::post('/approve/{post}', [AdminController::class, 'approvetoggle'])->name("admin.approve");
+    Route::post('/nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
+    Route::delete('/delete/{post}', [AdminController::class, 'destroy'])->name("admin.delete");
 });
 
 Route::middleware('auth')->group(function () {

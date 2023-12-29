@@ -30,6 +30,11 @@ class Post extends Model
         });
     }
 
+    public function scopeApproved($query, bool $approved = true)
+    {
+        return $query->where('approved', $approved);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->filter(request(['search', 'genre']))->paginate(12);
+        $posts = Post::latest()->approved()->filter(request(['search', 'genre']))->paginate(12);
 
         return view('home', [
             'posts' => $posts,
