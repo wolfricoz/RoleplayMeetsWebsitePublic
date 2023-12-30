@@ -85,4 +85,13 @@ class PostController extends Controller
     {
         //
     }
+
+    Public function admin()
+    {
+        $posts = Post::latest()->approved()->filter(request(['search', 'genre']))->paginate(12);
+        return view('admin.posts', [
+            'posts' => $posts,
+            'genres' => Genres::all(),
+        ]);
+    }
 }

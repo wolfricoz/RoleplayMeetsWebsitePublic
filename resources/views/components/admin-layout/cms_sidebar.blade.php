@@ -10,7 +10,7 @@
         <x-admin-layout.cms_button href="{{ route('admin.queue') }}" :permission="auth()->user()->group->manage_posts">
             Mod Queue
         </x-admin-layout.cms_button >
-        <x-admin-layout.cms_button :permission="auth()->user()->group->manage_posts">
+        <x-admin-layout.cms_button href="{{ route('admin.posts')  }}" :permission="auth()->user()->group->manage_posts">
             Posts
         </x-admin-layout.cms_button>
         <x-admin-layout.cms_button :permission="auth()->user()->group->manage_posts">

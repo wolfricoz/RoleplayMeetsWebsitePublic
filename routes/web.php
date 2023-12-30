@@ -28,6 +28,7 @@ Route::group(['prefix' => 'posts'], function () {
     Route::get('/view/{id}', [PostController::class, 'show'])->name("posts.show");
     Route::get('/create', [PostController::class, 'create'])->name("posts.create");
     Route::put('/create', [PostController::class, 'store'])->name("posts.store");
+    Route::post('/nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
 });
 Route::group(['prefix' => 'users'], function () {
     Route::get('/dashboard', [UserController::class, 'index'])->middleware('auth')->name("users.home");
@@ -38,8 +39,8 @@ Route::group(['prefix' => 'users'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name("admin.dashboard");
     Route::get('/queue', [AdminController::class, 'queue'])->name("admin.queue");
+    Route::get('/posts', [PostController::class, 'admin'])->name("admin.posts");
     Route::post('/approve/{post}', [AdminController::class, 'approvetoggle'])->name("admin.approve");
-    Route::post('/nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
     Route::delete('/delete/{post}', [AdminController::class, 'destroy'])->name("admin.delete");
 });
 

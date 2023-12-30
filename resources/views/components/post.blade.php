@@ -16,7 +16,8 @@
             character age: <br>{{ $post->charage }}+
         </span>
         <span class="grid-cols-1 ">Author: <br>
-            <a class="hover:text-indigo-900 hover:underline" href="{{ route('users.show', $post->user_id) }}">{{ $post->user->global_name }}</a>
+            <a class="hover:text-indigo-900 hover:underline"
+               href="{{ route('users.show', $post->user_id) }}">{{ $post->user->global_name }}</a>
         </span>
         <span class="grid-cols-1 ">
             partner Age: <br>
@@ -24,7 +25,8 @@
         </span>
         <span class="grid-cols-1 text-right">
             Genre: <br>
-            <a class="hover:text-indigo-900 hover:underline" href="{{ route('home', ['search'=>request('search'), 'genre'=>$post->genre_id]) }}">{{ $post->genre->name }}</a>
+            <a class="hover:text-indigo-900 hover:underline"
+               href="{{ route('home', ['search'=>request('search'), 'genre'=>$post->genre_id]) }}">{{ $post->genre->name }}</a>
         </span>
     </div>
     <show-more :post="{{ json_encode($post) }}">
@@ -32,45 +34,50 @@
             clean($post->content)
         !!}
     </show-more>
-    <div class="inline-flex gap-2 border-t border-gray-200 p-1">
-        <p class="p-1">
-            Admin Tools:
-        </p>
-        @if($post->approved)
-            <form action="{{route('admin.approve', $post)}}" method="post">
-                @csrf
-                <button type="submit"
-                        class="border border-yellow-600 p-1 text-sm rounded-xl
+    @auth()
+        @if(auth()->user()->group->manage_posts)
+            <div class="inline-flex gap-2 border-t border-gray-200 p-1">
+                <p class="p-1">
+                    Admin Tools:
+                </p>
+                @if($post->approved)
+                    <form action="{{route('admin.approve', $post)}}" method="post">
+                        @csrf
+                        <button type="submit"
+                                class="border border-yellow-600 p-1 text-sm rounded-xl
                                        hover:bg-yellow-600 dark:hover:text-white focus:bg-yellow-600 focus:text-white transition-all"
-                        title="Disapprove the post and make it invisible to the public">
-                    Disapprove
-                </button>
-            </form>
-        @else
-            <form action="{{route('admin.approve', $post)}}" method="post">
-                @csrf
-                <button type="submit"
-                        class="border border-green-600 p-1 text-sm rounded-xl
+                                title="Disapprove the post and make it invisible to the public">
+                            Disapprove
+                        </button>
+                    </form>
+                @else
+                    <form action="{{route('admin.approve', $post)}}" method="post">
+                        @csrf
+                        <button type="submit"
+                                class="border border-green-600 p-1 text-sm rounded-xl
                                        hover:bg-green-600 dark:hover:text-white focus:bg-green-600 focus:text-white transition-all"
-                        title="Approve the post and make it visible to the public">
-                    Approve
-                </button>
-            </form>
-        @endif
+                                title="Approve the post and make it visible to the public">
+                            Approve
+                        </button>
+                    </form>
+                @endif
 
-        <form action="{{route('admin.delete', $post)}}" method="post">
-            @method('delete')
-            @csrf
-            <button type="submit"
-                    onclick="confirm('Are you sure you want to reject and delete this post?')"
-                    class="border border-red-600 p-1 text-sm rounded-xl
+                <form action="{{route('admin.delete', $post)}}" method="post">
+                    @method('delete')
+                    @csrf
+                    <button type="submit"
+                            onclick="confirm('Are you sure you want to reject and delete this post?')"
+                            class="border border-red-600 p-1 text-sm rounded-xl
                                        hover:bg-red-600 dark:hover:text-white focus:bg-red-600 focus:text-white transition-all"
-                    title="Deny and remove the post from the database">
-                Delete
-            </button>
-        </form>
-        <nsfwtoggle :post="{{ $post }}">
+                            title="Deny and remove the post from the database">
+                        Delete
+                    </button>
+                </form>
+                <nsfwtoggle :post="{{ $post }}">
 
-        </nsfwtoggle>
-    </div>
+                </nsfwtoggle>
+                <div>Status: {{ $post->approved ? "Approved" : "Awaiting Approval"}}</div>
+            </div>
+        @endif()
+    @endauth()
 </div>

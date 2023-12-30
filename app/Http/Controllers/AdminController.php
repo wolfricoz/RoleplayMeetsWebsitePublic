@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Genres;
 use App\Models\Post;
-use http\Client\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
@@ -33,12 +32,16 @@ class AdminController extends Controller
         $post->save();
         return redirect()->back();
     }
-    public function nsfwtoggle(Request $request, Post $post): RedirectResponse
+
+    public function nsfwtoggle(Request $request, Post $post): Response
     {
+        if (auth()->user()->id !== $post->user_id && !auth()->user()->group->manage_posts) {
+            return response('Unauthorized', 401);
+        }
+
         $post->nsfw = !$post->nsfw;
         $post->save();
-//        return redirect()->back();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'NSFW status toggled!');
     }
 
     public function destroy(Request $request, Post $post): RedirectResponse
