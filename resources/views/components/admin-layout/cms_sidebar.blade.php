@@ -25,6 +25,9 @@
         <x-admin-layout.cms_button :permission="auth()->user()->group->manage_posts">
             Groups
         </x-admin-layout.cms_button>
+        <x-admin-layout.cms_button :permission="auth()->user()->group->manage_posts">
+            Settings
+        </x-admin-layout.cms_button>
 
 
 

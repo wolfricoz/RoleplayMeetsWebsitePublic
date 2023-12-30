@@ -1,4 +1,4 @@
-@php use function MongoDB\BSON\toJSON; @endphp
+
 <div class="w-full bg-gray-100 rounded-xl"
      x-bind:class="{'col-span-1' : layout  === 'grid', 'col-span-3' : layout === 'list'}">
     <div class="p-2 h-10 text-lg text-center w-full border-b border-gray-200 overflow-hidden">
