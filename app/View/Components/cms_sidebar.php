@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\genres;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
@@ -11,9 +12,10 @@ class cms_sidebar extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+
+    public function __construct(genres $test )
     {
-        //
+
     }
 
     /**
@@ -21,6 +23,6 @@ class cms_sidebar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.cms_sidebar');
+        return view('components.admin-layout.cms_sidebar');
     }
 }

@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->boolean('manage_groups')->default(false);
             $table->boolean('manage_roles')->default(false);
             $table->boolean('is_patron')->default(false);
+            $table->boolean('manage_settings')->default(false);
 
 
         });
@@ -47,6 +48,8 @@ return new class extends Migration {
             'manage_groups' => true,
             'manage_roles' => true,
             'is_patron' => true,
+            'manage_settings' => true,
+
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Genres;
+use App\Models\groups;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -47,6 +48,8 @@ class AdminController extends Controller
     public function destroy(Request $request, Post $post): RedirectResponse
     {
         $post->delete();
-        return redirect()->back('admin.queue');
+        return redirect()->back()->with('success', 'Post deleted!');
     }
+
+
 }

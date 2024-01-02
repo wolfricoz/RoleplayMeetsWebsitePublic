@@ -4,9 +4,14 @@
 
         </x-postoptionsnav>
 
-        @foreach($posts as $post)
-            <x-post :post="$post"/>
-        @endforeach
+        @forelse($posts as $post)
+            <x-post :post="$post">
+            </x-post>
+        @empty
+                <div class="col-span-3">
+                    <p class="col-span-1 lg:col-span-3 text-center text-2xl">No posts found, check back later</p>
+                </div>
+        @endforelse
 
 
     </div>

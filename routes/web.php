@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RulesController;
@@ -40,6 +41,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/dashboard', [AdminController::class, 'index'])->name("admin.dashboard");
     Route::get('/queue', [AdminController::class, 'queue'])->name("admin.queue");
     Route::get('/posts', [PostController::class, 'admin'])->name("admin.posts");
+    Route::get('/groups', [GroupsController::class, 'index'])->name("admin.groups");
+    Route::post('/groups', [GroupsController::class, 'update'])->name("admin.groups.update");
     Route::post('/approve/{post}', [AdminController::class, 'approvetoggle'])->name("admin.approve");
     Route::delete('/delete/{post}', [AdminController::class, 'destroy'])->name("admin.delete");
 });

@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\genres;
+use App\Models\groups;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::share('genresCount', count(genres::all()));
+        View::share('groupsCount', count(groups::all()));
+        View::share('queueCount', count(Post::approved(false)->get()));
+        View::share('postsCount', count(Post::approved()->get()));
+        View::share('usersCount', count(User::all()));
+
     }
 }
