@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/posts', [PostController::class, 'admin'])->name("admin.posts");
     Route::get('/groups', [GroupsController::class, 'index'])->name("admin.groups");
     Route::post('/groups', [GroupsController::class, 'update'])->name("admin.groups.update");
+    Route::post('/groups/{role}', [GroupsController::class, 'destroy'])->name("admin.groups.delete");
     Route::post('/approve/{post}', [AdminController::class, 'approvetoggle'])->name("admin.approve");
     Route::delete('/delete/{post}', [AdminController::class, 'destroy'])->name("admin.delete");
 });

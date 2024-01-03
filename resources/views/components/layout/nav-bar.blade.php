@@ -49,7 +49,7 @@
                 <x-layout.components.dropdown-button href="">
                     Settings [WIP]
                 </x-layout.components.dropdown-button>
-                @if(auth()->user()->group->access_dashboard)
+                @if(auth()->user()->hasPermissionTo('access_dashboard'))
                     <x-layout.components.dropdown-button href="{{ route('admin.dashboard') }}">
                         Admin
                     </x-layout.components.dropdown-button>

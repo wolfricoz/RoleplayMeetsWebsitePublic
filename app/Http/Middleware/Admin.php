@@ -15,7 +15,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user()->group->access_dashboard) {
+        if (!auth()->user()->hasRole('admin')) {
             abort(403);
         }
         return $next($request);

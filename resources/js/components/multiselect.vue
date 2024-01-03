@@ -1,0 +1,53 @@
+<template>
+    <div class="w-full">
+        <input type="hidden" :value="selected_values" name="permissions" />
+        <Multiselect
+            v-model="selected_values"
+            mode="tags"
+            :close-on-select="false"
+            :allow-absent="true"
+            :searchable="true"
+            :resolve-on-load="false"
+            :delay="0"
+            :min-chars="1"
+            :options="options"
+        />
+    </div>
+
+</template>
+
+<script>
+import Multiselect from '@vueform/multiselect'
+
+export default {
+    components: {
+        Multiselect,
+    },
+    props: ['values', 'selected'],
+    beforeMount() {
+        if (this.values.length > 0) {
+            for(let i = 0; i < this.values.length; i++) {
+                this.options.push(this.values[i].name)
+            }
+        }
+        if (this.selected.length > 0) {
+            for(let i = 0; i < this.selected.length; i++) {
+                if (this.selected[i].name != null){
+                    this.selected_values.push(this.selected[i].name)
+                }
+            }
+        }
+    },
+    mounted() {
+
+    },
+    data() {
+        return {
+            selected_values: [],
+            options: []
+        }
+    }
+}
+</script>
+
+<style src="@vueform/multiselect/themes/default.css"></style>

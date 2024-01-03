@@ -11,11 +11,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Jakyeru\Larascord\Traits\InteractsWithDiscord;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, InteractsWithDiscord, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithDiscord, SoftDeletes, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -37,7 +38,6 @@ class User extends Authenticatable
         'mfa_enabled',
         'premium_type',
         'public_flags',
-        'roles',
     ];
 
     /**
@@ -69,17 +69,12 @@ class User extends Authenticatable
         'mfa_enabled' => 'boolean',
         'premium_type' => 'integer',
         'public_flags' => 'integer',
-        'roles' => 'json',
     ];
     public function posts (): HasMany
     {
         return $this->hasMany(Post::class);
     }
 
-    public function group(): BelongsTo
-    {
-        return $this->belongsTo(groups::class, 'group_id', 'id');
-    }
 
 //    public function group(): HasOne
 //    {
