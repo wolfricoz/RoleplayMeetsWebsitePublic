@@ -35,7 +35,7 @@
         !!}
     </show-more>
     @auth()
-        @if(auth()->user()->group->manage_posts)
+        @if(auth()->user()->hasPermissionTo('manage_posts'))
             <div class="inline-flex gap-2 border-t border-gray-200 p-1">
                 <p class="p-1">
                     Admin Tools:

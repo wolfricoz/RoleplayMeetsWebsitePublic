@@ -16,6 +16,6 @@ const app = createApp({});
 app.component('show-more', showMore);
 app.component('summernote', summernote);
 app.component('nsfwtoggle', nsfwtoggle);
-app.component('multiselect', multiselect);
+app.component('multiselectrole', multiselect);
 app.component('createmodal', createmodal);
 app.mount('#app');

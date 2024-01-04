@@ -21,6 +21,6 @@ class UserCreated
      */
     public function handle(UserWasCreated $event): void
     {
-        //
+        $event->user->assignRole('User');
     }
 }

@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $roles = ['user', 'patron', 'moderator', 'admin'];
+        $roles = ['User', 'Patron', 'Moderator', 'Admin'];
         foreach ($roles as $role) {
             Role::create(['name' => $role]);
         }
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
-        $role = Role::findByName('admin');
+        $role = Role::findByName('Admin');
         $role->givePermissionTo(Permission::all());
     }
 }

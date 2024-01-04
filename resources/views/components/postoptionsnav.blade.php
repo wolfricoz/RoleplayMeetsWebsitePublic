@@ -17,13 +17,20 @@
     </div>
     <x-search :genres="$genres"/>
     @auth()
-        <x-button href="{{ route('posts.create') }}">
-            Create Post
-        </x-button>
-    @else
-        <div>
+        @if(Auth::user()->hasPermissionTo('create_posts'))
+            <x-button href="{{ route('posts.create') }}">
+                Create new post
+            </x-button>
+        @else
+            <x-button>
+                No permission to create posts
+            </x-button>
+        @endif()
 
-        </div>
+    @else
+        <x-button href="{{ route('login') }}">
+            Login to create posts
+        </x-button>
     @endauth()
 
 </div>
