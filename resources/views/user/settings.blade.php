@@ -135,9 +135,5 @@
             </div>
         </div>
     </div>
-    <script>
-        // var app = document.getElementById('app');
-        // console.log(app.querySelectorAll('*[id]'));
-    </script>
 </x-layout.header>
 
