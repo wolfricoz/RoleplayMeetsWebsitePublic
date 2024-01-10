@@ -1,3 +1,4 @@
+@php use App\Support\Helpers; @endphp
 {{--Alright, we will be making a nav bar here, one on top and one on the side.--}}
 
 <div class="flex-wrap h-full w-full">
@@ -23,7 +24,11 @@
             @auth()
 
                 <span
-                    class="hidden lg:block ml-auto py-3.5 px-0.5 overflow-hidden {{ strlen(auth()->user()->global_name) > 15 ? "text-xs pt-4" : "py-3.5"}} ">{{ auth()->user()->global_name }}</span>
+                    class="hidden lg:block ml-auto pt-1.5 px-0.5 overflow-hidden {{ strlen(auth()->user()->global_name) > 15 ? "text-xs pt-4" : "py-3.5"}} ">{{ auth()->user()->global_name }}
+                    <span class="block text-left text-xs">
+                        {{ Helpers::get_highest_role(auth()->user())->name }}
+                    </span>
+                </span>
 
                 <img class=" h-8 w-8 mt-2 mx-2 rounded-full object-cover border border-gray-200"
                      src="{{ Auth::user()->getAvatar(['extension' => 'webp', 'size' => 32]) }}"
@@ -42,12 +47,13 @@
     @auth()
         <div x-show="dropdown" class="" x-cloak>
             <div class="flex flex-col absolute right-0 top-12 w-52 border-stone-200 bg-gray-100">
-                <x-layout.components.dropdown-button href="{{ route('users.home') }}">
-                    Profile [WIP]
+
+                <x-layout.components.dropdown-button href="{{ route('dashboard') }}">
+                    Profile
                 </x-layout.components.dropdown-button>
 
-                <x-layout.components.dropdown-button href="">
-                    Settings [WIP]
+                <x-layout.components.dropdown-button href="{{ route('users.settings') }}">
+                    Settings
                 </x-layout.components.dropdown-button>
                 @if(auth()->user()->hasPermissionTo('access_dashboard'))
                     <x-layout.components.dropdown-button href="{{ route('admin.dashboard') }}">

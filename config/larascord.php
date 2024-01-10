@@ -223,8 +223,8 @@ return [
             'redirect' => '/'
         ],
         'user_deleted' => [
-            'message' => 'Your account is deleted and you can\'t log in.',
-            'redirect' => '/'
+            'message' => 'Your account is deleted and you can\'t log in. Please contact the administrator.',
+            'redirect' => 'user.restore',
         ],
     ],
 
@@ -241,7 +241,7 @@ return [
     'success_messages' => [
         'user_deleted' => [
             'message' => 'Your account has been deleted.',
-            'redirect' => '/'
+            'redirect' => 'home'
         ],
     ],
 

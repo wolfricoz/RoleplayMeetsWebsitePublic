@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+
+use Cog\Laravel\Ban\Traits\Bannable;
+use Cog\Contracts\Ban\Bannable as BannableInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,9 +17,9 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements BannableInterface
 {
-    use HasApiTokens, HasFactory, Notifiable, InteractsWithDiscord, SoftDeletes, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithDiscord, SoftDeletes, HasRoles, Prunable, Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -75,9 +78,19 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function profile (): HasOne
+    {
+        return $this->hasOne(Profile::class, 'user_id', 'id');
+    }
 
-//    public function group(): HasOne
-//    {
-//        return $this->hasOne(groups::class);
-//    }
+    public function settings (): HasOne
+    {
+        return $this->hasOne(Settings::class);
+    }
+
+    public function prunable()
+    {
+        return static::where('deleted_at', '<=', now()->subDays(30));
+    }
+
 }

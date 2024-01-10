@@ -30,5 +30,15 @@ class UserController extends Controller
         ]);
     }
 
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('home')->with('success', 'User deleted.');
+    }
 
+    public function restore(User $user)
+    {
+        $user->restore();
+        return redirect()->route('home')->with('success', 'User restored.');
+    }
 }

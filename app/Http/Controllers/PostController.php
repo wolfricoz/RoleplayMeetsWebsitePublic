@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Genres;
 use App\Models\Post;
+use App\Support\RemoveHtmlFromText;
 
 class PostController extends Controller
 {
@@ -43,7 +44,7 @@ class PostController extends Controller
             'partnerage' => 'required|numeric|min:18|max:999',
             'genre_id' => 'required',
         ]);
-        if (strlen(preg_replace('/<[^>]*>/', '', $attributes['content'])) > 10000) {
+        if (RemoveHtmlFromText::removeHtmlFromText(request('content')) > 10000) {
             return back()->withErrors(['content' => 'Your post may not exceed 10000 characters.']);
         }
 

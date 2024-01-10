@@ -20,19 +20,5 @@ class DatabaseSeeder extends Seeder
         User::factory(10)->create();
         Post::factory(100)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        $roles = ['User', 'Patron', 'Moderator', 'Admin'];
-        foreach ($roles as $role) {
-            Role::create(['name' => $role]);
-        }
-        $permissions = ['access_dashboard', 'manage_posts', 'manage_users', 'manage_rules', 'manage_genres', 'manage_groups', 'manage_roles', 'manage_settings', 'is_patron'];
-        foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
-        }
-        $role = Role::findByName('Admin');
-        $role->givePermissionTo(Permission::all());
     }
 }

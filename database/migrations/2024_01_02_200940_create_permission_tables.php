@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 return new class extends Migration
 {
@@ -116,6 +118,18 @@ return new class extends Migration
         app('cache')
             ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
             ->forget(config('permission.cache.key'));
+
+
+        $roles = ['User', 'Patron', 'Moderator', 'Admin'];
+        foreach ($roles as $role) {
+            Role::create(['name' => $role]);
+        }
+        $permissions = ['access_dashboard', 'manage_posts', 'manage_users', 'manage_rules', 'manage_genres', 'manage_groups', 'manage_roles', 'manage_settings', 'is_patron', 'create_posts', 'edit_posts', 'delete_posts'];
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+        $role = Role::findByName('Admin');
+        $role->givePermissionTo(Permission::all());
     }
 
     /**
@@ -135,4 +149,6 @@ return new class extends Migration
         Schema::drop($tableNames['roles']);
         Schema::drop($tableNames['permissions']);
     }
+
+
 };

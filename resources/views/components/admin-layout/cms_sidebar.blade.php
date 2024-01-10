@@ -24,7 +24,7 @@
             Genres
         </x-admin-layout.cms_button>
 
-        <x-admin-layout.cms_button :permission="auth()->user()->hasPermissionTo('manage_users')" :display="$usersCount">
+        <x-admin-layout.cms_button  href="{{ route('admin.users') }}" :permission="auth()->user()->hasPermissionTo('manage_users')" :display="$usersCount">
             Users
         </x-admin-layout.cms_button>
 

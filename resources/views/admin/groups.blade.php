@@ -3,7 +3,7 @@
         <div class="grid grid-cols-3 gap-4">
             <div class="col-span-3 grid grid-cols-3 gap-4 border-b border-gray-300">
                 <div class="col-span-1">
-                    <createmodal :values="{{ $permissions }}" :title="'Create Role'">
+                    <createmodal :button="'Create a new group'" :values="{{ $permissions }}" :title="'Create Role'">
                         <div class="col-span-1 border p-4 ">
                             <x-admin-layout.cms_role_form action="{{route('admin.groups.store')}}"
                                                           :permissions="$permissions"/>

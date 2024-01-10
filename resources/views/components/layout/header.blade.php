@@ -30,6 +30,6 @@ dropdown: false }" x-cloak>
 <x-layout.nav-bar>
     {{ $slot }}
 </x-layout.nav-bar>
-
+@include('cookie-consent::index')
 </body>
 </html>

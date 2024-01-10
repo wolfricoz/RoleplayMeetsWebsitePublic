@@ -13,7 +13,7 @@
                     />
 {{--                    @error('title')--}}
                     <h1>Body</h1>
-                    <summernote :name="'content'" :value="{{ json_encode(old('content')) }}">
+                    <summernote :maxlength="10000" :name="'content'" :value="{{ json_encode(old('content')) }}">
                     </summernote>
                     <div class="flex flex-col lg:flex-row gap-4 my-3">
 
