@@ -111,7 +111,8 @@
                     @csrf
                     <span class="w-36 font-bold">NSFW?</span>
                     <label class="ml-3 inline-flex items-center rounded-md cursor-pointer dark:text-gray-800">
-                        <input name="NSFW" type="checkbox" class="hidden peer" {{ auth()->user()->settings->NSFW ? 'checked' : '' }}>
+                        <input name="NSFW" type="checkbox"
+                               class="hidden peer" {{ auth()->user()->settings->NSFW ? 'checked' : '' }}>
                         <span class="px-4  rounded-l-md bg-green-500 peer-checked:bg-gray-500">Hidden</span>
                         <span class="px-4 rounded-r-md bg-gray-500 peer-checked:bg-blue-400">Shown</span>
                     </label>
@@ -129,8 +130,16 @@
                 <form method="POST" action="{{ route('users.delete', auth()->user()) }}" class="mt-5">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="block bg-red-600 text-white font-bold rounded-md p-2 mt-2" onclick="confirm('Are you certain you want to permanently remove your account?')">Permanently delete your account</button>
-                    <p class="text-red-500 text-sm font-bold">* Upon receipt of a delete request, roleplaymeets.com reserves the right to retain your data for up to 30 days for processing of the deletion. During this 30-day processing period, your account, posts, and other personal information will not be accessible. If you wish to cancel your deletion request, you may log in to roleplaymeets.com at any time during the 30-day processing period, which will cancel the processing and restore your account to full functionality.</p>
+                    <button type="submit" class="block bg-red-600 text-white font-bold rounded-md p-2 mt-2"
+                            onclick="confirm('Are you certain you want to permanently remove your account?')">
+                        Permanently delete your account
+                    </button>
+                    <p class="text-red-500 text-sm font-bold">* Upon receipt of a delete request, roleplaymeets.com
+                        reserves the right to retain your data for up to 30 days for processing of the deletion. During
+                        this 30-day processing period, your account, posts, and other personal information will not be
+                        accessible. If you wish to cancel your deletion request, you may log in to roleplaymeets.com at
+                        any time during the 30-day processing period, which will cancel the processing and restore your
+                        account to full functionality.</p>
                 </form>
             </div>
         </div>
