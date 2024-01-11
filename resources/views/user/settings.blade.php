@@ -139,7 +139,8 @@
                         this 30-day processing period, your account, posts, and other personal information will not be
                         accessible. If you wish to cancel your deletion request, you may log in to roleplaymeets.com at
                         any time during the 30-day processing period, which will cancel the processing and restore your
-                        account to full functionality.</p>
+                        account to full functionality.
+                    </p>
                 </form>
             </div>
         </div>

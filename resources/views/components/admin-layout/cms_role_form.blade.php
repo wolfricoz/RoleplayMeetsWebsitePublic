@@ -4,7 +4,7 @@
     <input id="name" name="name" type="text" value="{{ isset($role) ? $role->name : ''}}" placeholder="name"
            class="border-2 border-gray-400 rounded-lg w-full">
     <multiselectrole :values="{{ json_encode($permissions, JSON_THROW_ON_ERROR) }}"
-                     :selected="{{ isset($role) ? json_encode($role->getAllPermissions(), JSON_THROW_ON_ERROR) : null }}"></multiselectrole>
+                     :selected="{{ isset($role) ? json_encode($role->getAllPermissions(), JSON_THROW_ON_ERROR) : null }}" :title="Permissions"></multiselectrole>
     <input name="role_id" type="hidden" value="{{ isset($role) ? $role->id : null }}">
     @if(isset($role) && $role->name === 'Admin')
         <p class="font-bold text-center">This role can not be edited.</p>

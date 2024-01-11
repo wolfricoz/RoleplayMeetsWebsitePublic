@@ -3,13 +3,6 @@
         <div class="grid grid-cols-4 gap-4">
             <div class="col-span-4 grid grid-cols-3 gap-4 border-b border-gray-300">
                 <div class="col-span-1">
-                    <createmodal :button="'Create new role'" :title="'Create Role'">
-{{--                        <div class="col-span-1 border p-4 ">--}}
-{{--                            <x-admin-layout.cms_role_form action="{{route('admin.groups.store')}}"--}}
-{{--                                                          :permissions="$permissions"/>--}}
-
-{{--                        </div>--}}
-                    </createmodal>
                 </div>
                 <div class="col-span-1 text-center ">
                     <h1 class="text-xl font-bold">
@@ -25,9 +18,7 @@
             </div>
 
                 @forelse($users as $user)
-                    <profilemodal :user="{{ json_encode($user, JSON_THROW_ON_ERROR) }}"
-                                  :posts="{{ json_encode(count($user->posts), JSON_THROW_ON_ERROR) }}"
-                                  :image="{{ json_encode($user->getAvatar(['extension' => 'webp', 'size' => 512]), JSON_THROW_ON_ERROR) }}">
+                    <a href="{{ route('admin.users.show', $user) }}">
                     <div class="col-span-1 border border-gray-300 rounded-xl hover:bg-indigo-300 hover:cursor-pointer"
                     title="Click to view profile">
                         <div class="flex flex-row p-1">
@@ -40,7 +31,11 @@
                                 <h6>Roles:</h6>
                                 <p>
                                     @forelse($user->getRoleNames() as $role)
-                                        {{$role}},
+                                        @if(!$loop->last)
+                                            {{$role}},
+                                        @else
+                                            {{$role}}
+                                        @endif
                                     @empty
                                         No Roles
                                     @endforelse</p>
@@ -56,10 +51,10 @@
                             </span>
                         </div>
                     </div>
-                    </profilemodal>
+                    </a>
                 @empty
                     <div class="col-span-3 text-center font-bold">
-                        No groups yet!
+                        No Users Found
                     </div>
                 @endforelse
 

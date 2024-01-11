@@ -59,8 +59,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_d
     });
     Route::group(['prefix' => 'users', 'middleware' => ['permission:manage_users']], static function () {
         Route::get('/', [AdminUserController::class, 'index'])->name("admin.users");
+        Route::get('/manage/{user}', [AdminUserController::class, 'show'])->name("admin.users.show");
         Route::post('/update/{user}', [AdminUserController::class, 'update'])->name("admin.users.update");
         Route::post('/delete/{user}', [AdminUserController::class, 'destroy'])->name("admin.users.delete");
+        Route::post('/ban/{user}', [AdminUserController::class, 'ban'])->name("admin.users.ban");
+
     });
 
 

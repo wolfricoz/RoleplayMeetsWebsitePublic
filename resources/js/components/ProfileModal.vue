@@ -32,7 +32,6 @@ export default {
                 <p>Verified: {{ user.verified }}</p>
                 <p>posts: {{ posts }}</p>
                 <p>Created: {{ new Date(Date.parse(this.user.created_at)).toUTCString()}}</p>
-
             </article>
 
 

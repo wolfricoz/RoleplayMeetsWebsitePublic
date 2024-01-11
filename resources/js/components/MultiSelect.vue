@@ -1,7 +1,7 @@
 <template>
     <div class="w-full rounded-lg">
-        <label class="block tracking-wide text-sm font-bold mb-2" for="grid-state">
-            Permissions
+        <label class="block tracking-wide text-sm font-bold mb-2" for="grid-state" v-html="title">
+
         </label>
         <input type="hidden" :value="selected_values" name="permissions" />
         <Multiselect
@@ -26,7 +26,7 @@ export default {
     components: {
         Multiselect,
     },
-    props: ['values', 'selected'],
+    props: ['values', 'selected', 'title'],
     beforeMount() {
         if (this.values != null) {
             for(let i = 0; i < this.values.length; i++) {
