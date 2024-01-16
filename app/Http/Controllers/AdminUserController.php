@@ -11,7 +11,7 @@ class AdminUserController extends Controller
     public function index()
     {
         return view('admin.user.index', [
-            'users' => User::all(),
+            'users' => User::first()->paginate(20),
         ]);
     }
 
@@ -31,8 +31,20 @@ class AdminUserController extends Controller
         return redirect()->route('admin.users.show', $user);
     }
 
+
+    public function indexbans()
+    {
+        return view('admin.user.bans', [
+            'users' => User::first()->where('banned_at', '!=', null)->paginate(20),
+        ]);
+    }
+
     public function ban(Request $request, User $user)
     {
+        request()->validate([
+            'comment' => 'required',
+            'expired_at' => 'nullable|date',
+        ]);
         if (!$request->has('expired_at')){
             $user->ban([
                 'comment' => $request->comment,
@@ -46,5 +58,11 @@ class AdminUserController extends Controller
 
 
         return redirect()->route('admin.users.show', $user);
+    }
+
+    public function unban(User $user)
+    {
+        $user->unban();
+        return redirect()->back();
     }
 }

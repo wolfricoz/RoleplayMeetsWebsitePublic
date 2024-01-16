@@ -1,15 +1,17 @@
-<div class="js-cookie-consent cookie-consent fixed bottom-0 inset-x-0 pb-2">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="p-2 rounded-lg bg-yellow-100">
-            <div class="flex items-center justify-between flex-wrap">
-                <div class="w-0 flex-1 items-center hidden md:inline">
-                    <p class="ml-3 text-black cookie-consent__message">
-                        {!! trans('cookie-consent::texts.message') !!}
+<div class="js-cookie-consent cookie-consent fixed inset-x-0 bottom-0 pb-2">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="rounded-lg bg-yellow-100 p-2">
+            <div class="flex flex-wrap items-center justify-between">
+                <div class="hidden w-0 flex-1 items-center md:inline">
+                    <p class="cookie-consent__message ml-3 text-black">
+                        {!! trans("cookie-consent::texts.message") !!}
                     </p>
                 </div>
-                <div class="mt-2 flex-shrink-0 w-full sm:mt-0 sm:w-auto">
-                    <button class="js-cookie-consent-agree cookie-consent__agree cursor-pointer flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium text-yellow-800 bg-yellow-400 hover:bg-yellow-300">
-                        {{ trans('cookie-consent::texts.agree') }}
+                <div class="mt-2 w-full flex-shrink-0 sm:mt-0 sm:w-auto">
+                    <button
+                        class="js-cookie-consent-agree cookie-consent__agree flex cursor-pointer items-center justify-center rounded-md bg-yellow-400 px-4 py-2 text-sm font-medium text-yellow-800 hover:bg-yellow-300"
+                    >
+                        {{ trans("cookie-consent::texts.agree") }}
                     </button>
                 </div>
             </div>

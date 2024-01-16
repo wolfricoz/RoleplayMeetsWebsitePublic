@@ -6,10 +6,10 @@
             >
                 <div class="col-span-1"></div>
                 <div class="col-span-1 text-center">
-                    <h1 class="text-xl font-bold">Users</h1>
+                    <h1 class="text-xl font-bold">Bans</h1>
                     <h6 class="text-sm">
-                        Manage users and their roles. Click on the profiles for
-                        more information
+                        These users have been banned, you can review their bans
+                        here or unban them
                     </h6>
                 </div>
                 <div class="col-span-1"></div>
@@ -48,18 +48,38 @@
                                     </div>
                                 @endisset
 
-                                <h6>Roles:</h6>
-                                <p>
-                                    @forelse ($user->getRoleNames() as $role)
-                                        @if (! $loop->last)
-                                            {{ $role }},
-                                        @else
-                                            {{ $role }}
-                                        @endif
-                                    @empty
-                                        No Roles
-                                    @endforelse
+                                <h6>Reason</h6>
+                                <p class="max-h-28">
+                                    {!! clean($user->getBans()->first()->comment) ?? "No reason provided" !!}
                                 </p>
+                                <div class="flex flex-row justify-between">
+                                    <div>
+                                        <h6>Banned At:</h6>
+                                        <p>
+                                            {!! clean($user->getBans()->first()->created_at->format("m/d/Y"),) ?? "No date provided" !!}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <h6>Expires At:</h6>
+                                        <p>
+                                            {{ optional($user->getBans()->first()->expired_at)->format("m/d/Y") ?? "No date provided" }}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <form
+                                    class="flex justify-end"
+                                    method="POST"
+                                    action="{{ route("admin.users.unban", $user) }}"
+                                >
+                                    @csrf
+                                    <button
+                                        type="submit"
+                                        class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
+                                    >
+                                        Unban
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <div class="mx-2 flex flex-row gap-2 text-xs">

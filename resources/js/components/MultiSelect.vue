@@ -1,7 +1,10 @@
 <template>
     <div class="w-full rounded-lg">
-        <label class="block tracking-wide text-sm font-bold mb-2" for="grid-state" v-html="title">
-
+        <label
+            class="mb-2 block text-sm font-bold tracking-wide"
+            for="grid-state"
+            v-html="title"
+        >
         </label>
         <input type="hidden" :value="selected_values" name="permissions" />
         <Multiselect
@@ -16,41 +19,38 @@
             :options="options"
         />
     </div>
-
 </template>
 
 <script>
-import Multiselect from '@vueform/multiselect'
+import Multiselect from "@vueform/multiselect";
 
 export default {
     components: {
         Multiselect,
     },
-    props: ['values', 'selected', 'title'],
+    props: ["values", "selected", "title"],
     beforeMount() {
         if (this.values != null) {
-            for(let i = 0; i < this.values.length; i++) {
-                this.options.push(this.values[i].name)
+            for (let i = 0; i < this.values.length; i++) {
+                this.options.push(this.values[i].name);
             }
         }
         if (this.selected != null) {
-            for(let i = 0; i < this.selected.length; i++) {
-                if (this.selected[i].name != null){
-                    this.selected_values.push(this.selected[i].name)
+            for (let i = 0; i < this.selected.length; i++) {
+                if (this.selected[i].name != null) {
+                    this.selected_values.push(this.selected[i].name);
                 }
             }
         }
     },
-    mounted() {
-
-    },
+    mounted() {},
     data() {
         return {
             selected_values: [],
-            options: []
-        }
-    }
-}
+            options: [],
+        };
+    },
+};
 </script>
 
 <style src="@vueform/multiselect/themes/default.css"></style>

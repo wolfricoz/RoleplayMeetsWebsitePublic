@@ -1,36 +1,26 @@
-<div class="flex h-12 col-span-3 bg-gray-200 rounded-full px-4 gap-4
-        lg:justify-between lg:inline-flex">
-
-
+<div
+    class="col-span-3 flex flex-wrap gap-4 rounded-xl bg-gray-200 px-4 lg:inline-flex lg:h-12 lg:justify-between lg:rounded-full"
+>
     <div class="hidden lg:inline-flex">
-        <div class="m-2.5 mx-0.5 text-sm bg-transparent  text-gray-700 font-bold py-1 px-2
-            cursor-pointer">
+        <div
+            class="m-2.5 mx-0.5 cursor-pointer bg-transparent px-2 py-1 text-sm font-bold text-gray-700"
+        >
             Layout:
         </div>
-        <x-button :layout="'grid'">
-            Grid
-        </x-button>
-        <x-button :layout="'list'">
-            List
-        </x-button>
-
+        <x-button :layout="'grid'">Grid</x-button>
+        <x-button :layout="'list'">List</x-button>
     </div>
-    <x-search :genres="$genres"/>
+
+    <x-search :genres="$genres" />
     @auth()
-        @if(Auth::user()->hasPermissionTo('create_posts'))
+        @if (Auth::user()->hasPermissionTo("create_posts"))
             <x-button href="{{ route('posts.create') }}">
                 Create new post
             </x-button>
         @else
-            <x-button>
-                No permission to create posts
-            </x-button>
+            <x-button>No permission to create posts</x-button>
         @endif()
-
     @else
-        <x-button href="{{ route('login') }}">
-            Login to create posts
-        </x-button>
+        <x-button href="{{ route('login') }}">Login to create posts</x-button>
     @endauth()
-
 </div>

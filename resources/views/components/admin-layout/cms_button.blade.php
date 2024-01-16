@@ -1,15 +1,17 @@
-@if($permission)
-    <a href="{{ $attributes['href'] }}">
-        <div class="flex justify-between  p-4 w-full text-sm font-semibold
-                hover:bg-gray-100 hover:border-indigo-800 hover:text-indigo-900 hover:border-r
-                ">
+@if ($permission)
+    <a href="{{ $attributes["href"] }}">
+        <div
+            class="flex w-full justify-between p-4 text-sm font-semibold hover:border-r hover:border-indigo-800 hover:bg-gray-100 hover:text-indigo-900"
+        >
             <span>
                 {{ $slot }}
             </span>
             @isset($display)
-            <span class="bg-indigo-800 rounded-full h-5 w-10 text-center overflow-hidden text-white">
-                {{ $display }}
-            </span>
+                <span
+                    class="h-5 w-10 overflow-hidden rounded-full bg-indigo-800 text-center text-white"
+                >
+                    {{ $display }}
+                </span>
             @endisset
         </div>
     </a>

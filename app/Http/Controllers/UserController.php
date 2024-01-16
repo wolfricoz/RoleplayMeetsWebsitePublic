@@ -23,6 +23,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        if ($user->banned_at !== null) {
+            return redirect()->route('home')->with('error', 'This user is banned.');
+        }
+
         return view('user.user', [
             'user' => $user,
             'posts' => $user->posts()->latest()->paginate(10),

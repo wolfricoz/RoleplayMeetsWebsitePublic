@@ -3,8 +3,10 @@
 namespace App\Models;
 
 
+use Cog\Laravel\Ban\Models\Ban;
 use Cog\Laravel\Ban\Traits\Bannable;
 use Cog\Contracts\Ban\Bannable as BannableInterface;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,7 +21,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements BannableInterface
 {
-    use HasApiTokens, HasFactory, Notifiable, InteractsWithDiscord, SoftDeletes, HasRoles, Prunable, Bannable;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithDiscord, SoftDeletes, HasRoles, Prunable, Bannable, CascadeSoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -86,6 +88,11 @@ class User extends Authenticatable implements BannableInterface
     public function settings (): HasOne
     {
         return $this->hasOne(Settings::class);
+    }
+
+    public function getBans(): HasMany
+    {
+        return $this->hasMany(Ban::class, 'bannable_id', 'id');
     }
 
     public function prunable()

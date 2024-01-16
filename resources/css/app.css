@@ -1,9 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-[x-cloak] {display: none !important;}
+[x-cloak] {
+    display: none !important;
+}
 
-.ul{
+.ul {
     list-style: disc !important;
     list-style-position: inside !important;
 }
@@ -12,10 +14,9 @@
     list-style: decimal !important;
     list-style-position: inside !important;
 }
-.btn{
-
+.btn {
 }
-.note-editable ul{
+.note-editable ul {
     list-style: disc !important;
     list-style-position: inside !important;
 }

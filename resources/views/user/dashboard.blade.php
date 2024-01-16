@@ -1,46 +1,50 @@
 <x-layout.header>
-    <div id="app" class="grid grid-cols-3 m-6 gap-4" x-data="{'layout': 'list'}">
-        <div class="flex h-12 col-span-3 bg-gray-200 rounded-full px-2 gap-4
-        lg:justify-center lg:inline-flex">
-            <h1 class="m-2 text-2xl font-bold text-center">Dashboard</h1>
-        </div>
-        <div class="flex h-12 col-span-3 bg-gray-200 rounded-full px-4 gap-4
-        lg:justify-between lg:inline-flex">
-
-
-            <div class="hidden lg:inline-flex">
-                <div class="m-2.5 mx-0.5 text-sm bg-transparent  text-gray-700 font-bold py-1 px-2
-            cursor-pointer">
-                    USER Layout:
+    <div class="flex flex-row">
+        <div
+            id="app"
+            class="m-2 mr-0 grid grid-cols-3 gap-2 lg:m-6 lg:grid-cols-4 lg:gap-4"
+            x-data="{ 'layout': 'list' }"
+        >
+            <div
+                class="col-span-3 h-fit gap-4 rounded-xl bg-gray-200 p-2 lg:col-span-3 lg:justify-center"
+            >
+                <h1 class="m-2 text-center text-2xl font-bold">Dashboard</h1>
+                <div class="flex flex-row justify-center gap-4">
+                    <div class="flex flex-row flex-wrap justify-center gap-4">
+                        <article class="rounded-xl border border-gray-300 p-2">
+                            <h6>Total Posts:</h6>
+                            <p class="text-center">
+                                {{ count($user->posts) }}
+                            </p>
+                        </article>
+                        <article class="rounded-xl border border-gray-300 p-2">
+                            <h6>Approved Posts:</h6>
+                            <p class="text-center">
+                                {{ count($user->posts->where("approved", "=", true)) }}
+                            </p>
+                        </article>
+                        <article class="rounded-xl border border-gray-300 p-2">
+                            <h6>Pending Posts:</h6>
+                            <p class="text-center">
+                                {{ count($user->posts->where("approved", "=", false)) }}
+                            </p>
+                        </article>
+                    </div>
                 </div>
-                <x-button :layout="'grid'">
-                    Grid
-                </x-button>
-                <x-button :layout="'list'">
-                    List
-                </x-button>
-
             </div>
-            <x-search :search="request('search')"/>
-            @auth()
-            <x-button href="{{ route('posts.create') }}">
-                Create Post
-            </x-button>
-            @else
-                <div>
+            <aside
+                class="col-span-3 bg-red-500 lg:col-span-1 lg:col-start-4 lg:row-span-9"
+            >
+                test
+            </aside>
+            <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
 
-                </div>
-            @endauth()
-
+            @foreach ($posts as $post)
+                <x-post :post="$post" />
+            @endforeach
         </div>
-        @foreach($posts as $post)
-            <x-post :post="$post"/>
-        @endforeach
-
-
     </div>
     <div class="mx-4 my-2">
         {{ $posts->links() }}
     </div>
-
 </x-layout.header>

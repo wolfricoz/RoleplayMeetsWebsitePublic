@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->approved()->filter(request(['search', 'genre']))->paginate(12);
+        $posts = Post::latest()->approved()->filter(request(['search', 'genre']))->banned()->paginate(12);
 
         return view('home', [
             'posts' => $posts,
@@ -44,7 +44,7 @@ class PostController extends Controller
             'partnerage' => 'required|numeric|min:18|max:999',
             'genre_id' => 'required',
         ]);
-        if (RemoveHtmlFromText::removeHtmlFromText(request('content')) > 10000) {
+        if (strlen(RemoveHtmlFromText::removeHtmlFromText(request('content'))) > 10000) {
             return back()->withErrors(['content' => 'Your post may not exceed 10000 characters.']);
         }
 
