@@ -3,7 +3,6 @@
 namespace App\Support;
 
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 
 class Helpers
 {
@@ -25,5 +24,10 @@ class Helpers
             }
         }
         return $highest_role;
+    }
+
+    public static function trim_extra_spaces($text): array|string|null
+    {
+        return preg_replace("/<p><br><\/p>|<div><br><\/div>|([\r\n]{4,}|[\n]{2,}|[\r]{2,})/", "", $text);
     }
 }

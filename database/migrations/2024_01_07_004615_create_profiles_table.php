@@ -30,7 +30,9 @@ return new class extends Migration
             $table->boolean('show_location')->default(false);
             $table->string('location')->nullable();
             $table->text('bio')->nullable();
+            $table->boolean('show_website')->default(false);
             $table->string('website')->nullable();
+
             $table->timestamps();
         });
     }

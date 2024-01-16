@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Models\Settings;
+use App\Support\Helpers;
 use App\Support\RemoveHtmlFromText;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,26 +15,31 @@ class SettingsController extends Controller
     {
         return view('user.settings', [
             'user' => auth()->user(),
+            'countries' => \Countries::getList('en')
         ]);
     }
 
     public function update(Request $request): RedirectResponse
     {
-        if (RemoveHtmlFromText::removeHtmlFromText($request->bio) > 2000) {
-            return redirect()->back()->with('error', 'Your bio is too long. Please shorten it.');
+
+        if (strlen(RemoveHtmlFromText::removeHtmlFromText($request->bio)) > 512) {
+
+            return redirect()->back()->withErrors(['bio' => 'Your bio may not exceed 512 characters.']);
         }
-
-
         $validated = $request->validate([
-            'bio' => 'nullable|string|max:2000',
+            'bio' => 'nullable|string',
+            'pronouns' => 'nullable|string|max:32',
             'location' => 'nullable|string|max:255',
             'website' => 'nullable|string|max:255',
-            'twitter' => 'nullable|string|max:255',
-            'facebook' => 'nullable|string|max:255',
-            'instagram' => 'nullable|string|max:255',
-            'other' => 'nullable|string|max:255',
+            'email' => 'nullable|string|max:255',
+            'twitter' => 'nullable|string|max:32',
+            'reddit' => 'nullable|string|max:32',
+            'telegram' => 'nullable|string|max:32',
+            'instagram' => 'nullable|string|max:32',
+            'other' => 'nullable|string|max:32',
 
         ]);
+        $validated['bio'] = clean(trim(Helpers::trim_extra_spaces($validated['bio'])));
         foreach (\request()->all() as $key => $value) {
             if (isset($request[$key]) && str_starts_with($key, 'show_')) {
                 $validated[$key] = true;

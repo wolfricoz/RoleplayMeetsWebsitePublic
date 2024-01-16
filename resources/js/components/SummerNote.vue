@@ -32,7 +32,7 @@ export default {
                         let plainText = text.replace(/<[^>]*>?/gm, ""); // remove HTML tags
                         if (plainText.length > this.maxlength) {
                             // If the text is longer than the limit, truncate it
-                            plainText = plainText.substring(0, this.maxlength);
+                            plainText = text.substring(0, this.maxlength);
                             $("#summernote").summernote("code", plainText);
                         }
                         this.charCount = plainText.length;
@@ -51,8 +51,7 @@ export default {
 <!--TODO: Add a character counter-->
 <template>
     <div class="my-2 bg-white">
-        <textarea id="summernote" class="h-32" required v-bind:name="name">
-        </textarea>
+        <textarea id="summernote" class="h-32" v-bind:name="name"> </textarea>
     </div>
     <div class="text-right text-xs text-gray-500">
         <span>{{ charCount }}</span> / {{ maxlength }} characters

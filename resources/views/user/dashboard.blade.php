@@ -1,5 +1,5 @@
 <x-layout.header>
-    <div class="flex flex-row">
+    <div class="">
         <div
             id="app"
             class="m-2 mr-0 grid grid-cols-3 gap-2 lg:m-6 lg:grid-cols-4 lg:gap-4"
@@ -32,16 +32,19 @@
                     </div>
                 </div>
             </div>
-            <aside
-                class="col-span-3 bg-red-500 lg:col-span-1 lg:col-start-4 lg:row-span-9"
-            >
-                test
-            </aside>
+            <x-profile_sidebar :user="$user"></x-profile_sidebar>
+
             <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
 
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <x-post :post="$post" />
-            @endforeach
+            @empty
+                <div
+                    class="col-span-3 w-full rounded-xl bg-gray-100 p-6 text-xl"
+                >
+                    <p class="text-center">No posts yet!</p>
+                </div>
+            @endforelse
         </div>
     </div>
     <div class="mx-4 my-2">

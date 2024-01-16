@@ -16,6 +16,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "mews/purifier": "^3.4",
+        "monarobase/country-list": "^3.4",
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-permission": "^6.3"
     },

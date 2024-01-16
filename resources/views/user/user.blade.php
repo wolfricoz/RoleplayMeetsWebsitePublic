@@ -1,21 +1,24 @@
 <x-layout.header>
-    {{-- Make this a component, maybe make the component controller grab the genres --}}
-    <div
-        id="app"
-        class="m-6 grid grid-cols-3 gap-4"
-        x-data="{ 'layout': 'list' }"
-    >
+    <div class="">
         <div
-            class="col-span-3 flex h-12 gap-4 rounded-full bg-gray-200 px-2 lg:inline-flex lg:justify-center"
+            id="app"
+            class="m-2 mr-0 grid grid-cols-3 gap-2 lg:m-6 lg:grid-cols-4 lg:gap-4"
+            x-data="{ 'layout': 'list' }"
         >
-            <h1 class="m-2 text-center text-2xl font-bold">
-                {{ $user->global_name }}'s Profile
-            </h1>
+            <x-profile_sidebar :user="$user"></x-profile_sidebar>
+
+            <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
+
+            @forelse ($posts as $post)
+                <x-post :post="$post" />
+            @empty
+                <div
+                    class="col-span-3 w-full rounded-xl bg-gray-100 p-6 text-xl"
+                >
+                    <p class="text-center">No posts yet!</p>
+                </div>
+            @endforelse
         </div>
-        <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
-        @foreach ($posts as $post)
-            <x-post :post="$post" />
-        @endforeach
     </div>
     <div class="mx-4 my-2">
         {{ $posts->links() }}

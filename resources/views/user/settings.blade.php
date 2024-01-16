@@ -29,28 +29,27 @@
                     <p>Email: {{ auth()->user()->email }}</p>
                 </div>
             </div>
-            <div
-                class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
-            >
-                <div class="border-b border-gray-200">
-                    <h1 id="profile" class="text-center text-2xl font-bold">
-                        Profile Settings
-                    </h1>
-                    <h6 class="text-center text-sm">
-                        Your profile settings affect how you appear on the site.
-                    </h6>
-                </div>
-                <form
-                    method="POST"
-                    action="{{ route("users.settings.update") }}"
+            <form method="POST" action="{{ route("users.settings.update") }}">
+                @csrf
+                <div
+                    class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
                 >
-                    @csrf
+                    <div class="border-b border-gray-200">
+                        <h1 id="profile" class="text-center text-2xl font-bold">
+                            Profile Settings
+                        </h1>
+                        <h6 class="text-center text-sm">
+                            Your profile settings affect how you appear on the
+                            site.
+                        </h6>
+                    </div>
+
                     <div class="mt-1 border-b border-gray-200">
                         <label class="font-bold">Biography</label>
                         <summernote
-                            :name="'biography'"
-                            :maxlength="2000"
-                            :value="{{ json_encode(old("biography"), JSON_THROW_ON_ERROR) }}"
+                            :name="'bio'"
+                            :maxlength="512"
+                            :value="{{ json_encode(auth()->user()->profile->bio, JSON_THROW_ON_ERROR) }}"
                         ></summernote>
                         <div class="mt-1 w-fit">
                             <x-settings_forum_field
@@ -63,14 +62,33 @@
                             </x-settings_forum_field>
                             <x-settings_forum_field
                                 name="location"
-                                value="{{ auth()->user()->profile->location ?? null }}"
+                                type="hidden"
                                 :toggle="auth()->user()->profile->show_location"
                             >
-                                Location
+                                Country
                             </x-settings_forum_field>
+                            <select name="location">
+                                <option value="0">Select a country</option>
+                                @foreach ($countries as $country)
+                                    @if (auth()->user()->profile->location === $country)
+                                        <option
+                                            value="{{ $country }}"
+                                            selected
+                                        >
+                                            {{ $country }}
+                                        </option>
+                                        @continue
+                                    @endif
+
+                                    <option value="{{ $country }}">
+                                        {{ $country }}
+                                    </option>
+                                @endforeach
+                            </select>
                             <x-settings_forum_field
                                 name="website"
                                 value="{{ auth()->user()->profile->website ?? null }}"
+                                :toggle="auth()->user()->profile->show_website"
                             >
                                 Website
                             </x-settings_forum_field>
@@ -82,7 +100,7 @@
 
                     <div class="mt-1 w-fit">
                         <x-settings_forum_field
-                            name="show_discord"
+                            name="discord"
                             value="{{ auth()->user()->profile->show_discord ?? null }}"
                             type="hidden"
                             :toggle="auth()->user()->profile->show_discord"
@@ -132,27 +150,32 @@
                         >
                             Save
                         </button>
+                        @if ($errors->any())
+                            <div class="text-red-500">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-sm text-red-500">
+                                            {{ $error }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
-                </form>
-            </div>
-            <div
-                class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
-            >
-                <div class="border-b border-gray-200">
-                    <h1 id="Setting" class="text-center text-2xl font-bold">
-                        Website Settings
-                    </h1>
-                    <h6 class="text-center text-sm">
-                        These settings affect your browsing experience on the
-                        site.
-                    </h6>
                 </div>
-                <form
-                    method="POST"
-                    action="{{ route("users.settings.update") }}"
-                    class="mt-5"
+                <div
+                    class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
                 >
-                    @csrf
+                    <div class="border-b border-gray-200">
+                        <h1 id="Setting" class="text-center text-2xl font-bold">
+                            Website Settings
+                        </h1>
+                        <h6 class="text-center text-sm">
+                            These settings affect your browsing experience on
+                            the site.
+                        </h6>
+                    </div>
+
                     <span class="w-36 font-bold">NSFW?</span>
                     <label
                         class="ml-3 inline-flex cursor-pointer items-center rounded-md dark:text-gray-800"
@@ -180,8 +203,8 @@
                     >
                         Save
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
 
             <div
                 class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"

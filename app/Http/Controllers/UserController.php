@@ -29,7 +29,7 @@ class UserController extends Controller
 
         return view('user.user', [
             'user' => $user,
-            'posts' => $user->posts()->latest()->paginate(10),
+            'posts' => $user->posts()->latest()->approved('true')->paginate(10),
             'genres' => Genres::all(),
         ]);
     }
