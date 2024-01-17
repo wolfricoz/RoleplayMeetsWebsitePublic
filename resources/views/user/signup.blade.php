@@ -1,37 +1,47 @@
 <x-layout.header>
     <div id="app" class="flex items-center justify-center">
         <div class="flex flex-col lg:w-1/2">
-            <div
-                class="m-5 mb-1 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
-            >
-                <div class="border-b border-gray-200">
-                    <h1 id="discord" class="text-center text-2xl font-bold">
-                        Discord Information
-                    </h1>
-                    <h6 class="text-center text-sm">
-                        The following options are provided by discord and can be
-                        changed through discord.
-                    </h6>
-                </div>
-                <div class="mt-1">
-                    <img
-                        src="{{ auth()->user()->getAvatar(["extension" => "webp", "size" => 128]) }}"
-                        alt=""
-                        class="m-auto h-32 w-32 rounded-full border border-gray-200 bg-gray-50"
-                    />
-                    <p>Discord ID: {{ auth()->user()->id }}</p>
-                    <p>global name: {{ auth()->user()->global_name }}</p>
-                    <p>Username: {{ auth()->user()->username }}</p>
-                    <p>Email: {{ auth()->user()->email }}</p>
-                </div>
-            </div>
             <form method="POST" action="{{ route("users.settings.update") }}">
                 @csrf
-                <input
-                    type="hidden"
-                    value="{{ $user->profile->dob }}"
-                    name="dob"
-                />
+                <div
+                    class="m-5 mb-1 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
+                >
+                    <div class="text-center">
+                        <h1 class="text-xl font-bold">
+                            Thank you for signing up for RoleplayMeets.com!
+                        </h1>
+                        <h6 class="text-sm">
+                            Please fill in your date of birth to finalize
+                            registration. This information will not be shared
+                            with other users; it is only used to verify that you
+                            are of legal age to use this site. Lying about your
+                            age will result in a permanent ban.
+                        </h6>
+                    </div>
+
+                    <div class="w-48">
+                        <x-settings_forum_field
+                            name="dob"
+                            type="date"
+                            max=""
+                            min="1900-01-01"
+                        >
+                            date of birth
+                        </x-settings_forum_field>
+                        @if ($errors->any())
+                            <div class="text-red-500">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-sm text-red-500">
+                                            {{ $error }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
                 <div
                     class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
                 >
@@ -41,11 +51,10 @@
                         </h1>
                         <h6 class="text-center text-sm">
                             Your profile settings affect how you appear on the
-                            site.
+                            site. These are completely optional.
                         </h6>
                     </div>
-                    <p class="w-36 font-bold">Date of birth</p>
-                    <p>{{ $user->profile->dob }}</p>
+
                     <div class="mt-1 border-b border-gray-200">
                         <label class="font-bold">Biography</label>
                         <summernote
@@ -152,17 +161,6 @@
                         >
                             Save
                         </button>
-                        @if ($errors->any())
-                            <div class="text-red-500">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li class="text-sm text-red-500">
-                                            {{ $error }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                     </div>
                 </div>
                 <div

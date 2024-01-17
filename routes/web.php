@@ -29,15 +29,16 @@ Route::get('/rules', [RulesController::class, 'index'])->name("rules");
 
 
 Route::group(['prefix' => 'posts'], static function () {
-    Route::get('/view/{id}', [PostController::class, 'show'])->name("posts.show");
-    Route::get('/create', [PostController::class, 'create'])->name("posts.create");
-    Route::put('/create', [PostController::class, 'store'])->name("posts.store");
-    Route::post('/nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
+    Route::get('view/{id}', [PostController::class, 'show'])->name("posts.show");
+    Route::get('create', [PostController::class, 'create'])->name("posts.create");
+    Route::put('create', [PostController::class, 'store'])->name("posts.store");
+    Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
 });
 Route::group(['prefix' => 'users'], static function () {
-    Route::get('/dashboard', [UserController::class, 'index'])->middleware('auth')->name("dashboard");
+    Route::get('dashboard', [UserController::class, 'index'])->middleware('auth')->name("dashboard");
     Route::get('view/{id}', [UserController::class, 'show'])->name("users.show");
     Route::get('settings', [SettingsController::class, 'index'])->middleware('auth')->name("users.settings");
+    Route::get('settings/finalize', [SettingsController::class, 'dob'])->middleware('auth')->name("users.dob");
     Route::post('settings/update', [SettingsController::class, 'update'])->middleware('auth')->name("users.settings.update");
     Route::delete('delete/{user}', [UserController::class, 'destroy'])->middleware('auth')->name("users.delete");
     Route::post('restore/{user}', [UserController::class, 'restore'])->middleware('auth')->name("users.restore");
@@ -47,24 +48,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_d
     Route::get('/', [AdminController::class, 'index'])->name("admin.dashboard");
     Route::group(['prefix' => 'posts', 'middleware' => ['permission:manage_posts']], static function () {
         Route::get('/', [PostController::class, 'admin'])->name("admin.posts");
-        Route::get('/queue', [AdminController::class, 'queue'])->name("admin.queue");
-        Route::post('/approve/{post}', [AdminController::class, 'approvetoggle'])->name("admin.approve");
-        Route::delete('/delete/{post}', [AdminController::class, 'destroy'])->name("admin.delete");
+        Route::get('queue', [AdminController::class, 'queue'])->name("admin.queue");
+        Route::post('approve/{post}', [AdminController::class, 'approvetoggle'])->name("admin.approve");
+        Route::delete('delete/{post}', [AdminController::class, 'destroy'])->name("admin.delete");
     });
     Route::group(['prefix' => 'groups', 'middleware' => ['permission:manage_groups']], static function () {
         Route::get('/', [RoleController::class, 'index'])->name("admin.groups");
-        Route::post('/create', [RoleController::class, 'store'])->name("admin.groups.store");
-        Route::post('/update/{role}', [RoleController::class, 'update'])->name("admin.groups.update");
-        Route::post('/delete/{role}', [RoleController::class, 'destroy'])->name("admin.groups.delete");
+        Route::post('create', [RoleController::class, 'store'])->name("admin.groups.store");
+        Route::post('update/{role}', [RoleController::class, 'update'])->name("admin.groups.update");
+        Route::post('delete/{role}', [RoleController::class, 'destroy'])->name("admin.groups.delete");
     });
     Route::group(['prefix' => 'users', 'middleware' => ['permission:manage_users']], static function () {
         Route::get('/', [AdminUserController::class, 'index'])->name("admin.users");
-        Route::get('/manage/{user}', [AdminUserController::class, 'show'])->name("admin.users.show");
-        Route::post('/update/{user}', [AdminUserController::class, 'update'])->name("admin.users.update");
+        Route::get('manage/{user}', [AdminUserController::class, 'show'])->name("admin.users.show");
+        Route::post('update/{user}', [AdminUserController::class, 'update'])->name("admin.users.update");
 //        Route::post('/delete/{user}', [AdminUserController::class, 'destroy'])->name("admin.users.delete");
-        Route::post('/ban/{user}', [AdminUserController::class, 'ban'])->middleware('permission:ban_users')->name("admin.users.ban");
-        Route::get('/bans/', [AdminUserController::class, 'indexbans'])->middleware('permission:ban_users')->name("admin.bans.view");
-        Route::post('/unban/{user}', [AdminUserController::class, 'unban'])->middleware('permission:ban_users')->name("admin.users.unban");
+        Route::post('ban/{user}', [AdminUserController::class, 'ban'])->middleware('permission:ban_users')->name("admin.users.ban");
+        Route::get('bans/', [AdminUserController::class, 'indexbans'])->middleware('permission:ban_users')->name("admin.bans.view");
+        Route::post('unban/{user}', [AdminUserController::class, 'unban'])->middleware('permission:ban_users')->name("admin.users.unban");
     });
 
 

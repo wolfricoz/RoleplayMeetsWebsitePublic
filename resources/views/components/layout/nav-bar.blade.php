@@ -2,8 +2,6 @@
     use App\Support\Helpers;
 @endphp
 
-{{-- Alright, we will be making a nav bar here, one on top and one on the side. --}}
-
 <div class="h-full w-full flex-wrap">
     <nav
         class="flex h-12 w-full basis-full flex-row justify-between border-b border-stone-200 bg-gray-100"
@@ -19,7 +17,7 @@
                 <h6 class="hidden text-sm lg:block">Where roleplayers meet.</h6>
             </a>
 
-            <a class="hover:cursor-pointer">
+            <a class="transition-all hover:cursor-pointer">
                 <x-layout.SVG.sidebar-icon />
             </a>
         </div>
@@ -88,27 +86,43 @@
 
     <div class="flex h-full max-h-[95vh] w-full">
         <aside
-            class="flex h-full flex-col border border-stone-200 bg-gray-100"
-            :class="{'w-fit': !open, 'w-48': open}"
+            class="flex h-full flex-col justify-between border border-stone-200 bg-gray-100 transition-all"
+            :class="{'w-12': !open, 'w-48': open}"
             x-cloak
         >
-            <x-layout.components.sidenavbutton href="{{ route('home') }}">
+            <div class="">
+                <x-layout.components.sidenavbutton href="{{ route('home') }}">
+                    <x-slot name="icon">
+                        <x-layout.SVG.home-icon />
+                    </x-slot>
+                    Home
+                </x-layout.components.sidenavbutton>
+                <x-layout.components.sidenavbutton href="{{ route('rules') }}">
+                    <x-slot name="icon">
+                        <x-layout.SVG.rules-icon />
+                    </x-slot>
+                    rules
+                </x-layout.components.sidenavbutton>
+                {{-- <x-layout.components.sidenavbutton> --}}
+                {{-- <x-slot name="icon"> --}}
+                {{-- <x-layout.SVG.groups-icon /> --}}
+                {{-- </x-slot> --}}
+                {{-- Groups [WIP] --}}
+                {{-- </x-layout.components.sidenavbutton> --}}
+                <x-layout.components.sidenavbutton>
+                    <x-slot name="icon">
+                        <x-layout.SVG.groups-icon />
+                    </x-slot>
+                    Support
+                </x-layout.components.sidenavbutton>
+            </div>
+            <x-layout.components.sidenavbutton
+                href="https://discord.gg/roleplaymeetsreborn"
+            >
                 <x-slot name="icon">
-                    <x-layout.SVG.home-icon />
+                    <x-layout.SVG.discord-icon />
                 </x-slot>
-                Home
-            </x-layout.components.sidenavbutton>
-            <x-layout.components.sidenavbutton href="{{ route('rules') }}">
-                <x-slot name="icon">
-                    <x-layout.SVG.rules-icon />
-                </x-slot>
-                rules
-            </x-layout.components.sidenavbutton>
-            <x-layout.components.sidenavbutton>
-                <x-slot name="icon">
-                    <x-layout.SVG.groups-icon />
-                </x-slot>
-                Groups [WIP]
+                Join our discord!
             </x-layout.components.sidenavbutton>
         </aside>
         <div

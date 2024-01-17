@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Genres;
 use App\Models\Post;
+use App\Support\Helpers;
 use App\Support\RemoveHtmlFromText;
 
 class PostController extends Controller
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->approved()->filter(request(['search', 'genre']))->banned()->paginate(12);
+        $posts = Post::latest()->approved(true)->filter(request(['search', 'genre']))->banned()->paginate(12);
 
         return view('home', [
             'posts' => $posts,
@@ -50,7 +51,8 @@ class PostController extends Controller
 
 
         $attributes['user_id'] = auth()->id();
-        $attributes['content'] = clean(trim(request('content')));
+        $attributes['content'] = clean(trim(Helpers::trim_extra_spaces(request('content'))));
+//        dd($attributes['content']);
         Post::create($attributes);
         return redirect('/');
     }
