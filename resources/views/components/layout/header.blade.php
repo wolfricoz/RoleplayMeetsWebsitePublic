@@ -41,5 +41,6 @@
             {{ $slot }}
         </x-layout.nav-bar>
         @include("cookie-consent::index")
+        <x-notification />
     </body>
 </html>

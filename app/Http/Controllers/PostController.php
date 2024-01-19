@@ -54,7 +54,7 @@ class PostController extends Controller
         $attributes['content'] = clean(trim(Helpers::trim_extra_spaces(request('content'))));
 //        dd($attributes['content']);
         Post::create($attributes);
-        return redirect('/');
+        return redirect('/')->with('success', 'Post successfully created and is awaiting approval.');
     }
 
     /**
@@ -91,7 +91,7 @@ class PostController extends Controller
 
     Public function admin()
     {
-        $posts = Post::latest()->approved()->filter(request(['search', 'genre']))->paginate(12);
+        $posts = Post::latest()->approved(true)->filter(request(['search', 'genre']))->paginate(12);
         return view('admin.posts', [
             'posts' => $posts,
             'genres' => Genres::all(),

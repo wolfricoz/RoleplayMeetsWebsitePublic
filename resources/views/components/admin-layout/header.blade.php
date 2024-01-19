@@ -40,5 +40,7 @@
         <x-admin-layout.cms_sidebar>
             {{ $slot }}
         </x-admin-layout.cms_sidebar>
+        @include("cookie-consent::index")
+        <x-notification />
     </body>
 </html>

@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Genres;
 use App\Models\groups;
 use App\Models\Post;
+use App\Support\Charts;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        return view('admin.dashboard', [
 
+        return view('admin.dashboard', [
+            'new_posts_chart' => Charts::CreateLineChart(['model' => 'App\Models\Post', 'chart_title' => 'new Posts by date',]),
+            'bumped_post_chart' => Charts::CreateLineChart(['model' => 'App\Models\Post', 'chart_title' => 'Updated Posts by date', 'group_by_field' => 'bumped_at',]),
+            'new_users_chart' => Charts::CreateLineChart(['model' => 'App\Models\User', 'chart_title' => 'New Signups by date']),
         ]);
     }
 
@@ -31,7 +35,7 @@ class AdminController extends Controller
     {
         $post->approved = !$post->approved;
         $post->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Post successfully approved!');
     }
 
     public function nsfwtoggle(Request $request, Post $post): Response

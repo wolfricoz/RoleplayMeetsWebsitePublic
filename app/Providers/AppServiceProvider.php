@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('genresCount', count(genres::all()));
         View::share('queueCount', count(Post::approved(false)->get()));
-        View::share('postsCount', count(Post::approved()->get()));
+        View::share('postsCount', count(Post::approved()->approved(true)->get()));
         View::share('usersCount', count(User::all()));
         if (Role::where('name', '=', 'Admin')->exists() === false){
             Role::create(['name' => 'Admin']);
