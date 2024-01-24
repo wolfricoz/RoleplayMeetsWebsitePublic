@@ -33,6 +33,7 @@ Route::group(['prefix' => 'posts'], static function () {
     Route::get('create', [PostController::class, 'create'])->name("posts.create");
     Route::put('create', [PostController::class, 'store'])->name("posts.store");
     Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
+    Route::patch('bump/{post}', [PostController::class, 'update'])->name("posts.bump");
 });
 Route::group(['prefix' => 'users'], static function () {
     Route::get('dashboard', [UserController::class, 'index'])->middleware('auth')->name("dashboard");

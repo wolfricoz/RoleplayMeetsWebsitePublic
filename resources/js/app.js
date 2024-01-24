@@ -11,6 +11,7 @@ import nsfwtoggle from "./components/NsfwToggle.vue";
 import multiselect from "./components/MultiSelect.vue";
 import createmodal from "./components/createmodal.vue";
 import profileModal from "./components/ProfileModal.vue";
+import countdown from "./components/countdown.vue";
 
 const app = createApp({});
 app.component("show-more", showMore);
@@ -19,5 +20,6 @@ app.component("nsfwtoggle", nsfwtoggle);
 app.component("multiselectrole", multiselect);
 app.component("createmodal", createmodal);
 app.component("profilemodal", profileModal);
+app.component("countdown", countdown);
 
 app.mount("#app");

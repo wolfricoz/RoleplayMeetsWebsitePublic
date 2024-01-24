@@ -7,6 +7,8 @@ use App\Models\Genres;
 use App\Models\Post;
 use App\Support\Helpers;
 use App\Support\RemoveHtmlFromText;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -15,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->approved(true)->filter(request(['search', 'genre']))->banned()->paginate(12);
+        $posts = Post::approved(true)->filter(request(['search', 'genre']))->banned()->orderBy('bumped_at', 'desc')->paginate(12);
 
         return view('home', [
             'posts' => $posts,
@@ -52,6 +54,7 @@ class PostController extends Controller
 
         $attributes['user_id'] = auth()->id();
         $attributes['content'] = clean(trim(Helpers::trim_extra_spaces(request('content'))));
+        $attributes['bumped_at'] = now();
 //        dd($attributes['content']);
         Post::create($attributes);
         return redirect('/')->with('success', 'Post successfully created and is awaiting approval.');
@@ -76,9 +79,18 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post): void
+    public function update(Request $request, Post $post): RedirectResponse
     {
-        //
+        if (!auth()->user()->id === $post->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+        if (request('bump') === "true") {
+            $post->bumped_at = now();
+            $post->save();
+            return redirect()->back()->with('success', 'Post bumped!');
+        }
+
+        return redirect()->back()->with('success', 'Post updated!');
     }
 
     /**
@@ -88,6 +100,14 @@ class PostController extends Controller
     {
         //
     }
+
+    public function bump(Post $post): RedirectResponse
+    {
+        $post->bumped_at = now();
+        $post->save();
+        return redirect()->back()->with('success', 'Post bumped!');
+    }
+
 
     Public function admin()
     {
