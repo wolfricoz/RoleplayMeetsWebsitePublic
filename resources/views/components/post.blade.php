@@ -90,7 +90,7 @@
             type="submit"
             onclick="confirm('Are you sure you want to reject and delete this post?')"
             class="text-red-500 text-left w-full"
-            title="Deny and remove the post from the database"
+            title="Delete the post"
           >
             Delete
           </button>
