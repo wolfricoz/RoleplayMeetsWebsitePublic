@@ -17,15 +17,23 @@ export default {
 
       let date = new Date(this.post.bumped_at)
       date.setDate(date.getDate() + 1)
-      let timeDiff = Math.abs(date.getTime() - this.current_date.getTime())
-      let showDays = new Date(timeDiff)
-      return + showDays.getHours() + ":" + showDays.getMinutes() + ":" + showDays.getSeconds() + " Hours"
+      let timeDiff = Math.abs(date.getTime() - this.current_date.getTime() + 3600000); // time difference in milliseconds
+
+      let hours = Math.floor(timeDiff / (1000 * 60 * 60));
+      let minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+      if (timeDiff <= 1000){
+        clearInterval(this.intervalId)
+        return "Refresh to bump!"
+
+      }
+      return hours + ":" + minutes + ":" + seconds + " Hours";
     }
   },
   mounted() {
     this.intervalId = setInterval(() => {
       this.current_date = new Date()
-      if (this.daysUntilDate <= 0) {
+      if (this.daysUntilDate <= 1000) {
         clearInterval(this.intervalId)
       }
     }, 1000) // update every second
@@ -39,7 +47,7 @@ export default {
 
 <template>
   <div>
-    <p>You can bump in: {{ daysUntilDate }}</p>
+    Bump cooldown: <br> {{ daysUntilDate }}
   </div>
 </template>
 

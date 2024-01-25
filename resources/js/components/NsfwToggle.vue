@@ -12,15 +12,15 @@
             ref="checkbox"
         />
         <span
-            class="rounded-l-md px-4 dark:bg-violet-400 peer-checked:dark:bg-gray-300"
+            class="rounded-l-md px-4 bg-violet-400 peer-checked:bg-gray-400"
             >SFW</span
         >
         <span
-            class="rounded-r-md px-4 dark:bg-gray-300 peer-checked:dark:bg-red-400"
+            class="rounded-r-md px-4 bg-gray-400 peer-checked:bg-red-400"
             >NSFW</span
         >
     </label>
-    <span class="pt-2 text-sm" ref="feedback"></span>
+    <a class="block pt-2 text-xs" ref="feedback" ></a>
 </template>
 
 <style scoped>
@@ -50,6 +50,9 @@ export default {
                 .post(`/posts/nsfw/${this.post.id}`, { post: this.post })
                 .then((response) => {
                     this.$refs.feedback.textContent = "NSFW status updated!";
+                    setTimeout(() => {
+                        this.$refs.feedback.textContent = "";
+                    }, 1000);
                     this.$refs.feedback.classList.add("text-green-600");
                 })
                 .catch((error) => {
@@ -61,5 +64,6 @@ export default {
             console.log(this.nsfw);
         },
     },
+
 };
 </script>

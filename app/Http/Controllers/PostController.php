@@ -9,6 +9,7 @@ use App\Support\Helpers;
 use App\Support\RemoveHtmlFromText;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
@@ -85,7 +86,11 @@ class PostController extends Controller
             abort(403, 'Unauthorized action.');
         }
         if (request('bump') === "true") {
-            $post->bumped_at = now();
+          if (Carbon::parse($post->bumped_at)->addHours(23) > Carbon::now()) {
+            return redirect()->back()->with('error', 'You can only bump your post once every 24 hours.');
+          }
+
+            $post->bumped_at = Carbon::now();
             $post->save();
             return redirect()->back()->with('success', 'Post bumped!');
         }
@@ -101,12 +106,6 @@ class PostController extends Controller
         //
     }
 
-    public function bump(Post $post): RedirectResponse
-    {
-        $post->bumped_at = now();
-        $post->save();
-        return redirect()->back()->with('success', 'Post bumped!');
-    }
 
 
     Public function admin()

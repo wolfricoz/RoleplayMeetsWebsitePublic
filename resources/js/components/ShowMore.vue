@@ -10,7 +10,7 @@
 
         <div
             v-if="showMore"
-            class="show-more w-full border-t border-gray-300 p-2 text-center text-blue-500 hover:bg-gray-200"
+            class="show-more w-full border-y border-gray-300 p-2 text-center text-blue-500 hover:bg-gray-200"
         >
             <button @click="changeText" ref="button">Read more</button>
         </div>
