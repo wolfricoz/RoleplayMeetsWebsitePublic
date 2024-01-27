@@ -2,26 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 [x-cloak] {
-    display: none !important;
+  display: none !important;
 }
 
 .ul {
-    list-style: disc !important;
-    list-style-position: inside !important;
+  list-style: disc !important;
+  list-style-position: inside !important;
 }
 
 .ol {
-    list-style: decimal !important;
-    list-style-position: inside !important;
+  list-style: decimal !important;
+  list-style-position: inside !important;
 }
 .btn {
 }
 .note-editable ul {
-    list-style: disc !important;
-    list-style-position: inside !important;
+  list-style: disc !important;
+  list-style-position: inside !important;
 }
 
 .note-editable ol {
-    list-style: decimal !important;
-    list-style-position: inside !important;
+  list-style: decimal !important;
+  list-style-position: inside !important;
 }

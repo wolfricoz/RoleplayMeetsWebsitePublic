@@ -1,7 +1,6 @@
 <script>
 export default {
   data() {
-
     return {
       dropdown: false,
       dropdownid: "",
@@ -18,7 +17,7 @@ export default {
       const dropdownHeight = dropdownElement.offsetHeight;
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
-      console.log(postPosition.left + dropdownWidth > viewportWidth)
+      console.log(postPosition.left + dropdownWidth > viewportWidth);
       // Adjust the x position if the dropdown goes off the right edge of the viewport
       if (postPosition.left + dropdownWidth > viewportWidth) {
         console.log("x position");
@@ -40,29 +39,28 @@ export default {
   mounted() {
     this.dropdownid = "dropdown" + this.post.id;
   },
-
 };
 </script>
 
 <template>
-  <div class="p-1" @mouseleave="dropdown=false" @scroll="dropdown=false" >
-    <a title="See more options"
-       class="px-2 p-1 tracking-tighter focus:tracking-normal hover:text-indigo-900 hover:bg-gray-300 hover:tracking-normal cursor-pointer transition-all rounded-full"
-       @click="showDropdown($event, dropdownid)"
+  <div class="p-1" @mouseleave="dropdown = false" @scroll="dropdown = false">
+    <a
+      title="See more options"
+      class="cursor-pointer rounded-full p-1 px-2 tracking-tighter transition-all hover:bg-gray-300 hover:tracking-normal hover:text-indigo-900 focus:tracking-normal"
+      @click="showDropdown($event, dropdownid)"
     >
       •••
     </a>
     <div :id="dropdownid" x-cloak>
-      <div class="w-fit flex flex-col fixed z-50 bg-gray-300  rounded-xl" v-show="dropdown" :style="{ left: `${position.x}px`, top: `${position.y}px` }">
+      <div
+        class="fixed z-50 flex w-fit flex-col rounded-xl bg-gray-300"
+        v-show="dropdown"
+        :style="{ left: `${position.x}px`, top: `${position.y}px` }"
+      >
         <slot></slot>
       </div>
     </div>
-
   </div>
-
-
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

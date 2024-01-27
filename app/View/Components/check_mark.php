@@ -6,14 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class check_mark_svg extends Component
+class check_mark extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public Post $post;
+    public function __construct($post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -21,6 +22,6 @@ class check_mark_svg extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.check_mark_svg');
+        return view('components.layout.SVG.check-icon');
     }
 }

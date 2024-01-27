@@ -29,7 +29,7 @@ Route::get('/rules', [RulesController::class, 'index'])->name("rules");
 
 
 Route::group(['prefix' => 'posts'], static function () {
-    Route::get('view/{id}', [PostController::class, 'show'])->name("posts.show");
+    Route::get('view/{post}', [PostController::class, 'show'])->name("posts.show");
     Route::get('create', [PostController::class, 'create'])->name("posts.create");
     Route::put('create', [PostController::class, 'store'])->name("posts.store");
     Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");

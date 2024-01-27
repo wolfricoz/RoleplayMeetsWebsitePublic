@@ -40,7 +40,7 @@ class AdminController extends Controller
 
     public function nsfwtoggle(Request $request, Post $post): Response
     {
-        if (auth()->user()->id !== $post->user_id && !auth()->user()->group->manage_posts) {
+        if (auth()->user()->id !== $post->user_id && !auth()->user()->hasPermissionTo('manage_posts')) {
             return response('Unauthorized', 401);
         }
 
