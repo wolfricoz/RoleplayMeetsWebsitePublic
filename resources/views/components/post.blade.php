@@ -6,13 +6,13 @@
   class="w-full rounded-xl bg-gray-100"
   x-bind:class="{
     'col-span-1': layout === 'grid',
-    'col-span-3': layout === 'list'
+    'col-span-3': layout === 'list',
   }"
 >
   <div
     class="grid h-10 w-full grid-cols-3 overflow-hidden border-b border-gray-200 p-2"
   >
-    <div class="inline-flex col-span-1">
+    <div class="col-span-1 inline-flex">
       @auth()
         <dropdown :post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}">
           @if ($post->user_id === auth()->user()->id)
@@ -35,16 +35,18 @@
                   :post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}"
                 ></countdown>
               @endif
-
             </x-post_dropdown_button>
 
-            <x-post_dropdown_button>Edit</x-post_dropdown_button>
+            <x-post_dropdown_button href="{{ route('posts.edit', $post) }}">
+              Edit
+            </x-post_dropdown_button>
           @endif
-            @if (auth()->user()->hasPermissionTo("manage_posts"))
-              <span class="text-xs border-b text-center border-gray-200">Admin Controls</span>
-          <x-post_dropdown_button>
 
-
+          @if (auth()->user()->hasPermissionTo("manage_posts"))
+            <span class="border-b border-gray-200 text-center text-xs">
+              Admin Controls
+            </span>
+            <x-post_dropdown_button>
               @if ($post->approved)
                 <form
                   action="{{ route("admin.approve", $post) }}"
@@ -74,13 +76,12 @@
                   </button>
                 </form>
               @endif
+            </x-post_dropdown_button>
 
-          </x-post_dropdown_button>
-
-          <x-post_dropdown_button>
-            <nsfwtoggle :post="{{ $post }}"></nsfwtoggle>
-          </x-post_dropdown_button>
-            @endif
+            <x-post_dropdown_button>
+              <nsfwtoggle :post="{{ $post }}"></nsfwtoggle>
+            </x-post_dropdown_button>
+          @endif
 
           <x-post_dropdown_button>
             @if (auth()->user()->hasPermissionTo("manage_posts") ||($post->user_id === auth()->user()->id &&auth()->user()->hasPermissionTo("delete_posts")))
@@ -112,7 +113,7 @@
       </a>
     </div>
     <div class="col-span-1 flex justify-end">
-      <x-layout.SVG.check-icon :post="$post"/>
+      <x-layout.SVG.check-icon :post="$post" />
     </div>
   </div>
   <div
@@ -123,12 +124,12 @@
     </span>
     <span class="grid-cols-1">
       character age:
-      <br/>
+      <br />
       {{ $post->charage }}+
     </span>
     <span class="grid-cols-1">
       Author:
-      <br/>
+      <br />
       <a
         class="hover:text-indigo-900 hover:underline"
         href="{{ route("users.show", $post->user_id) }}"
@@ -138,12 +139,12 @@
     </span>
     <span class="grid-cols-1">
       partner Age:
-      <br/>
+      <br />
       {{ $post->partnerage }}+
     </span>
     <span class="grid-cols-1 text-right">
       Genre:
-      <br/>
+      <br />
       <a
         class="hover:text-indigo-900 hover:underline"
         href="{{ route("home", ["search" => request("search"), "genre" => $post->genre_id]) }}"

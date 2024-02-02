@@ -84,7 +84,7 @@
           </div>
         </a>
       @empty
-        <div class="col-span-3 text-center font-bold">No Users Found</div>
+        <div class="col-span-4 text-center font-bold">No Users Found</div>
       @endforelse
     </div>
   </div>

@@ -1,5 +1,5 @@
 <button
-  class="{{ $attributes["class"] ?? "border-blue-700 hover:bg-blue-600 " }} col-span-1 w-32 rounded-full border transition-all hover:text-white px-2"
+  class="{{ $attributes["class"] ?? "border-gray-500 hover:bg-indigo-900" }} col-span-1 cursor-pointer whitespace-nowrap rounded border bg-transparent px-2 py-1 text-sm font-semibold text-gray-700 hover:border-transparent hover:text-white"
   name="{{ $attributes["name"] }}"
   value="{{ $attributes["value"] }}"
   @isset($attributes["formaction"])

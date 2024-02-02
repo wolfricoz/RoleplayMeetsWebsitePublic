@@ -11,11 +11,10 @@ export default {
 
 <template>
   <button
-    class="m-2.5 mx-0.5 cursor-pointer whitespace-nowrap rounded border border-gray-500 bg-transparent px-2 py-1 text-sm font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white"
+    class="cursor-pointer whitespace-nowrap rounded border border-gray-500 bg-transparent px-2 py-1 text-sm font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white"
     v-on:click="showModal = !showModal"
     v-html="button"
   ></button>
-
   <div
     class="inset-0 z-50 justify-center"
     v-bind:class="{ hidden: !showModal, fixed: showModal }"

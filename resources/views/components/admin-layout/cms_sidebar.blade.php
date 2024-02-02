@@ -58,9 +58,10 @@
       Groups
     </x-admin-layout.cms_button>
     <x-admin-layout.cms_button
+      href="{{ route('admin.rules') }}"
       :permission="auth()->user()->hasPermissionTo('manage_rules')"
     >
-      Rules [Todo]
+      Rules
     </x-admin-layout.cms_button>
     <x-admin-layout.cms_button
       :permission="auth()->user()->hasPermissionTo('manage_settings')"

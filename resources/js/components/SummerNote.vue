@@ -1,14 +1,31 @@
 <script>
 export default {
   name: "summernote",
-  props: ["name", "value", "maxlength"],
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+    maxlength: {
+      type: Number,
+      default: 1000,
+    },
+    id: {
+      type: String,
+      default: "summernote",
+    },
+  },
   data() {
     return {
       charCount: 0,
     };
   },
   mounted() {
-    $("#summernote")
+    $(`#${this.id}`)
       .summernote({
         height: 128,
         toolbar: [
@@ -43,7 +60,7 @@ export default {
   },
 
   beforeDestroy() {
-    $("#summernote").summernote("destroy");
+    $(".summernote").summernote("destroy");
   },
 };
 </script>
@@ -51,7 +68,7 @@ export default {
 <!--TODO: Add a character counter-->
 <template>
   <div class="my-2 bg-white">
-    <textarea id="summernote" class="h-32" v-bind:name="name"> </textarea>
+    <textarea :id="id" class="h-32" v-bind:name="name"> </textarea>
   </div>
   <div class="text-right text-xs text-gray-500">
     <span>{{ charCount }}</span> / {{ maxlength }} characters

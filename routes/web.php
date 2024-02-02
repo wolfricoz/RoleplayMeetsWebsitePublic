@@ -32,6 +32,8 @@ Route::group(['prefix' => 'posts'], static function () {
     Route::get('view/{post}', [PostController::class, 'show'])->name("posts.show");
     Route::get('create', [PostController::class, 'create'])->name("posts.create");
     Route::put('create', [PostController::class, 'store'])->name("posts.store");
+    Route::get('edit/{post}', [PostController::class, 'edit'])->name("posts.edit");
+    Route::patch('edit/{post}', [PostController::class, 'update'])->name("posts.update");
     Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
     Route::patch('bump/{post}', [PostController::class, 'update'])->name("posts.bump");
 });
@@ -68,6 +70,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_d
         Route::get('bans/', [AdminUserController::class, 'indexbans'])->middleware('permission:ban_users')->name("admin.bans.view");
         Route::post('unban/{user}', [AdminUserController::class, 'unban'])->middleware('permission:ban_users')->name("admin.users.unban");
     });
+    Route::group(['prefix' => 'rules', 'middleware' => ['permission:manage_rules']], static function () {
+        Route::get('/', [RulesController::class, 'admin'])->name("admin.rules");
+        Route::put('create', [RulesController::class, 'store'])->name("admin.rules.create");
+        Route::patch('edit/{rule}', [RulesController::class, 'update'])->name("admin.rules.update");
+        Route::delete('delete/{rule}', [RulesController::class, 'destroy'])->name("admin.rules.delete");
+    });
+//    Route::group(['prefix' => 'settings', 'middleware' => ['permission:manage_settings']], static function () {
+//        Route::get('/', [SettingsController::class, 'admin'])->name("admin.settings");
+//        Route::post('update', [SettingsController::class, 'update'])->name("admin.settings.update");
+//    });
 
 
 });

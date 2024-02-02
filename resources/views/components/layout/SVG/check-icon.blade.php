@@ -1,11 +1,15 @@
 @if ($post->approved)
-  <span class="rounded-full bg-green-400 px-1.5 h-6 h6 cursor-default"
-        title="Approved">
+  <span
+    class="h6 h-6 cursor-default rounded-full bg-green-400 px-1.5"
+    title="Approved"
+  >
     Approved
-</span>
+  </span>
 @else
-  <span class="rounded-full bg-red-400 px-1.5 h-6 cursor-default"
-        title="Not approved">
-  Awaiting approval
+  <span
+    class="h-6 cursor-default rounded-full bg-red-400 px-1.5"
+    title="Not approved"
+  >
+    Awaiting approval
   </span>
 @endif

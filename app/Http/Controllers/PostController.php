@@ -78,9 +78,11 @@ class PostController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Post $post): void
+  public function edit(Post $post): \Illuminate\Contracts\Foundation\Application|Factory|View|Application
   {
-    //
+    return view('posts.edit', [
+      'post' => $post,
+    ]);
   }
 
   /**
@@ -101,7 +103,21 @@ class PostController extends Controller
       return redirect()->back()->with('success', 'Post bumped!');
     }
 
-    return redirect()->back()->with('success', 'Post updated!');
+    $attributes = request()->validate([
+      'title' => 'required|min:10|max:255',
+      'content' => 'required',
+      'charage' => 'required|numeric|min:18|max:999',
+      'partnerage' => 'required|numeric|min:18|max:999',
+      'genre_id' => 'required',
+    ]);
+
+    if (strlen(RemoveHtmlFromText::removeHtmlFromText(request('content'))) > 10000) {
+      return back()->withErrors(['content' => 'Your post may not exceed 10000 characters.']);
+    }
+    $attributes['content'] = clean(trim(Helpers::trim_extra_spaces(request('content'))));
+    $attributes['approved'] = false;
+    $post->update($attributes);
+    return redirect('/')->with('success', 'Post successfully updated and is awaiting approval.');
   }
 
   /**
