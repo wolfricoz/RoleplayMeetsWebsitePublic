@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\genres;
+use App\Models\Genres;
 use App\Models\Post;
 use App\Models\User;
 use Exception;
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
       try{
-        View::share('genres', genres::all());
+        View::share('genres', Genres::all());
         View::share('queueCount', count(Post::approved(false)->get()));
         View::share('postsCount', count(Post::approved()->approved(true)->get()));
         View::share('usersCount', count(User::all()));
