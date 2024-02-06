@@ -51,8 +51,16 @@ class Post extends Model
     return $query->whereIn('user_id', $bannedUsers);
 
   }
-
-
+  public function scopeNSFW($query, bool $override = false)
+  {
+    if (auth()->user() && auth()->user()->settings->NSFW) {
+      return $query;
+    }
+    if ($override) {
+      return $query;
+    }
+    return $query->where('nsfw', false);
+  }
 
   public function user(): BelongsTo
   {

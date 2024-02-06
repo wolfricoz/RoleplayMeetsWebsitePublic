@@ -11,8 +11,12 @@
         href="{{ route("home") }}"
         class="h-full w-32 text-center text-gray-700 transition-all ease-in-out hover:cursor-pointer hover:text-indigo-900 lg:w-44"
       >
-        <h1 class="pt-2.5 font-bold lg:pt-0 lg:text-lg">Roleplay Meets</h1>
-        <h6 class="hidden text-sm lg:block">Where roleplayers meet.</h6>
+        <h1 class="pt-2.5 font-bold lg:pt-0 lg:text-lg">
+          {{ config("site_settings.site_name") }}
+        </h1>
+        <h6 class="hidden text-sm lg:block">
+          {{ config("site_settings.site_slogan") }}
+        </h6>
       </a>
 
       <a class="transition-all hover:cursor-pointer">
@@ -113,7 +117,7 @@
         </x-layout.components.sidenavbutton>
       </div>
       <x-layout.components.sidenavbutton
-        href="https://discord.gg/roleplaymeetsreborn"
+        href="{{ config('site_settings.discord_invite') }}"
       >
         <x-slot name="icon">
           <x-layout.SVG.discord-icon />

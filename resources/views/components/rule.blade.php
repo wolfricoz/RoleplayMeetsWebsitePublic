@@ -40,10 +40,7 @@
           </form>
         @endif
 
-        <createmodal
-          :title="'{{ "Edit Rule" }}'"
-          :button="'{{ "Edit" }}'"
-        >
+        <createmodal :title="'{{ "Edit Rule" }}'" :button="'{{ "Edit" }}'">
           <form
             action="{{ route("admin.rules.update", $rule) }}"
             method="POST"

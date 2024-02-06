@@ -119,8 +119,11 @@
   <div
     class="grid grid-cols-5 border-b border-gray-200 px-2 text-center text-xs lg:text-sm"
   >
-    <span class="grid-cols-1 text-left">
-      {!! $post->updated_at > $post->created_at ? "Updated: <br>{$post->updated_at->format("m/d/y H:i")}" : "Created:  <br>{$post->created_at->format("m/d/y H:i")}" !!}
+    <span
+      class="cursor-pointer grid-cols-1 text-left"
+      title="{{ $post->bumped_at > $post->created_at ? Carbon::parse($post->bumped_at)->format("m/d/y H:i") : $post->created_at->format("m/d/y H:i") }}"
+    >
+      {!! $post->bumped_at > $post->created_at ? "Bumped: <br>" . Carbon::parse($post->bumped_at)->diffForHumans() : "Created: <br>{$post->created_at->format("m/d/y H:i")}" !!}
     </span>
     <span class="grid-cols-1">
       character age:
@@ -149,7 +152,7 @@
         class="hover:text-indigo-900 hover:underline"
         href="{{ route("home", ["search" => request("search"), "genre" => $post->genre_id]) }}"
       >
-        {{ $post->genre->name }}
+        {{ $post->genre->name ?? "None" }}
       </a>
     </span>
   </div>

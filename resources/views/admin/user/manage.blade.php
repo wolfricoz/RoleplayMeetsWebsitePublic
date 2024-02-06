@@ -118,23 +118,26 @@
         </article>
       </div>
     </div>
-    <form
-      method="POST"
-      action="{{ route("admin.users.update", $user) }}"
-      class="p-5"
-    >
-      @csrf
-      <multiselectrole
-        :values="{{ $roles }}"
-        :selected="{{ $user->roles }}"
-        title="Roles"
-      ></multiselectrole>
-      <x-admin-layout.cms_form_button
-        class="mt-2 border-blue-700 hover:bg-blue-600"
+    @if (auth()->user()->hasPermissionTo("manage_roles"))
+      <form
+        method="POST"
+        action="{{ route("admin.users.update", $user) }}"
+        class="p-5"
       >
-        Update
-      </x-admin-layout.cms_form_button>
-    </form>
+        @csrf
+        <multiselectrole
+          :values="{{ $roles }}"
+          :selected="{{ $user->roles }}"
+          title="Roles"
+        ></multiselectrole>
+        <x-admin-layout.cms_form_button
+          class="mt-2 border-blue-700 hover:bg-blue-600"
+        >
+          Update
+        </x-admin-layout.cms_form_button>
+      </form>
+    @endif
+
     @if (auth()->user()->hasPermissionTo("ban_users"))
       <form
         class="p-5"

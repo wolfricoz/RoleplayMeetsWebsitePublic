@@ -119,7 +119,7 @@ return new class extends Migration {
             ->forget(config('permission.cache.key'));
 
 
-        $roles = ['User', 'Patron', 'Moderator', 'Admin'];
+        $roles = ['Admin', 'Moderator', 'Patron', 'User'];
         foreach ($roles as $role) {
             Role::create(['name' => $role]);
         }

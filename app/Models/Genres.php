@@ -13,6 +13,6 @@ class Genres extends Model
 
     public function Posts(): HasMany
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'genre_id', 'id');
     }
 }

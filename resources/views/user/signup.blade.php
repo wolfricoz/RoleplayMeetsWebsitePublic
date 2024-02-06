@@ -25,7 +25,7 @@
               max=""
               min="1900-01-01"
             >
-              date of birth
+              * date of birth
             </x-settings_forum_field>
             @if ($errors->any())
               <div class="text-red-500">
@@ -38,6 +38,19 @@
                 </ul>
               </div>
             @endif
+
+            <button
+              type="submit"
+              class="rounded-md bg-indigo-900 p-2 text-white"
+            >
+              Save
+            </button>
+            <a
+              href="{{ route("logout") }}"
+              class="mx-2 rounded-md bg-indigo-900 p-2.5 text-white"
+            >
+              Logout
+            </a>
           </div>
         </div>
 

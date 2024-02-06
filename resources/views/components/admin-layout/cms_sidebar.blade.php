@@ -28,10 +28,11 @@
       Posts
     </x-admin-layout.cms_button>
     <x-admin-layout.cms_button
+      href="{{ route('admin.genres') }}"
       :permission="auth()->user()->hasPermissionTo('manage_genres')"
       :display="count($genres)"
     >
-      Genres [Todo]
+      Categories
     </x-admin-layout.cms_button>
 
     <x-admin-layout.cms_button
@@ -64,9 +65,10 @@
       Rules
     </x-admin-layout.cms_button>
     <x-admin-layout.cms_button
+      href="{{ route('admin.settings') }}"
       :permission="auth()->user()->hasPermissionTo('manage_settings')"
     >
-      Settings [Todo]
+      Settings
     </x-admin-layout.cms_button>
   </div>
   <x-admin-layout.cms_button

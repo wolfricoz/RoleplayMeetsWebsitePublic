@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Models\genres;
-use App\Models\groups;
 use App\Models\Post;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -26,14 +26,21 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+      try{
         View::share('genres', genres::all());
         View::share('queueCount', count(Post::approved(false)->get()));
         View::share('postsCount', count(Post::approved()->approved(true)->get()));
         View::share('usersCount', count(User::all()));
-        if (Role::where('name', '=', 'Admin')->exists() === false){
+        $role = config('site_settings.admin_role');
+        if (Role::where('name', '=', $role)->exists() === false){
             Role::create(['name' => 'Admin']);
         }
-        Role::findByName('Admin')->givePermissionTo(Permission::all());
+        Role::findByName($role)->givePermissionTo(Permission::all());
 
+
+
+    } catch (Exception) {
+      // do nothing
+      }
     }
 }

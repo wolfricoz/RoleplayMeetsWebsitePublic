@@ -34,7 +34,6 @@
         </div>
         <div class="col-span-1"></div>
       </div>
-      {{-- This has to become an accordion --}}
       <div class="col-span-1 flex flex-col gap-4 lg:col-span-4">
         @forelse ($rules as $rule)
           <x-rule :rule="$rule" :count="$rules->count()"></x-rule>

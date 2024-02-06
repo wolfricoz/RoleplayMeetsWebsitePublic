@@ -20,6 +20,7 @@ class UserObserver
         Settings::create([
             'user_id' => $user->id,
         ]);
+
     }
 
     /**
