@@ -62,6 +62,11 @@ class Post extends Model
     return $query->where('nsfw', false);
   }
 
+//  public function scopeSortbylatestBumpandCreated($query, array $fields, string $order): void
+//  {
+//    $query->orderBy($fields, $order);
+//  }
+
   public function user(): BelongsTo
   {
     return $this->belongsTo(User::class);

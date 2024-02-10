@@ -6,4 +6,5 @@ return array (
   'support_email' => 'support@roleplaymeets.com',
   'site_name' => 'Roleplay Meets',
   'site_slogan' => 'Where roleplayers meet',
+  'owner' => 188647277181665280
 );

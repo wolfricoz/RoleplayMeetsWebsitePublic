@@ -23,7 +23,7 @@ class User extends Authenticatable implements BannableInterface
 {
     use HasApiTokens, HasFactory, Notifiable, InteractsWithDiscord, SoftDeletes, HasRoles, Prunable, Bannable, CascadeSoftDeletes;
 
-    /**
+  /**
      * The attributes that are mass assignable.
      *
      * @var string[]

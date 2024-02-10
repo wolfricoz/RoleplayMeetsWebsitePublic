@@ -38,7 +38,7 @@ class AdminUserController extends Controller
   }
 
 
-  public function indexbans()
+  public function index_bans()
   {
     return view('admin.user.bans', [
       'users' => User::first()->where('banned_at', '!=', null)->paginate(20),
@@ -47,6 +47,10 @@ class AdminUserController extends Controller
 
   public function ban(Request $request, User $user): RedirectResponse
   {
+    if ($user->hasRole(config('site_settings.admin_role')) && !auth()->user()->hasRole(config('site_settings.owner'))){
+      return redirect()->back()->withErrors(['error' => 'You cannot ban an admin']);
+    }
+
     request()->validate([
       'comment' => 'required',
       'expired_at' => 'nullable|date',

@@ -40,9 +40,4 @@ class UserController extends Controller
         return redirect()->route('home')->with('success', 'User deleted.');
     }
 
-    public function restore(User $user)
-    {
-        $user->restore();
-        return redirect()->route('home')->with('success', 'User restored.');
-    }
 }

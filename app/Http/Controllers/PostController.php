@@ -21,8 +21,14 @@ class PostController extends Controller
    */
   public function index()
   {
-    $posts = Post::approved(true)->NSFW()->filter(request(['search', 'genre']))->banned()
-      ->orderBy('bumped_at', 'desc')->paginate(12);
+    $posts = Post::approved(true)->
+    NSFW()->
+    filter(request(['search', 'genre']))
+      ->banned()
+      ->orderBy('bumped_at', 'desc')
+      ->orderBy('created_at', 'desc')
+      ->orderBy('updated_at', 'desc')
+      ->paginate(20);
 
     return view('home', [
       'posts' => $posts,

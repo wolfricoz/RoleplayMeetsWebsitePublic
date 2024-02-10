@@ -224,7 +224,7 @@ return [
         ],
         'user_deleted' => [
             'message' => 'Your account is deleted and you can\'t log in. Please contact the administrator.',
-            'redirect' => 'user.restore',
+            'redirect' => 'users.restore',
         ],
     ],
 

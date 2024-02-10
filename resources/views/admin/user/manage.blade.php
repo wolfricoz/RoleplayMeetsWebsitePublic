@@ -180,7 +180,7 @@
           />
         </div>
         <a
-          onclick="confirm('Are you sure you want to ban {{ $user->username }}?')"
+          onclick="return confirm('Are you sure you want to ban {{ $user->username }}?')"
         >
           <x-admin-layout.cms_form_button
             class="mt-2 block border-red-700 hover:bg-red-600"

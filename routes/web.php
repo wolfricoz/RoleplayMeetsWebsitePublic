@@ -11,6 +11,7 @@ use App\Http\Controllers\RulesController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
+use App\overrides\larascord;
 use Illuminate\Support\Facades\Route;
 use Jakyeru\Larascord\Http\Controllers\DiscordController;
 
@@ -46,7 +47,6 @@ Route::group(['prefix' => 'users'], static function () {
   Route::get('settings/finalize', [SettingsController::class, 'dob'])->middleware('auth')->name("users.dob");
   Route::post('settings/update', [SettingsController::class, 'update'])->middleware('auth')->name("users.settings.update");
   Route::delete('delete/{user}', [UserController::class, 'destroy'])->middleware('auth')->name("users.delete");
-  Route::post('restore/{user}', [UserController::class, 'restore'])->middleware('auth')->name("users.restore");
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_dashboard']], static function () {
@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_d
     Route::get('/', [PostController::class, 'admin'])->name("admin.posts");
     Route::get('queue', [AdminController::class, 'queue'])->name("admin.queue");
     Route::post('approve/{post}', [AdminController::class, 'approvetoggle'])->name("admin.approve");
+    Route::post('reject/{post}', [AdminController::class, 'reject'])->name("admin.reject");
     Route::delete('delete/{post}', [AdminController::class, 'destroy'])->name("admin.delete");
   });
   Route::group(['prefix' => 'groups', 'middleware' => ['permission:manage_groups']], static function () {
@@ -69,7 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_d
     Route::post('update/{user}', [AdminUserController::class, 'update'])->name("admin.users.update");
 //        Route::post('/delete/{user}', [AdminUserController::class, 'destroy'])->name("admin.users.delete");
     Route::post('ban/{user}', [AdminUserController::class, 'ban'])->middleware('permission:ban_users')->name("admin.users.ban");
-    Route::get('bans/', [AdminUserController::class, 'indexbans'])->middleware('permission:ban_users')->name("admin.bans.view");
+    Route::get('bans/', [AdminUserController::class, 'index_bans'])->middleware('permission:ban_users')->name("admin.bans.view");
     Route::post('unban/{user}', [AdminUserController::class, 'unban'])->middleware('permission:ban_users')->name("admin.users.unban");
   });
   Route::group(['prefix' => 'rules', 'middleware' => ['permission:manage_rules']], static function () {
@@ -96,7 +97,7 @@ Route::middleware('auth')->group(function () {
 
 
 // Discord Auth
-Route::get('/larascord/callback', [DiscordController::class, 'handle'])->name('larascord.login');
+Route::get('/larascord/callback', [larascord::class, 'handle'])->name('larascord.login');
 
 Route::get('/larascord/refresh-token', static function () {
   Redirect::route('login')->with('status', 'Token refreshed!');

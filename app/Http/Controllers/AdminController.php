@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PostApproved;
+use App\Mail\PostRejected;
 use App\Models\Genres;
-use App\Models\groups;
 use App\Models\Post;
 use App\Support\Charts;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
@@ -17,8 +19,9 @@ class AdminController extends Controller
   {
 
     return view('admin.dashboard', [
-      'new_posts_chart' => Charts::CreateLineChart(['model' => 'App\Models\Post', 'chart_title' => 'new Posts by date',]),
-      'bumped_post_chart' => Charts::CreateLineChart(['model' => 'App\Models\Post', 'chart_title' => 'Bumped Posts by date', 'group_by_field' => 'bumped_at',]),
+      'new_posts_chart' => Charts::CreateLineChart(['model' => 'App\Models\Post', 'chart_title' => 'new Posts by date']),
+      'bumped_post_chart' => Charts::CreateLineChart(['model' => 'App\Models\Post', 'chart_title' => 'Bumped Posts by date',
+        'group_by_field' => 'bumped_at', 'chart_type' => 'bar', 'filter_period' => 'week']),
       'new_users_chart' => Charts::CreateLineChart(['model' => 'App\Models\User', 'chart_title' => 'New Signups by date']),
     ]);
   }
@@ -35,9 +38,19 @@ class AdminController extends Controller
   public function approvetoggle(Request $request, Post $post): RedirectResponse
   {
     $post->approved = !$post->approved;
-    $post->bumped_at = Carbon::now();
+    if ($post->created_at !== $post->updated_at) {
+      $post->bumped_at = Carbon::now();
+    }
     $post->save();
+    Mail::to($post->user->email)->send(new PostApproved());
     return redirect()->back()->with('success', 'Post successfully approved!');
+  }
+
+  public function reject(Request $request, Post $post): RedirectResponse
+  {
+    $post->delete();
+    Mail::to($post->user->email)->send(new PostRejected($request['reason']));
+    return redirect()->back()->with('success', 'Post rejected!');
   }
 
   public function nsfwtoggle(Request $request, Post $post): Response

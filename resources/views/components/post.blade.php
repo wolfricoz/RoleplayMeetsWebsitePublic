@@ -6,7 +6,7 @@
   class="w-full rounded-xl bg-gray-100"
   x-bind:class="{
     'col-span-1': layout === 'grid',
-    'col-span-3': layout === 'list',
+    'col-span-3': layout === 'list'
   }"
 >
   <div
