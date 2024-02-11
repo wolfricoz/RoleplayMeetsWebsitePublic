@@ -29,6 +29,7 @@ use Jakyeru\Larascord\Http\Controllers\DiscordController;
 Route::get('/', [PostController::class, 'index'])->name("home");
 
 Route::get('/rules', [RulesController::class, 'index'])->name("rules");
+Route::get('/support', [SiteController::class, 'support'])->name("support");
 
 
 Route::group(['prefix' => 'posts'], static function () {

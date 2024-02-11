@@ -30,4 +30,9 @@ class SiteController extends Controller
       $settings->set($validated)->save();
       return redirect()->back()->with('success', 'Settings successfully updated.');
     }
+
+    public function support()
+    {
+      return view('support');
+    }
 }

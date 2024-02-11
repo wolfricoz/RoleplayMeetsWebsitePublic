@@ -103,13 +103,7 @@
           </x-slot>
           rules
         </x-layout.components.sidenavbutton>
-        {{-- <x-layout.components.sidenavbutton> --}}
-        {{-- <x-slot name="icon"> --}}
-        {{-- <x-layout.SVG.groups-icon /> --}}
-        {{-- </x-slot> --}}
-        {{-- Groups [WIP] --}}
-        {{-- </x-layout.components.sidenavbutton> --}}
-        <x-layout.components.sidenavbutton>
+        <x-layout.components.sidenavbutton href="{{ route('support') }}">
           <x-slot name="icon">
             <x-layout.SVG.groups-icon />
           </x-slot>
