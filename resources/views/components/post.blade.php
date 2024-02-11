@@ -79,7 +79,7 @@
             </x-post_dropdown_button>
 
             <x-post_dropdown_button>
-              <nsfwtoggle :post="{{ $post }}"></nsfwtoggle>
+              <nsfwtoggle v-bind:post="{{ $post }}"></nsfwtoggle>
             </x-post_dropdown_button>
           @endif
 
