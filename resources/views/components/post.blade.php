@@ -31,9 +31,9 @@
                   </button>
                 </form>
               @else
-                <countdown
-                  v-bind:post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}"
-                ></countdown>
+{{--                <countdown--}}
+{{--                  v-bind:post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}"--}}
+{{--                ></countdown>--}}
               @endif
             </x-post_dropdown_button>
 
