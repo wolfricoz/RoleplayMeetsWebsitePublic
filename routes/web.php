@@ -34,12 +34,12 @@ Route::get('/support', [SiteController::class, 'support'])->name("support");
 
 Route::group(['prefix' => 'posts'], static function () {
   Route::get('view/{post}', [PostController::class, 'show'])->name("posts.show");
-  Route::get('create', [PostController::class, 'create'])->name("posts.create");
-  Route::put('create', [PostController::class, 'store'])->name("posts.store");
-  Route::get('edit/{post}', [PostController::class, 'edit'])->name("posts.edit");
-  Route::patch('edit/{post}', [PostController::class, 'update'])->name("posts.update");
-  Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->name("admin.nsfw");
-  Route::patch('bump/{post}', [PostController::class, 'update'])->name("posts.bump");
+  Route::get('create', [PostController::class, 'create'])->middleware('auth')->name("posts.create");
+  Route::put('create', [PostController::class, 'store'])->middleware('auth')->name("posts.store");
+  Route::get('edit/{post}', [PostController::class, 'edit'])->middleware('auth')->name("posts.edit");
+  Route::patch('edit/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.update");
+  Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->middleware('auth')->name("admin.nsfw");
+  Route::patch('bump/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.bump");
 });
 Route::group(['prefix' => 'users'], static function () {
   Route::get('dashboard', [UserController::class, 'index'])->middleware('auth')->name("dashboard");

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Genres;
 use App\Models\Post;
 use App\Models\User;
+use App\Support\AutoMod;
 use App\Support\Helpers;
 use App\Support\RemoveHtmlFromText;
 use Illuminate\Contracts\View\Factory;
@@ -51,6 +52,11 @@ class PostController extends Controller
    */
   public function store()
   {
+    $old_post = AutoMod::check_duplicates(['user_id' => auth()->id(), 'content' => request('content')]);
+    if ($old_post) {
+      return redirect()->route('posts.show', $old_post['post'])
+        ->with('error', "Your post is too similar to this post at {$old_post['similarity']}% similarity. Please bump it instead.");
+    }
     $attributes = request()->validate([
       'title' => 'required|min:10|max:255',
       'content' => 'required',
@@ -59,7 +65,7 @@ class PostController extends Controller
       'genre_id' => 'required',
     ]);
     if (strlen(RemoveHtmlFromText::removeHtmlFromText(request('content'))) > 10000) {
-      return back()->withErrors(['content' => 'Your post may not exceed 10000 characters.']);
+      return back()->withErrors(['content' => 'Your post may not exceed 10000 characters.'])->withInput();
     }
 
 
