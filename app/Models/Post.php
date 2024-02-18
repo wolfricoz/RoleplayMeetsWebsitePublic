@@ -24,9 +24,9 @@ class Post extends Model
   {
     $query->when($filters['search'] ?? null, function ($query, $search) {
       $query->where(fn($query) => $query->where('title', 'like', '%' . $search . '%')
-          ->orWhere('content', 'like', '%' . $search . '%')
-          ->orWhereHas('user', fn($query) => $query->where('global_name', 'like', '%' . $search . '%'))
-          ->orWhereHas('user', fn($query) => $query->where('username', 'like', '%' . $search . '%'))
+        ->orWhere('content', 'like', '%' . $search . '%')
+        ->orWhereHas('user', fn($query) => $query->where('global_name', 'like', '%' . $search . '%'))
+        ->orWhereHas('user', fn($query) => $query->where('username', 'like', '%' . $search . '%'))
       );
     });
     $query->when($filters['genre'] ?? null, function ($query, $genre) {
@@ -51,6 +51,7 @@ class Post extends Model
     return $query->whereIn('user_id', $bannedUsers);
 
   }
+
   public function scopeNSFW($query, bool $override = false)
   {
     if (auth()->user() && auth()->user()->settings->NSFW) {
@@ -61,11 +62,6 @@ class Post extends Model
     }
     return $query->where('nsfw', false);
   }
-
-//  public function scopeSortbylatestBumpandCreated($query, array $fields, string $order): void
-//  {
-//    $query->orderBy($fields, $order);
-//  }
 
   public function user(): BelongsTo
   {

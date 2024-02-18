@@ -28,6 +28,7 @@ class AutoMod
     $attributes['content'] = RemoveHtmlFromText::removeHtmlFromText(trim(Helpers::trim_extra_spaces($attributes['content'])));
     foreach ($posts as $post) {
       $post_content = RemoveHtmlFromText::removeHtmlFromText(trim(Helpers::trim_extra_spaces($post->content)));
+      // calculates the similarity between the two strings
       $levenshtein = (1 - levenshtein($post_content, $attributes['content'])/max(strlen($post_content), strlen($attributes['content'])))*100;
       if ( $levenshtein > 70) {
         return ['post' => $post, 'similarity' => round($levenshtein, 2)];
