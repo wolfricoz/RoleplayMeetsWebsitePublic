@@ -26,7 +26,10 @@
     <div class="hidden lg:block w-48 m-2 bg-gray-100 rounded-xl">
       <Adsense
         data-ad-client="ca-pub-4605197206330320"
-        data-ad-slot="6718590005">
+        data-ad-slot="6718590005"
+        data-ad-format="auto"
+        data-full-width-responsive="yes"
+      >
       </Adsense>
     </div>
     @endif
