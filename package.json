@@ -24,6 +24,8 @@
         "alpinejs": "^3.13.3",
         "axios": "^1.6.1",
         "vue": "^3.3.9",
+        "vue-google-adsense": "^2.0.0",
+        "vue-scriptx": "^0.2.5",
         "vuedraggable": "^4.1.0"
     }
 }

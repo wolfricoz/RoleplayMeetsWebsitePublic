@@ -13,8 +13,17 @@ import createmodal from "./components/createmodal.vue";
 import profileModal from "./components/ProfileModal.vue";
 import countdown from "./components/countdown.vue";
 import dropdown from "./components/dropdown.vue";
+import ScriptX from 'vue-scriptx'
+
+
+import Ads from 'vue-google-adsense'
+
 
 const app = createApp({});
+app.use(ScriptX)
+app.use(Ads.Adsense)
+app.use(Ads.InArticleAdsense)
+app.use(Ads.InFeedAdsense)
 app.component("show-more", showMore);
 app.component("summernote", summernote);
 app.component("nsfwtoggle", nsfwtoggle);
