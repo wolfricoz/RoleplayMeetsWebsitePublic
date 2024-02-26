@@ -58,7 +58,7 @@ class PostController extends Controller
         ->with('error', "Your post is too similar to this post at {$old_post['similarity']}% similarity. Please bump it instead.");
     }
     $attributes = request()->validate([
-      'title' => 'required|min:10|max:255',
+      'title' => 'required|min:10|max:60',
       'content' => 'required',
       'charage' => 'required|numeric|min:18|max:999',
       'partnerage' => 'required|numeric|min:18|max:999',

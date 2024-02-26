@@ -1,3 +1,1 @@
-
-  <h1 class="text-center text-xl">Post Approved</h1>
-
+<h1 class="text-center text-xl">Post Approved</h1>

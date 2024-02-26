@@ -23,7 +23,7 @@ export default {
         console.log("x position");
         this.position.x = viewportWidth - dropdownWidth;
       } else {
-        this.position.x = postPosition.left;
+        this.position.x = postPosition.left - 120;
       }
 
       // Adjust the y position if the dropdown goes off the bottom edge of the viewport

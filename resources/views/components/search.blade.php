@@ -1,24 +1,27 @@
 <form>
-  <div class="mt-2 inline-flex h-8 rounded-full lg:w-fit">
-    <input
-      type="text"
-      placeholder="Search"
-      class="h-8 w-full rounded-l-full border border-stone-200 p-1 pl-2 lg:w-56"
-      name="search"
-      id="search"
-      value="{{ request("search") }}"
-      title="Search for a post"
-    />
-    <button
-      type="submit"
-      class="h-8 w-8 rounded-r-full bg-gray-300 px-2 hover:bg-indigo-800 hover:fill-white"
-      title="Search for a post"
-    >
-      <x-layout.SVG.search-icon />
-    </button>
+  <div class="inline-flex h-8 gap-2 rounded-full lg:w-fit">
+    <div class="inline-flex">
+      <input
+        type="text"
+        placeholder="Search"
+        class="h-8 w-full rounded-l-xl p-1 pl-2 lg:w-56 dark:bg-gray-600 dark:text-gray-200"
+        name="search"
+        id="search"
+        value="{{ request("search") }}"
+        title="Search for a post"
+      />
+      <button
+        type="submit"
+        class="h-8 w-8 rounded-r-xl bg-gray-300 px-2 hover:bg-indigo-800 hover:fill-white dark:bg-blue-600 dark:hover:bg-blue-400 transition-all"
+        title="Search for a post"
+      >
+        <x-layout.SVG.search-icon />
+      </button>
+    </div>
+
     <label for="genre" class="sr-only">Genre</label>
     <select
-      class="ml-4 h-8 w-full rounded-full border border-stone-200 p-1 pl-2 lg:w-48"
+      class="h-8 w-full rounded-xl border border-stone-200 p-1 pl-2 lg:w-48 dark:bg-gray-600 dark:text-gray-200"
       id="genre"
       name="genre"
       onchange="this.form.submit()"
@@ -37,5 +40,13 @@
         @endif
       @endforeach
     </select>
+    <button
+      type="submit"
+      class="inline-flex h-8 items-center gap-2 rounded-xl bg-gray-300 px-2 hover:bg-indigo-800 hover:fill-white dark:bg-blue-600 dark:hover:bg-blue-400 transition-all"
+      title="Search for a post"
+    >
+      <x-layout.SVG.search-icon />
+      Search
+    </button>
   </div>
 </form>

@@ -1,8 +1,8 @@
 <!--This component needs to calculate the height of the text div and if its beyond a certain amount of pixels, it has to show 'read more'. The read more link leads to the full post.-->
 <template>
-  <div>
+  <div class="overflow-hidden">
     <div
-      class="collapsable text note-editable overflow-hidden break-words to-transparent p-4"
+      class="collapsable text note-editable break-words to-transparent p-4 dark:bg-slate-600 rounded-t-xl  w-full"
       ref="text"
     >
       <slot />
@@ -10,9 +10,10 @@
 
     <div
       v-if="showMore"
-      class="show-more w-full border-y border-gray-300 p-2 text-center text-blue-500 hover:bg-gray-200"
+      class="font-bold sticky cursor-pointer show-more w-full p-2 text-center text-blue-400 hover:text-blue-600 dark:bg-gradient-to-t dark:from-slate-600 dark:to-slate-600/60 rounded-b-xl z-10 pt-4"
+      @click="changeText"
     >
-      <button @click="changeText" ref="button">Read more</button>
+      <button  ref="button">Read more</button>
     </div>
   </div>
 </template>
@@ -61,7 +62,6 @@ export default {
 div.collapsable {
   max-height: 128px;
   transition: all 500ms ease;
-  overflow: hidden;
 }
 
 div.collapsed {

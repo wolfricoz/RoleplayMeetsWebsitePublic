@@ -4,35 +4,32 @@
 
 <div class="h-full w-full flex-wrap">
   <nav
-    class="flex h-12 w-full basis-full flex-row justify-between border-b border-stone-200 bg-gray-100"
+    class="flex h-12 w-full basis-full flex-row justify-between bg-gray-100 transition-all dark:bg-zinc-800 dark:text-gray-200"
   >
-    <div class="inline-flex">
-      <a
-        href="{{ route("home") }}"
-        class="h-full w-32 text-center text-gray-700 transition-all ease-in-out hover:cursor-pointer hover:text-indigo-900 lg:w-44"
-      >
-        <h1 class="pt-2.5 font-bold lg:pt-0 lg:text-lg">
-          {{ config("site_settings.site_name") }}
-        </h1>
-        <h6 class="hidden text-sm lg:block">
-          {{ config("site_settings.site_slogan") }}
-        </h6>
-      </a>
-
-      <a class="transition-all hover:cursor-pointer">
-        <x-layout.SVG.sidebar-icon />
-      </a>
-    </div>
-    <div
-      class="content-right inline-flex h-full w-fit max-w-xl text-center text-gray-700 hover:cursor-pointer hover:bg-gray-50 hover:text-black lg:min-w-[208px]"
-      x-on:click="dropdown = !dropdown"
+    <a
+      href="{{ route("home") }}"
+      class="inline-flex items-end gap-2 text-center text-gray-700 transition-all ease-in-out hover:cursor-pointer hover:text-indigo-900"
     >
-      @auth()
+      <h1
+        class="pl-2 text-xl font-bold lg:pt-0 lg:text-3xl dark:text-gray-200 dark:hover:text-gray-100"
+      >
+        {{ config("site_settings.site_name") }}
+      </h1>
+      <h6 class="hidden text-sm lg:block dark:text-blue-400">
+        {{ config("site_settings.site_slogan") }}
+      </h6>
+    </a>
+
+    @auth()
+      <div
+        class="content-right inline-flex h-full w-fit max-w-xl items-center text-center text-gray-700 transition-all hover:cursor-pointer hover:bg-gray-50 hover:text-black lg:min-w-[208px] dark:hover:bg-zinc-600"
+        x-on:click="dropdown = !dropdown"
+      >
         <span
-          class="{{ strlen(auth()->user()->global_name) > 15 ? "pt-4 text-xs" : "py-3.5" }} ml-auto hidden overflow-hidden px-0.5 pt-1.5 lg:block"
+          class="{{ strlen(auth()->user()->global_name) > 15 ? "text-xs" : "" }} ml-auto hidden overflow-hidden text-gray-200 lg:block"
         >
           {{ auth()->user()->global_name }}
-          <span class="block text-left text-xs">
+          <span class="block text-left text-xs text-blue-400">
             {{ Helpers::get_highest_role(auth()->user())->name }}
           </span>
         </span>
@@ -42,15 +39,19 @@
           src="{{ Auth::user()->getAvatar(["extension" => "webp", "size" => 32]) }}"
           alt="{{ Auth::user()->getTagAttribute() }}"
         />
-      @else
+      </div>
+    @else
+      <div
+        class="content-right inline-flex h-full w-fit max-w-xl items-center text-center text-gray-700 hover:cursor-pointer lg:min-w-[208px]"
+      >
         <a
           href="{{ route("login") }}"
-          class="mt-2 inline-flex h-8 cursor-pointer rounded-full border border-gray-500 bg-transparent px-2 py-1 font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white"
+          class="inline-flex h-8 cursor-pointer rounded-full border border-gray-500 bg-transparent px-2 py-1 font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white dark:text-gray-200"
         >
           <x-layout.SVG.login-icon />
         </a>
-      @endauth
-    </div>
+      </div>
+    @endauth
   </nav>
   @auth()
     <div x-show="dropdown" class="z-40" x-cloak>
@@ -86,8 +87,8 @@
 
   <div class="flex h-full max-h-[95vh] w-full">
     <aside
-      class="flex h-full flex-col justify-between border border-stone-200 bg-gray-100 transition-all"
-      :class="{'w-12': !open, 'w-48': open}"
+      class="flex h-full flex-col justify-between bg-gray-100 transition-all dark:bg-zinc-800"
+      :class="{'w-12': !open, 'w-40': open}"
       x-cloak
     >
       <div class="">
@@ -109,6 +110,9 @@
           </x-slot>
           Support
         </x-layout.components.sidenavbutton>
+        <a class="transition-all hover:cursor-pointer">
+          <x-layout.SVG.sidebar-icon />
+        </a>
       </div>
       <x-layout.components.sidenavbutton
         href="{{ config('site_settings.discord_invite') }}"
