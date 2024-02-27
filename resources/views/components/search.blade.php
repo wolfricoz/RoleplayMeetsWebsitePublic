@@ -21,7 +21,7 @@
 
     <label for="genre" class="sr-only">Genre</label>
     <select
-      class="h-8 w-full rounded-xl border border-stone-200 p-1 pl-2 lg:w-48 dark:bg-gray-600 dark:text-gray-200"
+      class="h-8 w-full rounded-xl p-1 pl-2 lg:w-48 dark:bg-gray-600 dark:text-gray-200"
       id="genre"
       name="genre"
       onchange="this.form.submit()"

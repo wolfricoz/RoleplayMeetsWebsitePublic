@@ -2,11 +2,11 @@
   <div
     id="app"
     class="min-h-full w-full space-y-2 p-2"
-    x-data="{ 'layout': 'grid' }"
+    x-data="{ 'layout': 'list' }"
   >
     <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
     <div class="inline-flex">
-      <div class="grid grid-cols-2 w-full gap-4 transition-all">
+      <div class="grid grid-cols-2 w-full gap-2 transition-all">
         @forelse ($posts as $post)
           <x-post :post="$post"></x-post>
         @empty

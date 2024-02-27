@@ -111,7 +111,7 @@
   >
     <a
       href="{{ route("posts.show", $post) }}"
-      class="text-lg hover:text-indigo-900 lg:text-2xl"
+      class="text-lg hover:text-indigo-900 dark:hover:text-blue-400 lg:text-2xl font-bold "
       title="Go to post"
     >
       {{ $post->title }}
@@ -130,7 +130,7 @@
         <span>
         <p>Author:</p>
         <a
-          class="hover:text-indigo-900 hover:underline"
+          class="hover:text-indigo-900 dark:hover:text-blue-400 hover:underline"
           href="{{ route("users.show", $post->user_id) }}"
         >
           {{ $post->user->global_name }}
@@ -141,7 +141,7 @@
         Genre:
         <br />
         <a
-          class="hover:text-indigo-900 hover:underline"
+          class="hover:text-indigo-900 dark:hover:text-blue-400 hover:underline"
           href="{{ route("home", ["search" => request("search"), "genre" => $post->genre_id]) }}"
         >
           {{ $post->genre->name ?? "None" }}

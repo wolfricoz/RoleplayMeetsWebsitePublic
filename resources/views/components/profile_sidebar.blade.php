@@ -1,7 +1,7 @@
 <aside
-  class="col-span-3 h-fit rounded-xl bg-gray-200 p-6 lg:col-span-1 lg:col-start-4 lg:row-span-8"
+  class="hidden h-fit rounded-xl bg-gray-200 p-6 min-w-96 lg:block dark:text-gray-200 dark:bg-gray-700"
 >
-  <div class="rounded-full border-b border-gray-300">
+  <div class="rounded-xl border-b border-gray-300">
     <h1 class="text-center text-2xl font-bold">
       {{ $user->global_name }}'s Profile
     </h1>
@@ -21,7 +21,7 @@
     {{ $user->profile->location ?? "No information provided." }}
   </x-public_profile_item>
 
-  <div class="my-2 rounded-full border-b border-gray-300">
+  <div class="my-2 rounded-xl border-b border-gray-300">
     <h1 class="text-center font-bold">Contact me here!</h1>
   </div>
   @auth()

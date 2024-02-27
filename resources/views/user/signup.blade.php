@@ -4,7 +4,7 @@
       <form method="POST" action="{{ route("users.settings.update") }}">
         @csrf
         <div
-          class="m-5 mb-1 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
+          class="m-5 mb-1 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
           <div class="text-center">
             <h1 class="text-xl font-bold">
@@ -55,7 +55,7 @@
         </div>
 
         <div
-          class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
+          class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
           <div class="border-b border-gray-200">
             <h1 id="profile" class="text-center text-2xl font-bold">
@@ -90,7 +90,7 @@
               >
                 Country
               </x-settings_forum_field>
-              <select name="location">
+              <select name="location" class="dark:bg-gray-600 dark:text-gray-200 rounded-xl">
                 <option value="0">Select a country</option>
                 @foreach ($countries as $country)
                   @if (auth()->user()->profile->location === $country)
@@ -173,7 +173,7 @@
           </div>
         </div>
         <div
-          class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
+          class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
           <div class="border-b border-gray-200">
             <h1 id="Setting" class="text-center text-2xl font-bold">
@@ -215,7 +215,7 @@
       </form>
 
       <div
-        class="m-5 rounded-xl border border-gray-200 bg-gray-100 p-4 lg:w-full"
+        class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full"
       >
         <div class="border-b border-gray-200">
           <h1 id="Remove" class="text-center text-2xl font-bold">

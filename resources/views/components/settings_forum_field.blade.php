@@ -20,7 +20,7 @@
         </span>
       </label>
     @else
-      
+
     @endisset()
   </div>
 
@@ -31,7 +31,8 @@
       value="{{ $attributes["value"] }}"
       min="{{ $attributes["min"] ?? "" }}"
       max="{{ $attributes["type"] === "date" ? now()->subYears(13)->format("Y-m-d") : "" }}"
-      class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+      placeholder="{{ ($attributes["type"] ?? "text") === "text" ? "Enter your " . $slot : "Select your " . $slot }}"
+      class="mt-1 dark:bg-gray-600 block w-full rounded-xl  shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
     />
   </label>
 </div>
