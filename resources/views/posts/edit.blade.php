@@ -1,7 +1,8 @@
 <x-layout.header>
   <div id="app" class="m-1 flex justify-center lg:m-4">
-    <div class="h-fit w-full rounded-xl bg-gray-100 p-4 lg:w-2/3">
-      <div>
+    <div class="h-fit w-full bg-gray-100 p-4 lg:w-2/3 dark:bg-gray-700 dark:text-gray-200 rounded-xl">
+
+    <div>
         <h1 class="text-center text-2xl">Create Post</h1>
         <form method="post" action="{{ route("posts.update", $post) }}">
           @csrf
@@ -11,8 +12,8 @@
             type="text"
             name="title"
             id="title"
-            class="w-full rounded-md border border-gray-300 p-2"
             value="{{ old("title") ?? $post->title }}"
+            class="w-full rounded-xl p-2 dark:bg-gray-600"
             required
           />
           <h1>Body</h1>
@@ -27,7 +28,7 @@
               <select
                 name="genre_id"
                 id="genre"
-                class="w-full rounded-md border border-gray-300 p-2"
+                class="w-full rounded-xl p-2 dark:bg-gray-600"
                 required
               >
                 @foreach ($genres as $genre)
@@ -50,8 +51,8 @@
                 type="number"
                 name="charage"
                 id="charage"
-                class="w-full rounded-md border border-gray-300 p-2"
                 value="{{ old("charage") ?? $post->charage }}"
+                class="w-full rounded-xl p-2 dark:bg-gray-600"
                 required
               />
             </div>
@@ -61,8 +62,8 @@
                 type="number"
                 name="partnerage"
                 id="partnerage"
-                class="w-full rounded-md border border-gray-300 p-2"
                 value="{{ old("partnerage") ?? $post->partnerage }}"
+                class="w-full rounded-xl p-2 dark:bg-gray-600"
                 required
               />
             </div>
@@ -70,7 +71,7 @@
 
           <button
             type="submit"
-            class="mt-2 rounded-md bg-indigo-900 p-2 text-white"
+            class="mt-2 rounded-xl p-2 text-white bg-blue-600 hover:bg-blue-400"
           >
             Update
           </button>

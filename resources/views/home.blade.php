@@ -19,16 +19,16 @@
 
       </div>
 
-      @if (! \Illuminate\Support\Facades\Auth::check() ||! auth()->user()->hasPermissionTo("is_patron"))
-        <div class="ml-3 hidden w-48 rounded-xl bg-gray-100 lg:block">
-          <Adsense
-            data-ad-client="ca-pub-4605197206330320"
-            data-ad-slot="6718590005"
-            data-ad-format="auto"
-            data-full-width-responsive="yes"
-          ></Adsense>
-        </div>
-      @endif
+{{--      @if (! \Illuminate\Support\Facades\Auth::check() ||! auth()->user()->hasPermissionTo("is_patron"))--}}
+{{--        <div class="ml-3 hidden w-48 rounded-xl bg-gray-100 lg:block">--}}
+{{--          <Adsense--}}
+{{--            data-ad-client="ca-pub-4605197206330320"--}}
+{{--            data-ad-slot="6718590005"--}}
+{{--            data-ad-format="auto"--}}
+{{--            data-full-width-responsive="yes"--}}
+{{--          ></Adsense>--}}
+{{--        </div>--}}
+{{--      @endif--}}
     </div>
     @if ($posts->count() > 19)
       <div
