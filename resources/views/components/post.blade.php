@@ -3,7 +3,7 @@
 @endphp
 
 <div
-  class="w-full rounded-xl bg-gray-100 text-gray-200 dark:bg-gray-700 p-2"
+  class="w-full rounded-xl bg-gray-100 text-stone-800 dark:text-gray-200 dark:bg-gray-700 p-2"
   x-bind:class="{
     'col-span-1': layout === 'grid',
     'col-span-2': layout === 'list'
