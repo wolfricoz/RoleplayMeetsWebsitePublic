@@ -5,13 +5,13 @@
     x-data="{ 'layout': 'list' }"
   >
     <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
-    <div class="inline-flex">
+{{--    <div class="inline-flex">--}}
       <div class="grid grid-cols-2 w-full gap-2 transition-all">
         @forelse ($posts as $post)
           <x-post :post="$post"></x-post>
         @empty
           <div
-            class="col-span-1 h-fit rounded-xl p-6 text-center text-xl "
+            class="col-span-2 h-fit rounded-xl p-6 text-center text-xl "
           >
             <p class="">No posts found, check back later!</p>
           </div>
@@ -29,7 +29,7 @@
 {{--          ></Adsense>--}}
 {{--        </div>--}}
 {{--      @endif--}}
-    </div>
+{{--    </div>--}}
     @if ($posts->count() > 19)
       <div
         class="mx-20 my-2 rounded-xl bg-gray-100 dark:bg-gray-700 p-3"
