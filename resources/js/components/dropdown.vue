@@ -46,14 +46,14 @@ export default {
   <div class="p-1" @mouseleave="dropdown = false" @scroll="dropdown = false">
     <a
       title="See more options"
-      class="cursor-pointer rounded-full p-1 px-2 tracking-tighter transition-all hover:bg-gray-300 hover:tracking-normal hover:text-indigo-900 focus:tracking-normal"
+      class="cursor-pointer rounded-full p-1 px-2 tracking-tighter transition-all hover:bg-gray-300 hover:tracking-normal hover:text-indigo-900 focus:tracking-normal "
       @click="showDropdown($event, dropdownid)"
     >
       •••
     </a>
     <div :id="dropdownid" x-cloak>
       <div
-        class="fixed z-50 flex w-fit flex-col rounded-xl bg-gray-300"
+        class="fixed z-50 flex w-fit flex-col rounded-xl bg-gray-300 dark:bg-zinc-800 dark:text-gray-200"
         v-show="dropdown"
         :style="{ left: `${position.x}px`, top: `${position.y}px` }"
       >

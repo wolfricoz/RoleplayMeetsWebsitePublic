@@ -9,8 +9,5 @@
 
     </article>
   </div>
-
 </x-mail.header>
 
-Your post has been rejected with the following reason:
-{{ $reason }}

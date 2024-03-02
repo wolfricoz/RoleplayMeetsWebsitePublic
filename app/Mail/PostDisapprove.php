@@ -6,24 +6,23 @@ use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PostApproved extends Mailable
+class PostDisapprove extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public Post $post;
+  public Post $post;
 
-    public function __construct($post)
-    {
-        $this->post = $post;
-    }
+  public function __construct($post)
+  {
+    $this->post = $post;
+  }
 
     /**
      * Get the message envelope.
@@ -31,8 +30,7 @@ class PostApproved extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-          from: new Address('rico@roleplaymeets.com', 'Rico'),
-            subject: 'Your post has been approved!'
+            subject: 'Post under further review',
         );
     }
 
@@ -42,7 +40,7 @@ class PostApproved extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.approved'
+            view: 'mail.disapproved',
         );
     }
 

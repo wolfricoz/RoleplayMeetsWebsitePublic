@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\postDisapprove;
 use App\Mail\PostApproved;
 use App\Mail\PostRejected;
 use App\Models\Genres;
@@ -37,19 +38,26 @@ class AdminController extends Controller
 
   public function approvetoggle(Request $request, Post $post): RedirectResponse
   {
-    $post->approved = !$post->approved;
     if ($post->created_at !== $post->updated_at) {
       $post->bumped_at = Carbon::now();
     }
+    if ($post->approved) {
+      $post->approved = !$post->approved;
+      $post->save();
+      Mail::to($post->user->email)->send(new PostDisapprove($post));
+      return redirect()->back()->with('success', 'Post has been returned to the queue!');
+    }
+
+    $post->approved = !$post->approved;
     $post->save();
-    Mail::to($post->user->email)->send(new PostApproved());
+    Mail::to($post->user->email)->send(new PostApproved($post));
     return redirect()->back()->with('success', 'Post successfully approved!');
   }
 
   public function reject(Request $request, Post $post): RedirectResponse
   {
     $post->delete();
-    Mail::to($post->user->email)->send(new PostRejected($request['reason']));
+    Mail::to($post->user->email)->send(new PostRejected($request['reason'], $post));
     return redirect()->back()->with('success', 'Post rejected!');
   }
 

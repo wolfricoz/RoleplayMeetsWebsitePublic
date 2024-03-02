@@ -99,7 +99,3 @@ Route::middleware('auth')->group(function () {
 
 // Discord Auth
 Route::get('/larascord/callback', [larascord::class, 'handle'])->name('larascord.login');
-
-Route::get('/larascord/refresh-token', static function () {
-  Redirect::route('login')->with('status', 'Token refreshed!');
-})->name('larascord.refresh_token');

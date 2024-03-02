@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -17,12 +18,14 @@ class PostRejected extends Mailable
      * Create a new message instance.
      */
 
-    public $reason;
-    public function __construct($reason)
+    public string $reason;
+    public Post $post;
+
+    public function __construct($reason, $post)
     {
         $this->reason = $reason;
+        $this->post = $post;
     }
-
 
     /**
      * Get the message envelope.
