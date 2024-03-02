@@ -11,7 +11,7 @@
           <x-post :post="$post"></x-post>
         @empty
           <div
-            class="col-span-2 h-fit rounded-xl p-6 text-center text-xl "
+            class="col-span-2 h-fit rounded-xl p-6 text-center text-xl dark:text-gray-200"
           >
             <p class="">No posts found, check back later!</p>
           </div>
