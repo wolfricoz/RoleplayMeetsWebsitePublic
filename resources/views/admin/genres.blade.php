@@ -1,5 +1,5 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4">
+  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4 dark:bg-gray-700 dark:text-gray-200">
     <div class="">
       <div class="grid grid-cols-3 gap-4 border-b border-gray-300">
         <div class="col-span-1 p-2">

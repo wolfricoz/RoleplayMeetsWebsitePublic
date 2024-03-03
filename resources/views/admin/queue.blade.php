@@ -1,7 +1,7 @@
 <x-admin-layout.header>
   <div
     id="app"
-    class="m-5 flex flex-col gap-4 rounded-xl bg-gray-200 p-4"
+    class="m-5 flex flex-col gap-4 p-4"
     x-data="{ layout: 'list' }"
   >
     @forelse ($posts as $post)

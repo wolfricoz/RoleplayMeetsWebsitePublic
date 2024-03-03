@@ -6,7 +6,7 @@
         <x-admin-layout.cms_form_button
           name="disapprove"
           value="false"
-          class="w-full border-red-700 text-left hover:bg-red-600"
+          class="w-full border-red-700 text-left hover:bg-red-600 dark:hover:bg-red-700 dark:text-red-400"
           title="Disapprove the post and make it invisible to the public"
         >
           Disapprove
@@ -18,7 +18,7 @@
         <x-admin-layout.cms_form_button
           name="approve"
           value="true"
-          class="w-full border-green-700 text-left hover:bg-green-600"
+          class="w-full border-green-700 text-left hover:bg-green-60 dark:hover:bg-green-700 dark:text-green-400"
           title="Approve the post and make it visible to the public"
         >
           Approve
@@ -37,7 +37,7 @@
             ></textarea>
           </label>
           <x-admin-layout.cms_form_button
-            class="w-32 border-red-700 text-left hover:bg-red-600"
+            class="w-32 border-red-700 text-left hover:bg-red-600 dark:hover:bg-red-700 dark:text-red-400"
             title="Deny the post and make it invisible to the public"
             onclick="return confirm('Are you sure you want to deny this post?')"
           >

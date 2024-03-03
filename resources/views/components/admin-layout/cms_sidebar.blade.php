@@ -1,4 +1,4 @@
-<aside class="flex h-full w-48 flex-col justify-between bg-gray-200">
+<aside class="flex h-full w-48 flex-col justify-between bg-gray-200 dark:bg-zinc-800 dark:text-gray-200">
   <div>
     <div class="m-4">
       <h1 class="w-full text-center text-xl font-semibold">Roleplay Meets</h1>

@@ -1,7 +1,7 @@
 @if ($permission)
   <a href="{{ $attributes["href"] }}">
     <div
-      class="flex w-full justify-between p-4 text-sm font-semibold hover:border-r hover:border-indigo-800 hover:bg-gray-100 hover:text-indigo-900"
+      class="flex w-full justify-between p-4 text-sm font-semibold hover:border-r border-blue-600 hover:bg-gray-100 hover:text-indigo-900 dark:hover:text-blue-400 dark:hover:bg-zinc-700"
     >
       <span>
         {{ $slot }}

@@ -11,7 +11,8 @@ export default {
 
 <template>
   <button
-    class="cursor-pointer whitespace-nowrap rounded border border-gray-500 bg-transparent px-2 py-1 text-sm font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white"
+    class="cursor-pointer whitespace-nowrap rounded border border-gray-500 bg-transparent px-2 py-1 text-sm rounded-xl
+    font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white dark:text-gray-200 dark:border-gray-200 dark:hover:bg-blue-400 dark:hover:text-white"
     v-on:click="showModal = !showModal"
     v-html="button"
   ></button>
@@ -20,7 +21,7 @@ export default {
     v-bind:class="{ hidden: !showModal, fixed: showModal }"
   >
     <div
-      class="absolute inset-0 mx-auto mt-10 h-fit w-1/3 rounded-xl bg-gray-300 p-5"
+      class="absolute inset-0 mx-auto mt-10 h-fit w-1/3 rounded-xl bg-gray-300 p-5 dark:bg-zinc-800"
     >
       <div class="flex justify-end">
         <div

@@ -4,13 +4,14 @@
     <div
       class="collapsable text note-editable break-words to-transparent p-4 dark:bg-slate-600 rounded-t-xl  w-full"
       ref="text"
+      v-bind:class="{ 'rounded-xl': !showMore }"
     >
       <slot />
     </div>
 
     <div
       v-if="showMore"
-      class="font-bold sticky cursor-pointer show-more w-full p-2 text-center text-blue-400 hover:text-blue-600 dark:bg-gradient-to-t dark:from-slate-600 dark:to-slate-600/60 rounded-b-xl z-10 pt-4"
+      class="font-bold sticky cursor-pointer show-more w-full text-center text-blue-400 hover:text-blue-600 dark:bg-gradient-to-t dark:from-slate-600 dark:to-slate-600/60 rounded-b-xl z-10 pt-4"
       @click="changeText"
     >
       <button  ref="button">Read more</button>

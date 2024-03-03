@@ -30,10 +30,10 @@
     @vite(["resources/css/app.css", "resources/js/app.js"])
   </head>
   <body
-    class="flex h-screen w-screen font-sans antialiased"
+    class="flex h-screen w-screen font-sans antialiased dark:bg-zinc-800"
     x-data="{
       open: window.screen.width > 900,
-      dropdown: false,
+      dropdown: false
     }"
     x-cloak
   >
