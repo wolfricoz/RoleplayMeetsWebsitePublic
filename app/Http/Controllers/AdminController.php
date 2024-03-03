@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\postDisapprove;
+use App\Mail\PostDisapprove;
 use App\Mail\PostApproved;
 use App\Mail\PostRejected;
 use App\Models\Genres;
