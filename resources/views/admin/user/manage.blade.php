@@ -1,5 +1,5 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4">
+  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4 dark:bg-gray-700 dark:text-gray-200">
     @isset($user->banned_at)
       <div class="rounded-xl bg-red-500 p-2 text-center text-white">
         <h1 class="font-bold">This user is banned</h1>
@@ -131,7 +131,7 @@
           title="Roles"
         ></multiselectrole>
         <x-admin-layout.cms_form_button
-          class="mt-2 border-blue-700 hover:bg-blue-600"
+          class="mt-2 border-blue-700 hover:bg-blue-600 dark:border-blue-400 dark:text-gray-200"
         >
           Update
         </x-admin-layout.cms_form_button>
@@ -167,7 +167,7 @@
           <div
             class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-red-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-red-300 rtl:peer-checked:after:-translate-x-full dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-red-800"
           ></div>
-          <span class="ms-3 text-sm font-medium text-gray-900">Permanent</span>
+          <span class="ms-3 text-sm font-medium">Permanent</span>
         </label>
         <div x-show="!permanent">
           <label for="expires_at" class="ml-3 font-bold">Expires At</label>
@@ -183,7 +183,7 @@
           onclick="return confirm('Are you sure you want to ban {{ $user->username }}?')"
         >
           <x-admin-layout.cms_form_button
-            class="mt-2 block border-red-700 hover:bg-red-600"
+            class="mt-2 block border-red-700 hover:bg-red-600 dark:text-gray-200 px-5"
           >
             Ban
           </x-admin-layout.cms_form_button>

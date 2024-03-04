@@ -1,5 +1,5 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4">
+  <div id="app" class="m-5 p-4 dark:text-gray-200">
     <div class="grid grid-cols-3 gap-4">
       <div class="col-span-3 grid grid-cols-3 gap-4 border-b border-gray-300">
         <div class="col-span-1">
@@ -24,7 +24,7 @@
       </div>
 
       @forelse ($roles as $role)
-        <div class="col-span-1 border p-4">
+        <div class="col-span-1 border rounded-xl bg-gray-700 p-4">
           <x-admin-layout.cms_role_form
             action="{{ route('admin.groups.update', $role) }}"
             :role="$role"

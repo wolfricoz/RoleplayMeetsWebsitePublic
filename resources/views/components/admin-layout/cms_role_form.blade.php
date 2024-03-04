@@ -7,7 +7,7 @@
     type="text"
     value="{{ isset($role) ? $role->name : "" }}"
     placeholder="name"
-    class="w-full rounded-lg border-2 border-gray-400"
+    class="w-full rounded-xl dark:bg-gray-600"
   />
   <multiselectrole
     :values="{{ json_encode($permissions, JSON_THROW_ON_ERROR) }}"
@@ -24,14 +24,14 @@
   @else
     <div class="flex justify-between p-2">
       <x-admin-layout.cms_form_button
-        class="border-green-700 hover:bg-green-600"
+        class="border-green-700 hover:bg-green-600 dark:border-green-400 dark:text-gray-200 px-5"
       >
         Submit
       </x-admin-layout.cms_form_button>
       @isset($role)
         <x-admin-layout.cms_form_button
           name=""
-          class="border-red-700 hover:bg-red-600"
+          class="border-red-700 hover:bg-red-600 dark:text-gray-200 px-5"
           formaction="{{ route('admin.groups.delete', $role) }}"
           onclick="confirm('Are you certain you want to remove this role?')"
         >

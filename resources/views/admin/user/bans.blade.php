@@ -1,5 +1,5 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4">
+  <div id="app" class="m-5 text-gray-200 p-4">
     <div class="grid grid-cols-4 gap-4">
       <div class="col-span-4 grid grid-cols-3 gap-4 border-b border-gray-300">
         <div class="col-span-1"></div>
@@ -16,7 +16,7 @@
       @forelse ($users as $user)
         <a href="{{ route("admin.users.show", $user) }}">
           <div
-            class="col-span-1 rounded-xl border border-gray-300 hover:cursor-pointer hover:bg-indigo-300"
+            class="col-span-1 rounded-xl border border-gray-300 hover:cursor-pointer hover:bg-indigo-300 dark:bg-gray-700"
             title="Click to view profile"
           >
             <div class="flex flex-row p-1">
@@ -67,7 +67,7 @@
                   @csrf
                   <button
                     type="submit"
-                    class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700"
+                    class="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-400"
                   >
                     Unban
                   </button>

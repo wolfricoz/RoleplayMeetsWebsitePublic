@@ -1,10 +1,10 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4">
+  <div id="app" class="m-5 p-4 dark:text-gray-200">
     <div class="grid grid-cols-4 gap-4">
       <div class="col-span-4 grid grid-cols-3 gap-4 border-b border-gray-300">
         <div class="col-span-1"></div>
         <div class="col-span-1 text-center">
-          <h1 class="text-xl font-bold">Users</h1>
+          <h1 class="text-2xl font-bold">Users</h1>
           <h6 class="text-sm">
             Manage users and their roles. Click on the profiles for more
             information
@@ -16,7 +16,7 @@
       @forelse ($users as $user)
         <a href="{{ route("admin.users.show", $user) }}">
           <div
-            class="col-span-1 rounded-xl border border-gray-300 hover:cursor-pointer hover:bg-indigo-300"
+            class="col-span-1 rounded-xl border border-gray-300 hover:cursor-pointer hover:bg-blue-400 bg-gray-200 dark:bg-gray-700"
             title="Click to view profile"
           >
             <div class="flex flex-row p-1">

@@ -87,7 +87,7 @@
 
   <div class="flex h-full max-h-[95vh] w-full">
     <aside
-      class="flex h-full flex-col justify-between bg-gray-100 transition-all dark:bg-zinc-800"
+      class="flex h-full flex-col justify-between bg-gray-100 transition-all dark:bg-zinc-800 shadow-2xl"
       :class="{'w-12': !open, 'w-40': open}"
       x-cloak
     >

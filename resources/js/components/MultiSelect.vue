@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full rounded-lg">
+  <div class="w-full rounded-xl">
     <label
       class="mb-2 block text-sm font-bold tracking-wide"
       for="grid-state"
@@ -8,6 +8,7 @@
     </label>
     <input type="hidden" :value="selected_values" name="permissions" />
     <Multiselect
+      class="text-blue-600 border-none dark:bg-zinc-800"
       v-model="selected_values"
       mode="tags"
       :close-on-select="false"
@@ -17,13 +18,14 @@
       :delay="0"
       :min-chars="1"
       :options="options"
+
     />
   </div>
 </template>
 
 <script>
 import Multiselect from "@vueform/multiselect";
-
+import 'tailwindcss/tailwind.css'
 export default {
   components: {
     Multiselect,
