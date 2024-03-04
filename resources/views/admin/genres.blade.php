@@ -1,5 +1,5 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4 dark:bg-gray-700 dark:text-gray-200">
+  <div id="app" class="m-5 dark:text-gray-200 p-4 ">
     <div class="">
       <div class="grid grid-cols-3 gap-4 border-b border-gray-300">
         <div class="col-span-1 p-2">
@@ -31,7 +31,7 @@
       </div>
       <div class="grid grid-cols-6 gap-4 p-4">
         @forelse ($genres as $category)
-          <div class="col-span-1 rounded-xl border border-gray-200 p-2">
+          <div class="col-span-1 rounded-xl border border-gray-200 dark:bg-gray-700 p-2">
             <h1 class="text-center font-bold">
               {{ $category->name }}
             </h1>

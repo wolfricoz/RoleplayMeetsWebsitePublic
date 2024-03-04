@@ -24,7 +24,7 @@
       </div>
 
       @forelse ($roles as $role)
-        <div class="col-span-1 border rounded-xl bg-gray-700 p-4">
+        <div class="col-span-1 border rounded-xl dark:bg-gray-700 p-4">
           <x-admin-layout.cms_role_form
             action="{{ route('admin.groups.update', $role) }}"
             :role="$role"

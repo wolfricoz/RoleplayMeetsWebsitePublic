@@ -16,7 +16,7 @@
       @forelse ($users as $user)
         <a href="{{ route("admin.users.show", $user) }}">
           <div
-            class="col-span-1 rounded-xl border border-gray-300 hover:cursor-pointer hover:bg-blue-400 bg-gray-200 dark:bg-gray-700"
+            class="col-span-1 rounded-xl border border-gray-300 hover:cursor-pointer hover:bg-blue-400 dark:bg-gray-700"
             title="Click to view profile"
           >
             <div class="flex flex-row p-1">
