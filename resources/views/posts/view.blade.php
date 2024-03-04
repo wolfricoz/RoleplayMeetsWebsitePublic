@@ -1,7 +1,10 @@
+@php
+  use Carbon\Carbon;
+@endphp
 <x-layout.header>
   <div class=""
        id="app">
-    <div class="inline-flex gap-4 p-2">
+    <div class="inline-flex gap-4 p-2 lg:p-6">
       <div
         class="grid grid-cols-3 gap-2 lg:gap-4 w-full"
       >

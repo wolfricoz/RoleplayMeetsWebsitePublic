@@ -1,5 +1,5 @@
 <x-layout.header>
-  <div class="p-2 space-y-2 min-h-full w-full"
+  <div class="p-2 lg:p-6 space-y-2 min-h-full w-full"
     x-data="{ 'layout': 'list' }">
     <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
     <div class="inline-flex gap-2">
