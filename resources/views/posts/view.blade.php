@@ -2,9 +2,10 @@
   use Carbon\Carbon;
 @endphp
 <x-layout.header>
-  <div class=""
+  <div class="p-2"
        id="app">
-    <div class="inline-flex gap-4 p-2 lg:p-6">
+    <div class="space-y-2 lg:space-y-0 lg:flex lg:flex-row-reverse gap-2">
+      <x-profile_sidebar :user="$user"></x-profile_sidebar>
       <div
         class="grid grid-cols-3 gap-2 lg:gap-4 w-full"
       >
@@ -117,7 +118,7 @@
           </div>
         </div>
       </div>
-      <x-profile_sidebar :user="$user"></x-profile_sidebar>
+
     </div>
 
   </div>

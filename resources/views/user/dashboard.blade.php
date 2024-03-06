@@ -3,7 +3,8 @@
        x-data="{ 'layout': 'list' }"
   >
     <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
-    <div class="inline-flex gap-2">
+    <div class="space-y-2 lg:space-y-0 lg:flex lg:flex-row-reverse gap-2">
+      <x-profile_sidebar :user="$user"></x-profile_sidebar>
       <div
         id="app"
         class="grid grid-cols-2 gap-2 lg:grid-cols-2 "
@@ -49,7 +50,7 @@
           </div>
         @endforelse
       </div>
-      <x-profile_sidebar :user="$user"></x-profile_sidebar>
+
     </div>
 
   </div>
