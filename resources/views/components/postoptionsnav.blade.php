@@ -1,5 +1,5 @@
 <div
-  class="flex h-12 w-full items-center gap-4 lg:inline-flex lg:h-12 lg:rounded-full"
+  class="flex w-full items-center gap-4 lg:inline-flex lg:h-12 lg:rounded-full flex-wrap"
 >
   <div
     class="flex h-full w-full flex-wrap items-center gap-4 rounded-xl bg-gray-200 dark:bg-gray-700"

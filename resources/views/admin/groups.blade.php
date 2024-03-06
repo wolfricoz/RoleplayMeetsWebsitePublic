@@ -1,7 +1,7 @@
 <x-admin-layout.header>
   <div id="app" class="m-5 p-4 dark:text-gray-200">
-    <div class="grid grid-cols-3 gap-4">
-      <div class="col-span-3 grid grid-cols-3 gap-4 border-b border-gray-300">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div class="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4 border-b border-gray-300">
         <div class="col-span-1">
           <createmodal
             :button="'Create a new group'"

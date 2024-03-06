@@ -1,6 +1,6 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 dark:text-gray-200 p-4">
-    <div class="grid grid-cols-3 gap-4 border-b border-gray-300">
+  <div id="app" class="dark:text-gray-200 p-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 border-b border-gray-300">
       <div class="col-span-1 p-2"></div>
       <div class="col-span-1 text-center">
         <h1 class="text-xl font-bold">Settings</h1>

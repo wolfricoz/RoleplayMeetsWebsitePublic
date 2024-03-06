@@ -4,7 +4,7 @@
   width="48px"
   height="48px"
   viewBox="0 0 48 48"
-  class="m-2 h-8 w-8 fill-stone-700 hover:fill-indigo-900 dark:fill-gray-200 dark:hover:fill-blue-600"
+  class="m-2 h-8 w-8 fill-stone-700 hover:fill-indigo-900 dark:hover:fill-blue-600 dark:fill-blue-400"
   x-show="open"
   x-cloak
   x-on:click="open = !open"
@@ -25,7 +25,7 @@
   width="48px"
   height="48px"
   viewBox="0 0 48 48"
-  class="m-2 h-8 w-8 fill-stone-700 hover:fill-indigo-900 dark:fill-gray-200 dark:hover:fill-blue-600"
+  class="m-2 h-8 w-8 fill-stone-700 hover:fill-indigo-900 dark:hover:fill-blue-600 dark:fill-blue-400"
   x-show="!open"
   x-cloak
   x-on:click="open = !open"

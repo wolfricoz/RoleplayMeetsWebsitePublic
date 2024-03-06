@@ -26,7 +26,7 @@
         x-on:click="dropdown = !dropdown"
       >
         <span
-          class="{{ strlen(auth()->user()->global_name) > 15 ? "text-xs" : "" }} ml-auto hidden overflow-hidden dark:text-gray-200 lg:block"
+          class="{{ strlen(auth()->user()->global_name) > 15 ? "text-xs" : "" }} ml-auto overflow-hidden dark:text-gray-200 lg:block"
         >
           {{ auth()->user()->global_name }}
           <span class="block text-left text-xs text-blue-400">

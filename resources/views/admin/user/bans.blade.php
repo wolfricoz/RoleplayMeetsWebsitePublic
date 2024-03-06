@@ -1,7 +1,7 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 dark:text-gray-200 p-4">
-    <div class="grid grid-cols-4 gap-4">
-      <div class="col-span-4 grid grid-cols-3 gap-4 border-b border-gray-300">
+  <div id="app" class="dark:text-gray-200 p-4">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+      <div class="col-span-1 lg:col-span-4 grid grid-cols-1 lg:grid-cols-3 gap-4 border-b border-gray-300">
         <div class="col-span-1"></div>
         <div class="col-span-1 text-center">
           <h1 class="text-xl font-bold">Bans</h1>

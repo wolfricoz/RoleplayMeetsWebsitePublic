@@ -1,5 +1,5 @@
 <x-layout.header>
-  <div id="app" class="flex items-center justify-center">
+  <div id="app" class="flex items-center justify-center p-2">
     <div class="flex flex-col lg:w-1/2">
       <div
         class="m-5 mb-1 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
@@ -200,7 +200,7 @@
       </form>
 
       <div
-        class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full"
+        class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
       >
         <div class="border-b border-gray-200">
           <h1 id="Remove" class="text-center text-2xl font-bold">

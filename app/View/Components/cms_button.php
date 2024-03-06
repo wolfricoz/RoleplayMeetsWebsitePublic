@@ -13,11 +13,12 @@ class cms_button extends Component
      */
     public $permission;
     public $display;
-
-    public function __construct($permission, $display = null)
+    public $icon;
+    public function __construct($permission, $icon = null, $display = null)
     {
         $this->permission = $permission;
         $this->display = $display;
+        $this->icon = $icon;
     }
 
     /**

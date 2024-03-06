@@ -9,11 +9,11 @@
     'col-span-2': layout === 'list'
   }"
 >
-  <div class="flex flex-row justify-end items-center">
-     <div class="flex justify-end">
+  <div class="flex flex-row justify-end items-center flex-wrap lg:flex-nowrap">
+     <div class="flex lg:justify-end">
      <x-layout.SVG.check-icon :post="$post"/>
      </div>
-     <div class="inline-flex">
+     <div class="inline-flex ">
      @auth()
      <dropdown :post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}">
      @if ($post->user_id === auth()->user()->id)
@@ -107,7 +107,7 @@
 
   </div>
   <div
-    class="flex w-full items-center flex-row justify-between overflow-hidden border-gray-200 p-6"
+    class="lg:flex w-full items-center flex-row justify-between overflow-hidden border-gray-200 p-2 text-center lg:text-left lg:p-6"
   >
     <a
       href="{{ route("posts.show", $post) }}"
@@ -117,14 +117,14 @@
       {{ $post->title }}
     </a>
 
-    <div class="flex flex-row divide-x px-2 text-center text-xs lg:text-sm">
-      <span class="inline-flex gap-2 px-6">
+    <div class="flex flex-row divide-x px-2 text-center text-xs lg:text-sm items-center justify-center lg:justify-normal">
+      <span class="inline-flex gap-2 px-2 lg:px-6">
           <img
             class="h-10 w-10 rounded-full border border-gray-200 object-cover"
             src="{{ $post->user->getAvatar(["extension" => "webp", "size" => 512]) }}"
             alt="{{ $post->user->getTagAttribute() }}"
             x-bind:class="{
-              'hidden': layout === 'grid'
+              'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
             }"
           />
         <span>
@@ -137,7 +137,7 @@
         </a>
         </span>
       </span>
-      <span class="px-6 ">
+      <span class="px-2 lg:px-6 ">
         Genre:
         <br />
         <a
@@ -148,23 +148,23 @@
         </a>
       </span>
       <span
-        class="px-6"
+        class="px-2 lg:px-6"
         title="{{ $post->bumped_at > $post->created_at ? Carbon::parse($post->bumped_at)->format("m/d/y H:i") : $post->created_at->format("m/d/y H:i") }}"
       >
         {!! $post->bumped_at > $post->created_at ? "Bumped: <br>" . Carbon::parse($post->bumped_at)->diffForHumans() : "Created: <br>{$post->created_at->format("m/d/y H:i")}" !!}
       </span>
-      <span class="px-6"
+      <span class="px-2 lg:px-6"
             x-bind:class="{
-              'hidden': layout === 'grid'
+              'hidden': layout === 'grid'  || document.documentElement.clientWidth < 1024
             }">
         character age:
         <br />
         {{ $post->charage }}+
       </span>
 
-      <span class="px-6"
+      <span class="px-2 lg:px-6"
             x-bind:class="{
-              'hidden': layout === 'grid'
+              'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
             }">
         partner Age:
         <br />

@@ -8,7 +8,7 @@
   >
     <h6 class="text-lg font-bold">
       #{{ $rule->position }} {{ $rule->title }}
-      <span class="rounded-full bg-gray-100 px-2 text-xs text-gray-400">
+      <span class="hidden lg:block rounded-full bg-gray-100 px-2 text-xs text-gray-400">
         Click to hide/show
       </span>
     </h6>
