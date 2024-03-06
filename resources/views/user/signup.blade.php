@@ -90,7 +90,10 @@
               >
                 Country
               </x-settings_forum_field>
-              <select name="location" class="dark:bg-gray-600 dark:text-gray-200 rounded-xl">
+              <select
+                name="location"
+                class="rounded-xl dark:bg-gray-600 dark:text-gray-200"
+              >
                 <option value="0">Select a country</option>
                 @foreach ($countries as $country)
                   @if (auth()->user()->profile->location === $country)
@@ -173,7 +176,7 @@
           </div>
         </div>
         <div
-          class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+          class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
           <div class="border-b border-gray-200">
             <h1 id="Setting" class="text-center text-2xl font-bold">
@@ -214,9 +217,7 @@
         </div>
       </form>
 
-      <div
-        class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full"
-      >
+      <div class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full">
         <div class="border-b border-gray-200">
           <h1 id="Remove" class="text-center text-2xl font-bold">
             Delete Account

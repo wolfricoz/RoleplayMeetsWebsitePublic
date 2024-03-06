@@ -12,7 +12,7 @@
       />
       <button
         type="submit"
-        class="h-8 w-8 rounded-r-xl bg-gray-300 px-2 hover:bg-indigo-800 hover:fill-white dark:bg-blue-600 dark:hover:bg-blue-400 transition-all"
+        class="h-8 w-8 rounded-r-xl bg-gray-300 px-2 transition-all hover:bg-indigo-800 hover:fill-white dark:bg-blue-600 dark:hover:bg-blue-400"
         title="Search for a post"
       >
         <x-layout.SVG.search-icon />
@@ -42,7 +42,7 @@
     </select>
     <button
       type="submit"
-      class="inline-flex h-8 items-center gap-2 rounded-xl bg-gray-300 px-2 hover:bg-indigo-800 hover:fill-white dark:bg-blue-600 dark:hover:bg-blue-400 transition-all"
+      class="inline-flex h-8 items-center gap-2 rounded-xl bg-gray-300 px-2 transition-all hover:bg-indigo-800 hover:fill-white dark:bg-blue-600 dark:hover:bg-blue-400"
       title="Search for a post"
     >
       <x-layout.SVG.search-icon />

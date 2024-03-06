@@ -1,10 +1,7 @@
 <a
-  class="transition-all bg-blue-600 flex h-12 lg:h-full w-full lg:w-48 cursor-pointer items-center justify-center
-  whitespace-nowrap rounded-xl py-1 text-sm font-semibold
-  hover:border-transparent hover:text-white
-  dark:text-gray-200 hover:bg-blue-400"
+  class="flex h-12 w-full cursor-pointer items-center justify-center whitespace-nowrap rounded-xl bg-blue-600 py-1 text-sm font-semibold transition-all hover:border-transparent hover:bg-blue-400 hover:text-white lg:h-full lg:w-48 dark:text-gray-200"
   @isset($attributes["href"])
-    href="{{ $attributes["href"] }}"
+      href="{{ $attributes["href"] }}"
   @endisset
 >
   {{ $slot }}

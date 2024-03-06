@@ -1,5 +1,8 @@
 <x-admin-layout.header>
-  <div id="app" class="m-5 rounded-xl bg-gray-100 p-4 dark:bg-gray-700 dark:text-gray-200">
+  <div
+    id="app"
+    class="m-5 rounded-xl bg-gray-100 p-4 dark:bg-gray-700 dark:text-gray-200"
+  >
     @isset($user->banned_at)
       <div class="rounded-xl bg-red-500 p-2 text-center text-white">
         <h1 class="font-bold">This user is banned</h1>
@@ -183,7 +186,7 @@
           onclick="return confirm('Are you sure you want to ban {{ $user->username }}?')"
         >
           <x-admin-layout.cms_form_button
-            class="mt-2 block border-red-700 hover:bg-red-600 dark:text-gray-200 px-5"
+            class="mt-2 block border-red-700 px-5 hover:bg-red-600 dark:text-gray-200"
           >
             Ban
           </x-admin-layout.cms_form_button>

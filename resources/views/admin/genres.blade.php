@@ -1,7 +1,9 @@
 <x-admin-layout.header>
-  <div id="app" class="dark:text-gray-200 p-4 ">
+  <div id="app" class="p-4 dark:text-gray-200">
     <div class="">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 border-b border-gray-300">
+      <div
+        class="grid grid-cols-1 gap-4 border-b border-gray-300 lg:grid-cols-3"
+      >
         <div class="col-span-1">
           <createmodal
             :title="'{{ "Create Category" }}'"
@@ -29,9 +31,11 @@
         </div>
         <div class="col-span-1"></div>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-6 gap-4 p-4">
+      <div class="grid grid-cols-1 gap-4 p-4 lg:grid-cols-6">
         @forelse ($genres as $category)
-          <div class="col-span-1 rounded-xl border border-gray-200 dark:bg-gray-700 p-2">
+          <div
+            class="col-span-1 rounded-xl border border-gray-200 p-2 dark:bg-gray-700"
+          >
             <h1 class="text-center font-bold">
               {{ $category->name }}
             </h1>

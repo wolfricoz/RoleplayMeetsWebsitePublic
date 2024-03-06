@@ -1,5 +1,5 @@
 <aside
-  class="h-fit rounded-xl bg-gray-200 p-6 w-full lg:min-w-96 dark:text-gray-200 dark:bg-gray-700"
+  class="h-fit w-full rounded-xl bg-gray-200 p-6 lg:min-w-96 dark:bg-gray-700 dark:text-gray-200"
 >
   <div class="rounded-xl border-b border-gray-300">
     <h1 class="text-center text-2xl font-bold">

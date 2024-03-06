@@ -11,8 +11,7 @@ export default {
 
 <template>
   <button
-    class="cursor-pointer whitespace-nowrap rounded border border-gray-500 bg-transparent px-2 py-1 text-sm rounded-xl
-    font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white dark:text-gray-200 dark:border-gray-200 dark:hover:bg-blue-400 dark:hover:text-white"
+    class="cursor-pointer whitespace-nowrap rounded rounded-xl border border-gray-500 bg-transparent px-2 py-1 text-sm font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white dark:border-gray-200 dark:text-gray-200 dark:hover:bg-blue-400 dark:hover:text-white"
     v-on:click="showModal = !showModal"
     v-html="button"
   ></button>

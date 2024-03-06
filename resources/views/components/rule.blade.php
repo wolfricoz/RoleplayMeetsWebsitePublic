@@ -1,14 +1,16 @@
 <div
-  class="w-full rounded-xl border border-gray-200 bg-gray-100 dark:bg-slate-600 dark:text-gray-200 dark:border-gray-700"
+  class="w-full rounded-xl border border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-slate-600 dark:text-gray-200"
   x-data="{ display: true }"
 >
   <div
-    class="flex flex-row justify-between rounded-xl bg-gray-200 p-2 hover:cursor-pointer hover:bg-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:border-gray-500 dark:hover:text-gray-100"
+    class="flex flex-row justify-between rounded-xl bg-gray-200 p-2 hover:cursor-pointer hover:bg-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:border-gray-500 dark:hover:bg-gray-600 dark:hover:text-gray-100"
     x-on:click="display = !display"
   >
     <h6 class="text-lg font-bold">
       #{{ $rule->position }} {{ $rule->title }}
-      <span class="hidden lg:block rounded-full bg-gray-100 px-2 text-xs text-gray-400">
+      <span
+        class="hidden rounded-full bg-gray-100 px-2 text-xs text-gray-400 lg:block"
+      >
         Click to hide/show
       </span>
     </h6>

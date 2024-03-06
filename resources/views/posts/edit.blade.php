@@ -1,8 +1,9 @@
 <x-layout.header>
   <div id="app" class="m-1 flex justify-center lg:m-4">
-    <div class="h-fit w-full bg-gray-100 p-4 lg:w-2/3 dark:bg-gray-700 dark:text-gray-200 rounded-xl">
-
-    <div>
+    <div
+      class="h-fit w-full rounded-xl bg-gray-100 p-4 lg:w-2/3 dark:bg-gray-700 dark:text-gray-200"
+    >
+      <div>
         <h1 class="text-center text-2xl">Create Post</h1>
         <form method="post" action="{{ route("posts.update", $post) }}">
           @csrf
@@ -71,7 +72,7 @@
 
           <button
             type="submit"
-            class="mt-2 rounded-xl p-2 text-white bg-blue-600 hover:bg-blue-400"
+            class="mt-2 rounded-xl bg-blue-600 p-2 text-white hover:bg-blue-400"
           >
             Update
           </button>

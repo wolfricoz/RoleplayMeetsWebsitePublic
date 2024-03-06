@@ -23,10 +23,8 @@
     <!-- Scripts -->
     @vite(["resources/css/app.css", "resources/js/app.js"])
   </head>
-  <body
-    class="h-screen w-screen p-6"
-  >
-    <h1 class="text-3xl text-black text-center">roleplaymeets.com</h1>
-      {{ $slot }}
+  <body class="h-screen w-screen p-6">
+    <h1 class="text-center text-3xl text-black">roleplaymeets.com</h1>
+    {{ $slot }}
   </body>
 </html>

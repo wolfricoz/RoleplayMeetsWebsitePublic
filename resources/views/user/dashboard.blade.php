@@ -1,18 +1,14 @@
 <x-layout.header>
-  <div class="p-2 lg:p-6 space-y-2 min-h-full w-full"
-       x-data="{ 'layout': 'list' }"
+  <div
+    class="min-h-full w-full space-y-2 p-2 lg:p-6"
+    x-data="{ 'layout': 'list' }"
   >
     <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
-    <div class="space-y-2 lg:space-y-0 lg:flex lg:flex-row-reverse gap-2">
+    <div class="gap-2 space-y-2 lg:flex lg:flex-row-reverse lg:space-y-0">
       <x-profile_sidebar :user="$user"></x-profile_sidebar>
-      <div
-        id="app"
-        class="grid grid-cols-2 gap-2 lg:grid-cols-2 "
-
-      >
-
+      <div id="app" class="grid grid-cols-2 gap-2 lg:grid-cols-2">
         <div
-          class="col-span-2 h-fit gap-4 rounded-xl dark:bg-gray-700 dark:text-gray-200 bg-gray-200 p-2 lg:col-span-2 lg:justify-center"
+          class="col-span-2 h-fit gap-4 rounded-xl bg-gray-200 p-2 lg:col-span-2 lg:justify-center dark:bg-gray-700 dark:text-gray-200"
         >
           <h1 class="m-2 text-center text-2xl font-bold">Dashboard</h1>
           <div class="flex flex-row justify-center gap-4">
@@ -39,9 +35,6 @@
           </div>
         </div>
 
-
-
-
         @forelse ($posts as $post)
           <x-post :post="$post" />
         @empty
@@ -50,9 +43,7 @@
           </div>
         @endforelse
       </div>
-
     </div>
-
   </div>
 
   <div class="mx-4 my-2">

@@ -2,7 +2,7 @@
 <template>
   <div class="overflow-hidden">
     <div
-      class="collapsable text note-editable break-words to-transparent p-4 dark:bg-slate-600 rounded-t-xl  w-full"
+      class="collapsable text note-editable w-full break-words rounded-t-xl to-transparent p-4 dark:bg-slate-600"
       ref="text"
       v-bind:class="{ 'rounded-xl': !showMore }"
     >
@@ -11,10 +11,10 @@
 
     <div
       v-if="showMore"
-      class="font-bold sticky cursor-pointer show-more w-full text-center text-blue-400 hover:text-blue-600 dark:bg-gradient-to-t dark:from-slate-600 dark:to-slate-600/60 rounded-b-xl z-10 pt-4"
+      class="show-more sticky z-10 w-full cursor-pointer rounded-b-xl pt-4 text-center font-bold text-blue-400 hover:text-blue-600 dark:bg-gradient-to-t dark:from-slate-600 dark:to-slate-600/60"
       @click="changeText"
     >
-      <button  ref="button">Read more</button>
+      <button ref="button">Read more</button>
     </div>
   </div>
 </template>

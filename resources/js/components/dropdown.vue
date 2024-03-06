@@ -46,7 +46,7 @@ export default {
   <div class="p-1" @mouseleave="dropdown = false" @scroll="dropdown = false">
     <a
       title="See more options"
-      class="cursor-pointer rounded-full p-1 px-2 tracking-tighter transition-all hover:bg-gray-300 hover:tracking-normal hover:text-indigo-900 focus:tracking-normal "
+      class="cursor-pointer rounded-full p-1 px-2 tracking-tighter transition-all hover:bg-gray-300 hover:tracking-normal hover:text-indigo-900 focus:tracking-normal"
       @click="showDropdown($event, dropdownid)"
     >
       •••

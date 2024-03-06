@@ -1,7 +1,9 @@
 <x-admin-layout.header>
   <div id="app" class="m-5 p-4 dark:text-gray-200">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <div class="col-span-1 lg:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-4 border-b border-gray-300">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div
+        class="col-span-1 grid grid-cols-1 gap-4 border-b border-gray-300 lg:col-span-3 lg:grid-cols-3"
+      >
         <div class="col-span-1">
           <createmodal
             :button="'Create a new group'"
@@ -24,7 +26,7 @@
       </div>
 
       @forelse ($roles as $role)
-        <div class="col-span-1 border rounded-xl dark:bg-gray-700 p-4">
+        <div class="col-span-1 rounded-xl border p-4 dark:bg-gray-700">
           <x-admin-layout.cms_role_form
             action="{{ route('admin.groups.update', $role) }}"
             :role="$role"

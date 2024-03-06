@@ -1,15 +1,15 @@
-<aside class="flex h-full transition-all flex-col justify-between bg-gray-200 dark:bg-zinc-800 dark:text-gray-200 shadow-2xl"
-       :class="{'w-12': !open, 'w-48 items-center': open}"
+<aside
+  class="flex h-full flex-col justify-between bg-gray-200 shadow-2xl transition-all dark:bg-zinc-800 dark:text-gray-200"
+  :class="{'w-12': !open, 'w-48 items-center': open}"
 >
   <div>
-    <div class=""
-         :class="{'hidden': !open, 'w-48': open}"
-    >
+    <div class="" :class="{'hidden': !open, 'w-48': open}">
       <h1 class="w-full text-center text-xl font-semibold">Roleplay Meets</h1>
       <h6 class="w-full text-center text-sm font-semibold">CMS Panel</h6>
     </div>
-    <div class="w-full border-b border-gray-300 text-center text-xs"
-         :class="{'hidden': !open, 'w-48': open}"
+    <div
+      class="w-full border-b border-gray-300 text-center text-xs"
+      :class="{'hidden': !open, 'w-48': open}"
     >
       User Management
     </div>
@@ -74,8 +74,9 @@
       Bans
     </x-admin-layout.cms_button>
 
-    <div class="w-full border-b border-gray-300 text-center text-xs"
-         :class="{'hidden': !open, 'w-48': open}"
+    <div
+      class="w-full border-b border-gray-300 text-center text-xs"
+      :class="{'hidden': !open, 'w-48': open}"
     >
       Site Management
     </div>

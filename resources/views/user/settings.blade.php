@@ -2,7 +2,7 @@
   <div id="app" class="flex items-center justify-center p-2">
     <div class="flex flex-col lg:w-1/2">
       <div
-        class="m-5 mb-1 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+        class="m-5 mb-1 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
       >
         <div class="border-b border-gray-200">
           <h1 id="discord" class="text-center text-2xl font-bold">
@@ -17,7 +17,7 @@
           <img
             src="{{ auth()->user()->getAvatar(["extension" => "webp", "size" => 128]) }}"
             alt=""
-            class="m-auto h-32 w-32 rounded-full  bg-gray-50"
+            class="m-auto h-32 w-32 rounded-full bg-gray-50"
           />
           <p>Discord ID: {{ auth()->user()->id }}</p>
           <p>global name: {{ auth()->user()->global_name }}</p>
@@ -29,7 +29,7 @@
         @csrf
         <input type="hidden" value="{{ $user->profile->dob }}" name="dob" />
         <div
-          class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+          class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
           <div class="border-b border-gray-200">
             <h1 id="profile" class="text-center text-2xl font-bold">
@@ -64,7 +64,10 @@
               >
                 Country
               </x-settings_forum_field>
-              <select name="location" class="dark:bg-gray-600 dark:text-gray-200 rounded-xl">
+              <select
+                name="location"
+                class="rounded-xl dark:bg-gray-600 dark:text-gray-200"
+              >
                 <option value="0">Select a country</option>
                 @foreach ($countries as $country)
                   @if (auth()->user()->profile->location === $country)
@@ -158,7 +161,7 @@
           </div>
         </div>
         <div
-          class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+          class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
           <div class="border-b border-gray-200">
             <h1 id="Setting" class="text-center text-2xl font-bold">
@@ -200,7 +203,7 @@
       </form>
 
       <div
-        class="m-5 rounded-xl  bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+        class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
       >
         <div class="border-b border-gray-200">
           <h1 id="Remove" class="text-center text-2xl font-bold">

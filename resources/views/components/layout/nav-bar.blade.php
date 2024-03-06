@@ -15,7 +15,7 @@
       >
         {{ config("site_settings.site_name") }}
       </h1>
-      <h6 class="hidden text-sm lg:block text-blue-400">
+      <h6 class="hidden text-sm text-blue-400 lg:block">
         {{ config("site_settings.site_slogan") }}
       </h6>
     </a>
@@ -26,7 +26,7 @@
         x-on:click="dropdown = !dropdown"
       >
         <span
-          class="{{ strlen(auth()->user()->global_name) > 15 ? "text-xs" : "" }} ml-auto overflow-hidden dark:text-gray-200 lg:block"
+          class="{{ strlen(auth()->user()->global_name) > 15 ? "text-xs" : "" }} ml-auto overflow-hidden lg:block dark:text-gray-200"
         >
           {{ auth()->user()->global_name }}
           <span class="block text-left text-xs text-blue-400">
@@ -87,7 +87,7 @@
 
   <div class="flex h-full max-h-[95vh] w-full">
     <aside
-      class="flex h-full flex-col justify-between bg-gray-100 transition-all dark:bg-zinc-800 shadow-2xl"
+      class="flex h-full flex-col justify-between bg-gray-100 shadow-2xl transition-all dark:bg-zinc-800"
       :class="{'w-12': !open, 'w-40': open}"
       x-cloak
     >

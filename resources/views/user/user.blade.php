@@ -1,16 +1,12 @@
 <x-layout.header>
-  <div class="p-2 lg:p-6 space-y-2 min-h-full w-full"
-    x-data="{ 'layout': 'list' }">
+  <div
+    class="min-h-full w-full space-y-2 p-2 lg:p-6"
+    x-data="{ 'layout': 'list' }"
+  >
     <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
-    <div class="space-y-2 lg:space-y-0 lg:flex lg:flex-row-reverse gap-2">
+    <div class="gap-2 space-y-2 lg:flex lg:flex-row-reverse lg:space-y-0">
       <x-profile_sidebar :user="$user"></x-profile_sidebar>
-      <div
-        id="app"
-        class="grid grid-cols-2 gap-2  lg:gap-4"
-
-      >
-
-
+      <div id="app" class="grid grid-cols-2 gap-2 lg:gap-4">
         @forelse ($posts as $post)
           <x-post :post="$post" />
         @empty
@@ -19,10 +15,7 @@
           </div>
         @endforelse
       </div>
-
     </div>
-
-
   </div>
   <div class="mx-4 my-2">
     {{ $posts->links() }}
