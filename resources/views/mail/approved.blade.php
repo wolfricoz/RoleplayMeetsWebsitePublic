@@ -1,8 +1,10 @@
 <x-mail.header>
   <div>
-    <h1 class="text-center text-xl text-black">Your post has been approved!</h1>
+    <div class="text-center text-xl text-black">
+      Your post has been approved!
+    </div>
     <p>Hi {{ $post->user->username }},</p>
-    <article>
+    <div>
       Your post
       <span class="text-gray-700">"{{ $post->title }}"</span>
       has been approved by our staff. You can now view it on the site. Here's
@@ -12,6 +14,6 @@
       </a>
 
       A big thank you for your contribution to our community!
-    </article>
+    </div>
   </div>
 </x-mail.header>

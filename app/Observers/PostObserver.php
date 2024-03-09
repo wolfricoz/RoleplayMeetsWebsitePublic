@@ -2,7 +2,9 @@
 
 namespace App\Observers;
 
+use App\Mail\NewPost;
 use App\Mail\PostRejected;
+use App\Mail\UpdatedPost;
 use App\Models\Post;
 use App\Support\AutoMod;
 use Illuminate\Support\Facades\Mail;
@@ -39,6 +41,7 @@ class PostObserver
           return;
         }
         $this->check_nsfw_words($post);
+        mail::to('support@roleplaymeets.com')->send(new NewPost($post));
     }
 
     /**
@@ -52,7 +55,7 @@ class PostObserver
       if ($post->nsfw === false){
         $this->check_nsfw_words($post);
       }
-
+      mail::to('support@roleplaymeets.com')->send(new UpdatedPost($post));
     }
 
     /**

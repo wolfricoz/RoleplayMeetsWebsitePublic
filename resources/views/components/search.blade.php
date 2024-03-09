@@ -1,22 +1,23 @@
 <form>
-  <div class="lg:inline-flex lg:h-8 gap-2 rounded-full lg:w-fit space-y-1 lg:space-y-0 p-1 lg:p-0">
-      <input
-        type="text"
-        placeholder="Search"
-        class="h-8 w-full rounded-xl p-1 pl-2 lg:w-56 dark:bg-gray-600 dark:text-gray-200"
-        name="search"
-        id="search"
-        value="{{ request("search") }}"
-        title="Search for a post"
-      />
-
+  <div
+    class="gap-2 space-y-1 rounded-full p-1 lg:inline-flex lg:h-8 lg:w-fit lg:space-y-0 lg:p-0"
+  >
+    <input
+      type="text"
+      placeholder="Search"
+      class="h-8 w-full rounded-xl p-1 pl-2 lg:w-56 dark:bg-gray-600 dark:text-gray-200"
+      name="search"
+      id="search"
+      value="{{ request("search") }}"
+      title="Search for a post"
+    />
 
     <label for="genre" class="sr-only">Genre</label>
     <select
       class="h-8 w-full rounded-xl p-1 pl-2 lg:w-48 dark:bg-gray-600 dark:text-gray-200"
       id="genre"
       name="genre"
-{{--      onchange="this.form.submit()"--}}
+      {{-- onchange="this.form.submit()" --}}
       title="Select a genre"
     >
       <option value="">All Genres</option>

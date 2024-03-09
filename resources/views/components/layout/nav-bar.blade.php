@@ -42,11 +42,11 @@
       </div>
     @else
       <div
-        class=" content-right inline-flex h-full w-fit max-w-xl items-center text-center text-gray-700 hover:cursor-pointer lg:min-w-[208px]"
+        class="content-right inline-flex h-full w-fit max-w-xl items-center text-center text-gray-700 hover:cursor-pointer lg:min-w-[208px]"
       >
         <a
           href="{{ route("login") }}"
-          class="mr-2 inline-flex items-center h-8 cursor-pointer rounded-full border border-gray-500 bg-transparent px-1 py-1 font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white dark:text-gray-200"
+          class="mr-2 inline-flex h-8 cursor-pointer items-center rounded-full border border-gray-500 bg-transparent px-1 py-1 font-semibold text-gray-700 hover:border-transparent hover:bg-indigo-900 hover:text-white dark:text-gray-200"
         >
           <x-layout.SVG.login-icon />
         </a>
