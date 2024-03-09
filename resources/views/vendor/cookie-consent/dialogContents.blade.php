@@ -1,9 +1,9 @@
-<div class="js-cookie-consent cookie-consent fixed inset-x-0 bottom-0 pb-2">
+<div class="js-cookie-consent cookie-consent fixed inset-x-0 bottom-0 pb-2 z-50">
   <div class="mx-auto max-w-7xl px-6">
     <div class="rounded-lg bg-yellow-100 p-2">
-      <div class="flex flex-wrap items-center justify-between">
-        <div class="hidden w-0 flex-1 items-center md:inline">
-          <p class="cookie-consent__message ml-3 text-black">
+      <div class="lg:flex lg:flex-wrap items-center lg:justify-between ">
+        <div class="flex-1 items-center  md:inline w-full ">
+          <p class="cookie-consent__message w-full md:ml-3 text-sm md:text-base text-black">
             {!! trans("cookie-consent::texts.message") !!}
           </p>
         </div>

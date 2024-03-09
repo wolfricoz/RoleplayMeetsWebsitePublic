@@ -1,4 +1,4 @@
-<span class="overflow-hidden px-0.5 text-center">Login with Discord</span>
+<span class="overflow-hidden px-0.5 text-center text-xs lg:text-base">Login with Discord</span>
 <svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 512 512"
