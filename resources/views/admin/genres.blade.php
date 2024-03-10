@@ -40,7 +40,7 @@
               {{ $category->name }}
             </h1>
             <article>
-              <p>Posts: {{ count($category->Posts) }}</p>
+              <p>Posts: {{ count($tags->where('name', $category->name)) }}</p>
               <div class="flex justify-between">
                 <createmodal
                   :title="'{{ "Edit Category" }}'"

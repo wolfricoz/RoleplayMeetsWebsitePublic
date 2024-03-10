@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Genres;
+use App\Models\Tags;
 use Illuminate\Http\Request;
 
 class GenresController extends Controller
 {
     public function index()
     {
+
         return view('admin.genres', [
+          'tags' => Tags::all(),
 
         ]);
     }

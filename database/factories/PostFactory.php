@@ -27,5 +27,7 @@ class PostFactory extends Factory
             'partnerage' => $this->faker->numberBetween(18, 100),
 
         ];
+
+
     }
 }
