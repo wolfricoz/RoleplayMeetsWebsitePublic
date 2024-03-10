@@ -1,7 +1,8 @@
-<form>
-  <div
-    class="gap-2 space-y-1  p-3 lg:inline-flex l items-center lg:h-12 lg:w-fit lg:space-y-0 lg:p-0 w-full"
-  >
+<div
+  class="gap-2 lg:inline-flex l items-center lg:h-12 lg:w-fit lg:space-y-0 lg:p-0 w-full"
+>
+<form class="gap-2 space-y-1  p-3 lg:inline-flex l items-center lg:h-12 lg:w-fit lg:space-y-0 lg:p-0 w-full">
+
     <input
       type="text"
       placeholder="Search"
@@ -51,5 +52,5 @@
       <x-layout.SVG.search-icon />
       Search
     </button>
-  </div>
 </form>
+</div>
