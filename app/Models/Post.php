@@ -65,7 +65,7 @@ class Post extends Model
   }
 
 
-  public function updateTags(array $genre_names)
+  public function updateTags(array $genre_names): Post
   {
     $tags = Tags::where('post_id', $this->id)->get()->toArray();
     $names = array_column($tags, 'name');
@@ -85,7 +85,7 @@ class Post extends Model
 
       $this->removeTags($tag['name']);
     }
-    return $this->tags()->get();
+    return $this;
   }
 
   public function addTags(string $genre_name): void
