@@ -2,7 +2,7 @@
   use App\Support\Helpers;
 @endphp
 
-<div class="h-full w-full flex-wrap">
+<div class="h-full w-full flex-wrap" style="z-index: 1000" >
   <nav
     class="flex h-12 w-full basis-full flex-row justify-between bg-gray-100 transition-all dark:bg-zinc-800 dark:text-gray-200"
   >
@@ -54,9 +54,9 @@
     @endauth
   </nav>
   @auth()
-    <div x-show="dropdown" class="z-40" x-cloak>
+    <div x-show="dropdown" class="" style="z-index: 1000" x-cloak>
       <div
-        class="absolute right-0 top-12 flex w-52 flex-col border-stone-200 bg-gray-100"
+        class="z-50 absolute right-0 top-12 flex w-52 flex-col border-stone-200 bg-gray-100"
       >
         <x-layout.components.dropdown-button href="{{ route('dashboard') }}">
           Profile

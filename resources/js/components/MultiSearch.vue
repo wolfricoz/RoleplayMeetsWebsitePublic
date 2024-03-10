@@ -5,17 +5,17 @@
     <Multiselect
       :classes="{
       //These have been edited.
-        container: 'tags rounded-xl relative mx-auto w-full flex items-center justify-end box-border cursor-pointer rounded bg-white text-base leading-snug  dark:bg-gray-600 dark:text-gray-200 h-fit lg:h-9',
-        wrapper: 'tags rounded-xl relative mx-auto w-full flex items-center justify-end box-border cursor-pointer outline-none dark:bg-gray-600 dark:text-gray-200 h-fit lg:h-9 ', // this is part of the background.
-        tags: 'tags flex-grow flex-shrink flex flex-nowrap items-center mt-1 pl-2 min-w-0 rtl:pl-0 rtl:pr-2 mx-2  overflow-x-auto',
+        container: 'tags rounded-xl relative mx-auto w-full flex items-center justify-end box-border cursor-pointer rounded bg-white text-base leading-snug outline-none dark:bg-gray-600 dark:text-gray-200 h-fit lg:h-9',
+        wrapper: 'tags rounded-xl relative mx-auto w-full flex items-center justify-end box-border cursor-pointer outline-none dark:bg-gray-600 dark:text-gray-200 h-fit lg:h- ', // this is part of the background.
+        tags: 'tags flex-grow flex-shrink flex flex-nowrap items-center mt-1 pl-2 min-w-0 rtl:pl-0 rtl:pr-2 ml-2  overflow-x-auto',
 
         tagRemove: 'flex items-center justify-center p-1 mx-0.5 rounded-sm hover:bg-black hover:bg-opacity-10 group',
         containerDisabled: 'h-8 rounded-xl cursor-default bg-gray-100',
         containerOpen: 'h-8 rounded-xl dark:bg-gray-600 dark:text-gray-200',
         containerOpenTop: 'h-8 rounded-xl  dark:bg-gray-600 dark:text-gray-200',
         containerActive: 'ring ring-green-500 ring-opacity-30',
-        singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none  leading-snug pl-3.5 pr-16 box-border rtl:left-auto rtl:right-0 rtl:pl-0 rtl:pr-3.5 dark:hover:bg-gray-500 dark:text-gray-200',
-        singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full dark:text-gray-200',
+        singleLabel: 'flex items-center h-full max-w-full absolute left-0 top-0 pointer-events-none  leading-snug pl-3.5 pr-16 box-border rtl:left-auto rtl:right-0 rtl:pl-0 rtl:pr-3.5 dark:hover:bg-gray-500',
+        singleLabelText: 'overflow-ellipsis overflow-hidden block whitespace-nowrap max-w-full ',
         multipleLabel: 'flex items-center h-full absolute left-0 top-0 pointer-events-none leading-snug pl-3.5 rtl:left-auto rtl:right-0 rtl:pl-0 rtl:pr-3.5 ',
         search: 'w-full absolute inset-0 outline-none focus:ring-0 appearance-none box-border border-0 text-base font-sans  rounded pl-3.5 rtl:pl-0 rtl:pr-3.5 ',
         tag: 'bg-green-500 text-white text-xs font-semibold py-0.5 pl-2 rounded mr-1 mb-1 flex items-center whitespace-nowrap  ',
@@ -34,7 +34,7 @@
         spinner: 'bg-multiselect-spinner bg-center bg-no-repeat w-4 h-4 z-10 mr-3.5 animate-spin flex-shrink-0 flex-grow-0 rtl:mr-0 rtl:ml-3.5',
         infinite: 'flex items-center justify-center w-full ',
         infiniteSpinner: 'bg-multiselect-spinner bg-center bg-no-repeat w-4 h-4 z-10 animate-spin flex-shrink-0 flex-grow-0 m-3.5',
-        dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-white flex flex-col rounded-b dark:bg-gray-600 dark:text-gray-200',
+        dropdown: 'max-h-60 absolute -left-px -right-px bottom-0 transform translate-y-full border border-gray-300 -mt-px overflow-y-scroll z-50 bg-white flex flex-col rounded-b dark:bg-gray-600',
         dropdownTop: '-translate-y-full top-px bottom-auto rounded-b-none rounded-t',
         dropdownHidden: 'hidden',
         options: 'flex flex-col p-0 m-0 list-none ',
@@ -56,7 +56,7 @@
         optionSelectedDisabled: 'text-green-100 bg-green-500 bg-opacity-50 cursor-not-allowed',
         noOptions: 'py-2 px-3 text-gray-600 bg-white text-left rtl:text-right',
         noResults: 'py-2 px-3 text-gray-600 bg-white text-left rtl:text-right ',
-        fakeInput: 'bg-transparent absolute left-0 right-0 -bottom-px w-full h-px border-0 p-0 appearance-none outline-none text-transparent dark:text-gray-200',
+        fakeInput: 'bg-transparent absolute left-0 right-0 -bottom-px w-full h-px border-0 p-0 appearance-none outline-none text-transparent ',
         assist: 'absolute -m-px w-px h-px overflow-hidden ',
         spacer: 'h-9 py-px box-content '
       }"
