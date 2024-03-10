@@ -1,6 +1,6 @@
 <form>
   <div
-    class="gap-2 space-y-1 rounded-full p-1 lg:inline-flex l items-center lg:h-12 lg:w-fit lg:space-y-0 lg:p-0"
+    class="gap-2 space-y-1  p-3 lg:inline-flex l items-center lg:h-12 lg:w-fit lg:space-y-0 lg:p-0 w-full"
   >
     <input
       type="text"

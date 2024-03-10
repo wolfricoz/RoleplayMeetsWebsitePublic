@@ -71,7 +71,7 @@
               :selected="{{ json_encode(old("genres"), JSON_THROW_ON_ERROR) }}"
               :name="'genres_list'"
               :title="'Genres'"
-              :max="3"
+              :max="5"
             />
 
             </div>

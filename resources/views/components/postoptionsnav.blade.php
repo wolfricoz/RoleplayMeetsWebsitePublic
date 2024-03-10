@@ -2,7 +2,7 @@
   class="flex w-full flex-wrap items-center gap-4 lg:inline-flex lg:h-12 lg:flex-nowrap lg:rounded-full"
 >
   <div
-    class="flex h-full w-full flex-wrap items-center gap-4 rounded-xl bg-gray-200 dark:bg-gray-700"
+    class="flex h-full w-full flex-wrap items-center gap-4 rounded-xl bg-gray-200 dark:bg-gray-700 overflow-x-hidden"
   >
     <div class="hidden gap-1 lg:inline-flex">
       <div

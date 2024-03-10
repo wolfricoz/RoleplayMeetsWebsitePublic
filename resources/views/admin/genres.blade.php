@@ -17,7 +17,7 @@
                 id="name"
                 name="name"
                 type="text"
-                class="my-2 w-full rounded-lg border-2 border-gray-400"
+                class="my-2 w-full rounded-lg border-2 border-gray-400 bg:white dark:bg-gray-600 dark:text-gray-200"
               />
               <x-admin-layout.cms_form_button>
                 Submit
