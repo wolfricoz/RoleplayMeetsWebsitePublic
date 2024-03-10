@@ -17,7 +17,7 @@ class PostObserver
       $banned_words = AutoMod::check_for_words($post->content . $post->title, config('site_settings.banned_words'));
       if ($banned_words) {
         $banned_words = implode(count($banned_words) > 1 ? ", " : "" , $banned_words);
-        Mail::to(auth()->user()->email)->send(new PostRejected("Your post contains banned words: $banned_words"));
+        Mail::to(auth()->user()->email)->send(new PostRejected("Your post contains banned words: $banned_words", $post));
         $post->delete();
         return true;
       }
@@ -41,7 +41,7 @@ class PostObserver
           return;
         }
         $this->check_nsfw_words($post);
-        mail::to('support@roleplaymeets.com')->send(new NewPost($post));
+//        mail::to('support@roleplaymeets.com')->send(new NewPost($post));
     }
 
     /**

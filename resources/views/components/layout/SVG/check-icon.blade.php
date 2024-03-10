@@ -16,7 +16,7 @@
   @endif
   @if ($post->approved)
     <span
-      class="h6 h-6 cursor-default rounded-full bg-green-400 px-1.5 text-sm"
+      class="h6 h-6 cursor-default rounded-full bg-green-500 px-1.5 text-sm"
       title="Approved"
     >
       Approved

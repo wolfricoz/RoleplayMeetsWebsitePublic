@@ -25,3 +25,24 @@
   list-style: decimal !important;
   list-style-position: inside !important;
 }
+
+
+.tags::-webkit-scrollbar {
+  height: 4px;
+
+  background: #edf2f7;
+}
+
+.tags::-webkit-scrollbar-track {
+
+  background: #f7fafc;
+}
+
+.tags::-webkit-scrollbar-thumb {
+  width: 0.2rem;
+  background: #60A5FA;
+}
+
+.tags::-webkit-scrollbar-thumb:hover {
+  background: #2563EB;
+}

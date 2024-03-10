@@ -52,6 +52,7 @@ class PostController extends Controller
    */
   public function store()
   {
+//    dd(\request());
     $old_post = AutoMod::check_duplicates(['user_id' => auth()->id(), 'content' => request('content')]);
     if ($old_post) {
       return redirect()->route('posts.show', $old_post['post'])
@@ -62,8 +63,10 @@ class PostController extends Controller
       'content' => 'required',
       'charage' => 'required|numeric|min:18|max:999',
       'partnerage' => 'required|numeric|min:18|max:999',
-      'genre_id' => 'required',
+//      'genre_id' => 'required',
     ]);
+
+
     if (strlen(RemoveHtmlFromText::removeHtmlFromText(request('content'))) > 10000) {
       return back()->withErrors(['content' => 'Your post may not exceed 10000 characters.'])->withInput();
     }
@@ -73,7 +76,9 @@ class PostController extends Controller
     $attributes['content'] = clean(trim(Helpers::trim_extra_spaces(request('content'))));
     $attributes['bumped_at'] = now();
 //        dd($attributes['content']);
-    Post::create($attributes);
+    $post = Post::create($attributes);
+    $post->updateTags(explode(",", request('genres_list')));
+
     return redirect('/')->with('success', 'Post successfully created and is awaiting approval.');
   }
 
@@ -110,7 +115,6 @@ class PostController extends Controller
       if (Carbon::parse($post->bumped_at)->addHours(23) > Carbon::now()) {
         return redirect()->back()->with('error', 'You can only bump your post once every 24 hours.');
       }
-
       $post->bumped_at = Carbon::now();
       $post->save();
       return redirect()->back()->with('success', 'Post bumped!');
@@ -121,7 +125,6 @@ class PostController extends Controller
       'content' => 'required',
       'charage' => 'required|numeric|min:18|max:999',
       'partnerage' => 'required|numeric|min:18|max:999',
-      'genre_id' => 'required',
     ]);
 
     if (strlen(RemoveHtmlFromText::removeHtmlFromText(request('content'))) > 10000) {
@@ -130,7 +133,9 @@ class PostController extends Controller
     $attributes['content'] = clean(trim(Helpers::trim_extra_spaces(request('content'))));
     $attributes['approved'] = false;
     $post->update($attributes);
+    $post->updateTags(explode(",", request('genres_list')));
     return redirect('/')->with('success', 'Post successfully updated and is awaiting approval.');
+
   }
 
   /**

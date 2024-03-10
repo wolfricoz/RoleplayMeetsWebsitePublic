@@ -35,7 +35,7 @@
     @vite(["resources/css/app.css", "resources/js/app.js"])
   </head>
   <body
-    class="h-screen w-screen font-sans antialiased dark:bg-zinc-800"
+    class="h-screen w-screen font-sans antialiased dark:bg-zinc-800 overflow-hidden"
     x-data="{
       open: window.screen.width > 900,
       dropdown: false,

@@ -16,6 +16,7 @@ import dropdown from "./components/dropdown.vue";
 import ScriptX from "vue-scriptx";
 
 import Ads from "vue-google-adsense";
+import multiSearch from "./components/MultiSearch.vue";
 
 const app = createApp({});
 app.use(ScriptX);
@@ -26,6 +27,7 @@ app.component("show-more", showMore);
 app.component("summernote", summernote);
 app.component("nsfwtoggle", nsfwtoggle);
 app.component("multiselectrole", multiselect);
+app.component("multisearch", multiSearch);
 app.component("createmodal", createmodal);
 app.component("profilemodal", profileModal);
 app.component("countdown", countdown);

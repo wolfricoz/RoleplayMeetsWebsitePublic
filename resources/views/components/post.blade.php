@@ -144,10 +144,12 @@
         Genre:
         <br />
         <a
-          class="hover:text-indigo-900 hover:underline dark:hover:text-blue-400"
-          href="{{ route("home", ["search" => request("search"), "genre" => $post->genre_id]) }}"
+          class="flex flex-col gap-1 space-x-1"
         >
-          {{ $post->genre->name ?? "None" }}
+          @foreach($post->tags()->get() as $genre)
+            <a class="bg-green-500 hover:bg-green-400 text-white text-xs font-semibold py-0.5 my-1 px-1 rounded-xl flex items-center text-center w-20"
+               href="{{ route("home", ["search" => request("search"), "genre" => $genre->name]) }}">{{ $genre->name }}</a>
+          @endforeach
         </a>
       </span>
       <span

@@ -13,7 +13,6 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\overrides\larascord;
 use Illuminate\Support\Facades\Route;
-use Jakyeru\Larascord\Http\Controllers\DiscordController;
 
 /*
 |--------------------------------------------------------------------------

@@ -24,27 +24,27 @@
             :value="{{ json_encode(old("content") ?? $post->content, JSON_THROW_ON_ERROR) }}"
           ></summernote>
           <div class="my-3 flex flex-col gap-4 lg:flex-row">
-            <div class="w-36">
-              <label for="genre">Genre</label>
-              <select
-                name="genre_id"
-                id="genre"
-                class="w-full rounded-xl p-2 dark:bg-gray-600"
-                required
-              >
-                @foreach ($genres as $genre)
-                  @if ($genre->id === $post->genre_id)
-                    <option value="{{ $genre->id }}" selected>
-                      {{ $genre->name }}
-                    </option>
-                  @else
-                    <option value="{{ $genre->id }}">
-                      {{ $genre->name }}
-                    </option>
-                  @endif
-                @endforeach
-              </select>
-            </div>
+{{--            <div class="w-36">--}}
+{{--              <label for="genre">Genre</label>--}}
+{{--              <select--}}
+{{--                name="genre_id"--}}
+{{--                id="genre"--}}
+{{--                class="w-full rounded-xl p-2 dark:bg-gray-600"--}}
+{{--                required--}}
+{{--              >--}}
+{{--                @foreach ($genres as $genre)--}}
+{{--                  @if ($genre->id === $post->genre_id)--}}
+{{--                    <option value="{{ $genre->id }}" selected>--}}
+{{--                      {{ $genre->name }}--}}
+{{--                    </option>--}}
+{{--                  @else--}}
+{{--                    <option value="{{ $genre->id }}">--}}
+{{--                      {{ $genre->name }}--}}
+{{--                    </option>--}}
+{{--                  @endif--}}
+{{--                @endforeach--}}
+{{--              </select>--}}
+{{--            </div>--}}
             <div class="w-36">
               <label for="charage" class="">Min. Character age</label>
               <br />
@@ -68,7 +68,18 @@
                 required
               />
             </div>
+            <div class="w-96 h-24">
+              <multiselectrole
+                :values="{{ json_encode($genres, JSON_THROW_ON_ERROR) }}"
+                :selected="{{ json_encode(old("genres", $post->tags()->get()), JSON_THROW_ON_ERROR) }}"
+                :name="'genres_list'"
+                :title="'Genres'"
+                :max="3"
+              />
+
+            </div>
           </div>
+
 
           <button
             type="submit"
