@@ -11,6 +11,7 @@ use App\Http\Controllers\RulesController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
+use App\Models\Post;
 use App\overrides\larascord;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'posts'], static function () {
   Route::patch('edit/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.update");
   Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->middleware('auth')->name("admin.nsfw");
   Route::patch('bump/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.bump");
+  Route::delete('delete/{post}', [PostController::class, 'destroy'])->name("posts.delete");
 });
 Route::group(['prefix' => 'users'], static function () {
   Route::get('dashboard', [UserController::class, 'index'])->middleware('auth')->name("dashboard");

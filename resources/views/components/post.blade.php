@@ -88,7 +88,7 @@
 
           <x-post_dropdown_button>
             @if (auth()->user()->hasPermissionTo("manage_posts") ||($post->user_id === auth()->user()->id &&auth()->user()->hasPermissionTo("delete_posts")))
-              <form action="{{ route("admin.delete", $post) }}" method="post">
+              <form action="{{ Route::is("posts.show") ? route('posts.delete', $post) : route("admin.delete", $post)  }}" method="post">
                 @method("delete")
                 @csrf
                 <button
