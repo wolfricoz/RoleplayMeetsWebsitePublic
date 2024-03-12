@@ -68,7 +68,7 @@
       mode="tags"
       :close-on-select="false"
       :allow-absent="true"
-      :searchable="true"
+      :searchable="selected_values.length < max"
       :resolve-on-load="false"
       :delay="0"
       :min-chars="1"
@@ -117,13 +117,21 @@ export default {
         this.options.push(this.values[i].name);
       }
     }
+
     if (this.selected != null) {
       console.log(this.selected);
       for (let i = 0; i < this.selected.length; i++) {
+        if (this.selected[i] === ""){
+          continue
+        }
+        if (this.selected[i].name == null && typeof this.selected[i] === "string") {
+          this.selected_values.push(this.selected[i]);
+        }
         if (this.selected[i].name != null) {
           console.log(this.selected[i].name);
           this.selected_values.push(this.selected[i].name);
         }
+
       }
     }
   },
