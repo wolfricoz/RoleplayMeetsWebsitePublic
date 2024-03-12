@@ -8,14 +8,14 @@
         If you have any questions or run into any issues, please contact us at
         <a
           href="mailto:{{ config("site_settings.support_email") }}"
-          class="text-indigo-700"
+          class="text-indigo-700 dark:text-blue-400"
         >
           {{ config("site_settings.support_email") }}
         </a>
         or join our
         <a
           href="{{ config("site_settings.discord_invite") }}"
-          class="text-indigo-700"
+          class="text-indigo-700 dark:text-blue-400"
         >
           Discord server
         </a>
