@@ -6,11 +6,14 @@
   class="w-full rounded-xl bg-gray-100 p-2 text-stone-800 dark:bg-gray-700 dark:text-gray-200"
   x-bind:class="{
     'col-span-1': layout === 'grid',
-    'col-span-2': layout === 'list',
+    'col-span-2': layout === 'list'
   }"
 >
   <div class="flex flex-row flex-wrap items-center justify-end lg:flex-nowrap">
-    <div class="flex lg:justify-end">
+    <div class="flex gap-1 lg:justify-end">
+      <x-genres_display :post="$post">
+
+      </x-genres_display>
       <x-layout.SVG.check-icon :post="$post" />
     </div>
     <div class="inline-flex">
@@ -127,7 +130,7 @@
           src="{{ $post->user->getAvatar(["extension" => "webp", "size" => 512]) }}"
           alt="{{ $post->user->getTagAttribute() }}"
           x-bind:class="{
-            'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
+            'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
           }"
         />
         <span>
@@ -140,18 +143,7 @@
           </a>
         </span>
       </span>
-      <span class="px-2 lg:px-6">
-        Genre:
-        <br />
-        <a
-          class="flex flex-col gap-1 space-x-1"
-        >
-          @foreach($post->tags()->get() as $genre)
-            <a class="bg-green-500 hover:bg-green-400 text-white text-xs font-semibold py-0.5 my-1 px-1 rounded-xl flex items-center text-left w-26 whitespace-nowrap"
-               href="{{ route("home", ["search" => request("search"), "genre" => $genre->name]) }}">{{ $genre->name }}</a>
-          @endforeach
-        </a>
-      </span>
+
       <span
         class="px-2 lg:px-6"
         title="{{ $post->bumped_at > $post->created_at ? Carbon::parse($post->bumped_at)->format("m/d/y H:i") : $post->created_at->format("m/d/y H:i") }}"
@@ -161,7 +153,7 @@
       <span
         class="px-2 lg:px-6"
         x-bind:class="{
-          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
+          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
         }"
       >
         character age:
@@ -172,7 +164,7 @@
       <span
         class="px-2 lg:px-6"
         x-bind:class="{
-          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
+          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
         }"
       >
         partner Age:
