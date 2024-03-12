@@ -65,7 +65,7 @@
                 required
               />
             </div>
-            <div class="w-96 h-24">
+            <div class="w-full lg:w-96 h-24">
             <multiselectrole
               :values="{{ json_encode($genres, JSON_THROW_ON_ERROR) }}"
               :selected="{{ json_encode(old("genres"), JSON_THROW_ON_ERROR) }}"
@@ -98,4 +98,5 @@
       </div>
     </div>
   </div>
+  <div class="h-60"></div>
 </x-layout.header>
