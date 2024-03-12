@@ -53,7 +53,7 @@ export default {
     </a>
     <div :id="dropdownid" x-cloak>
       <div
-        class="fixed z-50 flex w-fit flex-col rounded-xl bg-gray-300 dark:bg-zinc-800 dark:text-gray-200"
+        class="fixed z-50 flex w-40 flex-col rounded-xl bg-gray-300 dark:bg-zinc-800 dark:text-gray-200"
         v-show="dropdown"
         :style="{ left: `${position.x}px`, top: `${position.y}px` }"
       >
