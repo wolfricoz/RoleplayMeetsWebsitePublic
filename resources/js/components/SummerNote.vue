@@ -53,6 +53,12 @@ export default {
               $("#summernote").summernote("code", plainText);
             }
             this.charCount = plainText.length;
+            if (plainText.length === 0) {
+              // Display error message
+              this.$emit('input', false);
+            } else {
+              this.$emit('input', true);
+            }
           },
         },
       })
@@ -68,7 +74,7 @@ export default {
 <!--TODO: Add a character counter-->
 <template>
   <div class="my-2 bg-white">
-    <textarea :id="id" class="h-32" v-bind:name="name"> </textarea>
+    <textarea :id="id" class="h-32" v-bind:name="name" required> </textarea>
   </div>
   <div class="text-right text-xs text-gray-500">
     <span>{{ charCount }}</span> / {{ maxlength }} characters

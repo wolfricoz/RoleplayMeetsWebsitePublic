@@ -124,13 +124,15 @@ export default {
         if (this.selected[i] === ""){
           continue
         }
-        if (this.selected[i].name == null && typeof this.selected[i] === "string") {
-          this.selected_values.push(this.selected[i]);
-        }
         if (this.selected[i].name != null) {
           console.log(this.selected[i].name);
           this.selected_values.push(this.selected[i].name);
+          continue
         }
+        if (this.selected[i].name === undefined && typeof this.selected[i] === "string") {
+          this.selected_values.push(this.selected[i]);
+        }
+
 
       }
     }

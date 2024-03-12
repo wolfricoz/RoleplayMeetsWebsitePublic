@@ -5,20 +5,20 @@
     >
       <div>
         <h1 class="text-center text-2xl">Create Post</h1>
-        <form method="post" action="">
+        <form method="post" action="" x-data="{ title: '{{ old("title") }}' }">
           @csrf
           @method("put")
-          <label for="title">Title</label>
+          <label for="title">* Title</label>
           <input
             type="text"
             name="title"
             id="title"
             class="w-full rounded-xl p-2 dark:bg-gray-600"
-            value="{{ old("title") }}"
-            required
+            x-model="title"
           />
+          <p class="text-right text-xs text-gray-500"><span x-text="title.length"></span>/60 characters</p>
           {{-- @error('title') --}}
-          <h1>Body</h1>
+          <h1>* Body</h1>
           <summernote
             :maxlength="10000"
             :name="'content'"
@@ -40,8 +40,8 @@
             {{--                @endforeach--}}
             {{--              </select>--}}
             {{--            </div>--}}
-            <div class="w-36">
-              <label for="charage" class="">Min. Character age</label>
+            <div class="w-40">
+              <label for="charage" class="">* Min. Character age</label>
               <br/>
               <input
                 type="number"
@@ -53,8 +53,8 @@
                 required
               />
             </div>
-            <div class="w-36">
-              <label for="partnerage">Min. Partner age</label>
+            <div class="w-40">
+              <label for="partnerage">* Min. Partner age</label>
               <input
                 type="number"
                 name="partnerage"

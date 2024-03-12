@@ -5,19 +5,20 @@
     >
       <div>
         <h1 class="text-center text-2xl">Create Post</h1>
-        <form method="post" action="{{ route("posts.update", $post) }}">
+        <form method="post" action="{{ route("posts.update", $post) }}" x-data="{ title: '{{ old("title") ?? $post->title }}'}">
           @csrf
           @method("PATCH")
-          <label for="title">Title</label>
+          <label for="title">*Title</label>
           <input
             type="text"
             name="title"
             id="title"
-            value="{{ old("title") ?? $post->title }}"
+            x-model="title"
             class="w-full rounded-xl p-2 dark:bg-gray-600"
             required
           />
-          <h1>Body</h1>
+          <p class="text-right text-xs text-gray-500"><span x-text="title.length"></span>/60 characters</p>
+          <h1>*Body</h1>
           <summernote
             :maxlength="10000"
             :name="'content'"
@@ -45,8 +46,8 @@
 {{--                @endforeach--}}
 {{--              </select>--}}
 {{--            </div>--}}
-            <div class="w-36">
-              <label for="charage" class="">Min. Character age</label>
+            <div class="w-40">
+              <label for="charage" class="">*Min. Character age</label>
               <br />
               <input
                 type="number"
@@ -57,8 +58,8 @@
                 required
               />
             </div>
-            <div class="w-36">
-              <label for="partnerage">Min. Partner age</label>
+            <div class="w-40">
+              <label for="partnerage">*Min. Partner age</label>
               <input
                 type="number"
                 name="partnerage"
@@ -71,7 +72,7 @@
             <div class="w-full lg:w-96 h-24">
               <multiselectrole
                 :values="{{ json_encode($genres, JSON_THROW_ON_ERROR) }}"
-                :selected="{{ json_encode(explode(",", old("genres_list", $post->tags()->get())), JSON_THROW_ON_ERROR) }}"
+                :selected="{{ json_encode(old("genres_list") ? explode(",", old("genres_list")) : $post->tags()->get(), JSON_THROW_ON_ERROR) }}"
                 :name="'genres_list'"
                 :title="'Genres'"
                 :max="5"
