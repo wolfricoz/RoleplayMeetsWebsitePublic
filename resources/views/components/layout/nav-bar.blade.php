@@ -110,7 +110,8 @@
           </x-slot>
           Support
         </x-layout.components.sidenavbutton>
-        <a class="transition-all hover:cursor-pointer">
+        <a class="transition-all hover:cursor-pointer"
+        >
           <x-layout.SVG.sidebar-icon />
         </a>
       </div>
