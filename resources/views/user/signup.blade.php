@@ -45,6 +45,7 @@
             >
               Save
             </button>
+{{--            Todo: this needs to be a post request--}}
             <a
               href="{{ route("logout") }}"
               class="mx-2 rounded-md bg-indigo-900 p-2.5 text-white"
@@ -73,6 +74,7 @@
               :name="'bio'"
               :maxlength="512"
               :value="{{ json_encode(auth()->user()->profile->bio, JSON_THROW_ON_ERROR) }}"
+              :required="false"
             ></summernote>
             <div class="mt-1 w-fit">
               <x-settings_forum_field

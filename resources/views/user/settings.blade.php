@@ -47,6 +47,7 @@
               :name="'bio'"
               :maxlength="512"
               :value="{{ json_encode(auth()->user()->profile->bio, JSON_THROW_ON_ERROR) }}"
+              :required="false"
             ></summernote>
             <div class="mt-1 w-fit">
               <x-settings_forum_field

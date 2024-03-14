@@ -6,7 +6,7 @@
     <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
     <div class="gap-2 space-y-2 lg:flex lg:flex-row-reverse lg:space-y-0">
       <x-profile_sidebar :user="$user"></x-profile_sidebar>
-      <div id="app" class="grid grid-cols-2 gap-2 lg:grid-cols-2">
+      <div id="app" class="grid grid-cols-2 gap-2 lg:grid-cols-2 w-full">
         <div
           class="col-span-2 h-fit gap-4 rounded-xl bg-gray-200 p-2 lg:col-span-2 lg:justify-center dark:bg-gray-700 dark:text-gray-200"
         >

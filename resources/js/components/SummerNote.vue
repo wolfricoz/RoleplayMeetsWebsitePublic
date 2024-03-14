@@ -18,6 +18,10 @@ export default {
       type: String,
       default: "summernote",
     },
+    required: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -53,6 +57,9 @@ export default {
               $("#summernote").summernote("code", plainText);
             }
             this.charCount = plainText.length;
+            if (!this.required){
+              return
+            }
             if (plainText.length === 0) {
               // Display error message
               this.$emit('input', false);
@@ -71,7 +78,7 @@ export default {
 };
 </script>
 
-<!--TODO: Add a character counter-->
+
 <template>
   <div class="my-2 bg-white">
     <textarea :id="id" class="h-32" v-bind:name="name" required> </textarea>

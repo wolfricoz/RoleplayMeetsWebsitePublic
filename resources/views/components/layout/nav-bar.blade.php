@@ -4,7 +4,7 @@
 
 <div class="h-full w-full flex-wrap" style="z-index: 1000" >
   <nav
-    class="flex h-12 w-full basis-full flex-row justify-between bg-gray-100 transition-all dark:bg-zinc-800 dark:text-gray-200"
+    class="shadow-2xl flex h-12 w-full basis-full flex-row justify-between bg-gray-100 transition-all dark:bg-zinc-800 dark:text-gray-200"
   >
     <a
       href="{{ route("home") }}"
