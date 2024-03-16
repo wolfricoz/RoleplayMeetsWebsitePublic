@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Settings;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,12 +15,9 @@ return new class extends Migration {
   {
     Schema::table('posts', function (Blueprint $table) {
       $table->string('nsfw', 255)->change()->default('sfw');
-      foreach (Post::all() as $post) {
-        $post->nsfw = 'sfw';
-        $post->save();
-      }
+
     });
-    Permission::create(['name' => 'bypass_auto_mod']);
+
   }
 
   /**

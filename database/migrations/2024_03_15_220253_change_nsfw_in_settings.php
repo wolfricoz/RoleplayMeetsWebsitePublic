@@ -14,10 +14,7 @@ return new class extends Migration
     {
         Schema::table('settings', function (Blueprint $table) {
             $table->string('nsfw', 255)->default('sfw')->change();
-            foreach (Settings::all() as $setting) {
-                $setting->nsfw = 'sfw';
-                $setting->save();
-            }
+
         });
     }
 
