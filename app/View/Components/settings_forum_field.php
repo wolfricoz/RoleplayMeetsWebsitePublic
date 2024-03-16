@@ -13,9 +13,11 @@ class settings_forum_field extends Component
      */
 
     public $toggle;
-    public function __construct($toggle = false)
+    public string $description;
+    public function __construct($description, $toggle = false)
     {
         $this->toggle = $toggle;
+        $this->description = $description;
     }
 
 
