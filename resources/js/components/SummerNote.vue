@@ -20,8 +20,8 @@ export default {
     },
     required: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -57,14 +57,14 @@ export default {
               $("#summernote").summernote("code", plainText);
             }
             this.charCount = plainText.length;
-            if (!this.required){
-              return
+            if (!this.required) {
+              return;
             }
             if (plainText.length === 0) {
               // Display error message
-              this.$emit('input', false);
+              this.$emit("input", false);
             } else {
-              this.$emit('input', true);
+              this.$emit("input", true);
             }
           },
         },
@@ -77,7 +77,6 @@ export default {
   },
 };
 </script>
-
 
 <template>
   <div class="my-2 bg-white">

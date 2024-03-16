@@ -17,7 +17,7 @@
                 id="name"
                 name="name"
                 type="text"
-                class="my-2 w-full rounded-lg border-2 border-gray-400 bg:white dark:bg-gray-600 dark:text-gray-200"
+                class="bg:white my-2 w-full rounded-lg border-2 border-gray-400 dark:bg-gray-600 dark:text-gray-200"
               />
               <x-admin-layout.cms_form_button>
                 Submit
@@ -40,7 +40,7 @@
               {{ $category->name }}
             </h1>
             <article>
-              <p>Posts: {{ count($tags->where('name', $category->name)) }}</p>
+              <p>Posts: {{ count($tags->where("name", $category->name)) }}</p>
               <div class="flex justify-between">
                 <createmodal
                   :title="'{{ "Edit Category" }}'"

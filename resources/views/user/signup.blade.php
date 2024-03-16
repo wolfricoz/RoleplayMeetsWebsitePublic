@@ -52,8 +52,14 @@
               Logout
             </button>
           </div>
-          <article class="text-sm text-gray-500 text-center">
-            By creating an account, you agree to the <a href="{{ route('tos') }}" class="text-blue-600">Terms of Service</a> and <a href="{{ route('rules') }}" class="text-blue-600">rules</a>.
+          <article class="text-center text-sm text-gray-500">
+            By creating an account, you agree to the
+            <a href="{{ route("tos") }}" class="text-blue-600">
+              Terms of Service
+            </a>
+            and
+            <a href="{{ route("rules") }}" class="text-blue-600">rules</a>
+            .
           </article>
         </div>
 
@@ -202,9 +208,13 @@
             name="nsfw"
             class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
           >
-            @foreach($post_types as $option)
-              <option value="{{ $option }}" {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}>
-              {{ $option }}
+            @foreach ($post_types as $option)
+              <option
+                value="{{ $option }}"
+                {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}
+              >
+                {{ $option }}
+              </option>
             @endforeach
           </select>
           <button
@@ -216,7 +226,9 @@
         </div>
       </form>
 
-      <div class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200">
+      <div
+        class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+      >
         <div class="border-b border-gray-200">
           <h1 id="Remove" class="text-center text-2xl font-bold">
             Delete Account

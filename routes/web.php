@@ -39,7 +39,7 @@ Route::group(['prefix' => 'posts'], static function () {
   Route::put('create', [PostController::class, 'store'])->middleware('auth')->name("posts.store");
   Route::get('edit/{post}', [PostController::class, 'edit'])->middleware('auth')->name("posts.edit");
   Route::patch('edit/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.update");
-  Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->middleware('auth')->name("admin.nsfw");
+  Route::post('nsfw/{post}', [AdminController::class, 'nsfwchange'])->middleware('auth')->name("admin.nsfw");
   Route::patch('bump/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.bump");
   Route::delete('delete/{post}', [PostController::class, 'destroy'])->name("posts.delete");
 });

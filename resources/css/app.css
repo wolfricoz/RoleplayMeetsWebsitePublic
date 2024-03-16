@@ -26,7 +26,6 @@
   list-style-position: inside !important;
 }
 
-
 .tags::-webkit-scrollbar {
   height: 4px;
 
@@ -34,15 +33,14 @@
 }
 
 .tags::-webkit-scrollbar-track {
-
   background: #f7fafc;
 }
 
 .tags::-webkit-scrollbar-thumb {
   width: 0.2rem;
-  background: #60A5FA;
+  background: #60a5fa;
 }
 
 .tags::-webkit-scrollbar-thumb:hover {
-  background: #2563EB;
+  background: #2563eb;
 }

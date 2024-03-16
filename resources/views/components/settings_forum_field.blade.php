@@ -2,7 +2,6 @@
   <div class="inline-flex">
     <p class="w-36 font-bold">{{ $slot }}</p>
 
-
     @isset($toggle)
       <label
         class="inline-flex cursor-pointer items-center rounded-md dark:text-gray-800"
@@ -21,7 +20,7 @@
         </span>
       </label>
     @else
-
+      
     @endisset()
   </div>
   @isset($description)
@@ -29,6 +28,7 @@
       {{ $description }}
     </p>
   @endisset
+
   <label>
     <input
       type="{{ $attributes["type"] ?? "text" }}"

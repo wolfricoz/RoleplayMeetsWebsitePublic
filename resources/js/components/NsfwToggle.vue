@@ -1,64 +1,50 @@
 <template>
-  <label
-    :for="post.id"
-    class="inline-flex cursor-pointer items-center rounded-md dark:text-gray-800"
+  <select
+    v-model="selectedOption"
+    class="w-full rounded-xl dark:bg-gray-600 dark:text-gray-200"
+    @change.prevent="changeNSFW"
   >
-    <input
-      :id="post.id"
-      type="checkbox"
-      class="peer hidden"
-      @click="toggleNSFW"
-      v-model="nsfw"
-      ref="checkbox"
-    />
-    <span class="rounded-l-md bg-violet-400 px-4 peer-checked:bg-gray-400"
-      >SFW</span
+    <option
+      v-for="option in post_types"
+      :key="option"
+      :value="option"
+      :selected="option === selectedOption"
+      v-if="option !== 'all'"
     >
-    <span class="rounded-r-md bg-gray-400 px-4 peer-checked:bg-red-400"
-      >NSFW</span
-    >
-  </label>
+      {{ option }}
+    </option>
+  </select>
   <a class="block pt-2 text-xs" ref="feedback" v-html="status_message"></a>
 </template>
 
-<style scoped>
-input:checked {
-  background-color: #22c55e; /* bg-green-500 */
-}
-
-input:checked ~ span:last-child {
-  --tw-translate-x: 1.75rem; /* translate-x-7 */
-}
-</style>
 <script>
 import axios from "axios";
 
 export default {
   name: "nsfwtoggle",
-  props: ["post"],
+  props: ["post", "post_types"],
   data() {
     return {
       nsfw: Boolean(this.post.nsfw),
       status_message: "",
       status_message_show: false,
+      selectedOption: this.post.nsfw,
+      option: null,
     };
   },
-  mounted() {},
   methods: {
-    toggleNSFW() {
+    changeNSFW() {
       let response = axios
-        .post(`/posts/nsfw/${this.post.id}`, { post: this.post })
+        .post(`/posts/nsfw/${this.post.id}`, { nsfw: this.selectedOption })
         .then((response) => {
           this.showStatusMessage("NSFW status updated!");
           this.$refs.feedback.classList.add("text-green-600");
         })
         .catch((error) => {
-          this.nsfw = !this.nsfw;
           this.showStatusMessage("Error updating NSFW status!");
           this.$refs.feedback.classList.add("text-red-600");
           console.log(error);
         });
-      console.log(this.nsfw);
     },
     showStatusMessage(message) {
       this.status_message = message;

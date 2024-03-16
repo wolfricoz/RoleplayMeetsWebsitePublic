@@ -27,7 +27,7 @@
       </div>
       <form method="POST" action="{{ route("users.settings.update") }}">
         @csrf
-        <input type="hidden" value="{{ $user->profile->dob }}" name="dob"/>
+        <input type="hidden" value="{{ $user->profile->dob }}" name="dob" />
         <div
           class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
@@ -173,7 +173,6 @@
             </h6>
           </div>
 
-
           <x-settings_forum_field
             name="location"
             type="hidden"
@@ -186,12 +185,15 @@
             name="nsfw"
             class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
           >
-            @foreach($post_types as $option)
-              <option value="{{ $option }}" {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}>
-              {{ $option }}
+            @foreach ($post_types as $option)
+              <option
+                value="{{ $option }}"
+                {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}
+              >
+                {{ $option }}
+              </option>
             @endforeach
           </select>
-
 
           <button
             type="submit"
@@ -210,7 +212,8 @@
             Delete Account
           </h1>
           <h6 class="text-center text-sm">
-            This will remove your account and all your personal data from the site.
+            This will remove your account and all your personal data from the
+            site.
           </h6>
         </div>
         <form
