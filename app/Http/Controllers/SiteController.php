@@ -31,6 +31,11 @@ class SiteController extends Controller
       return redirect()->back()->with('success', 'Settings successfully updated.');
     }
 
+    public function terms_of_service()
+    {
+      return view('termsofservice');
+    }
+
     public function support()
     {
       return view('support');

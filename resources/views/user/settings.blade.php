@@ -186,7 +186,7 @@
             name="nsfw"
             class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
           >
-            @foreach(auth()->user()->settings->options as $option)
+            @foreach($post_types as $option)
               <option value="{{ $option }}" {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}>
               {{ $option }}
             @endforeach

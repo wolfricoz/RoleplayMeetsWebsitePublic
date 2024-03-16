@@ -11,11 +11,12 @@ class Settings extends Model
 
   protected $guarded = [];
 
-  public array $options = [
+  public static array $options = [
     'all',
     'sfw',
     'nsfw',
     'extreme',
   ];
+
 
 }

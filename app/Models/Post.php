@@ -53,15 +53,12 @@ class Post extends Model
 
   }
 
-  public function scopeNSFW($query, bool $override = false)
+  public function scopeNSFW($query, string $type = null)
   {
-    if (auth()->user() && auth()->user()->settings->NSFW) {
+    if ($type === 'all' || $type === null) {
       return $query;
     }
-    if ($override) {
-      return $query;
-    }
-    return $query->where('nsfw', false);
+    return $query->where('nsfw', $type);
   }
 
 

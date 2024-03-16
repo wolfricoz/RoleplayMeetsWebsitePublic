@@ -1,5 +1,6 @@
 <x-layout.header>
   <div
+    id="app"
     class="min-h-full w-full space-y-2 p-2 lg:p-6"
     x-data="{ 'layout': 'list' }"
   >

@@ -30,6 +30,7 @@ Route::get('/', [PostController::class, 'index'])->name("home");
 
 Route::get('/rules', [RulesController::class, 'index'])->name("rules");
 Route::get('/support', [SiteController::class, 'support'])->name("support");
+Route::get('/tos', [SiteController::class, 'terms_of_service'])->name("tos");
 
 
 Route::group(['prefix' => 'posts'], static function () {

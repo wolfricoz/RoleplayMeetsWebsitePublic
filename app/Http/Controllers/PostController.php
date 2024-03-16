@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Genres;
 use App\Models\Post;
+use App\Models\Settings;
 use App\Models\User;
 use App\Support\AutoMod;
 use App\Support\Helpers;
@@ -22,8 +23,10 @@ class PostController extends Controller
    */
   public function index()
   {
+    $nsfw = request('nsfw') ?? auth()->user()?->settings->nsfw ?? 'sfw';
+
     $posts = Post::approved(true)->
-    NSFW()->
+    NSFW($nsfw)->
     filter(request(['search', 'genre']))
       ->banned()
       ->orderBy('bumped_at', 'desc')
@@ -33,7 +36,7 @@ class PostController extends Controller
 
     return view('home', [
       'posts' => $posts,
-      'genres' => Genres::all(),
+      'genres' => Genres::all()
     ]);
   }
 
@@ -64,6 +67,7 @@ class PostController extends Controller
       'charage' => 'required|numeric|min:18|max:999',
       'partnerage' => 'required|numeric|min:18|max:999',
 //      'genre_id' => 'required',
+      'nsfw' => 'required',
     ]);
 
 
@@ -125,6 +129,7 @@ class PostController extends Controller
       'content' => 'required',
       'charage' => 'required|numeric|min:18|max:999',
       'partnerage' => 'required|numeric|min:18|max:999',
+      'nsfw' => 'required',
     ]);
 
     if (strlen(RemoveHtmlFromText::removeHtmlFromText(request('content'))) > 10000) {

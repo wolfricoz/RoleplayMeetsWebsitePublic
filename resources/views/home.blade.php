@@ -4,7 +4,7 @@
     class="min-h-full w-full space-y-2 p-2 lg:p-6"
     x-data="{ 'layout': 'list' }"
   >
-    <x-postoptionsnav :genres="$genres"></x-postoptionsnav>
+    <x-postoptionsnav :genres="$genres" />
     {{-- <div class="inline-flex"> --}}
     <div class="grid w-full grid-cols-2 gap-2 transition-all">
       @forelse ($posts as $post)

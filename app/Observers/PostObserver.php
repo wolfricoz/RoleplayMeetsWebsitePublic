@@ -28,9 +28,15 @@ class PostObserver
     {
       $nsfw_words = AutoMod::check_for_words($post->content . $post->title, config('site_settings.nsfw_words'));
       if ($nsfw_words) {
-        $post->nsfw = true;
+        $post->nsfw = 'nsfw';
         $post->save();
       }
+      $extreme_words = AutoMod::check_for_words($post->content . $post->title, config('site_settings.extreme_words'));
+      if ($extreme_words) {
+        $post->nsfw = 'extreme';
+        $post->save();
+      }
+
     }
     /**
      * Handle the Post "created" event.

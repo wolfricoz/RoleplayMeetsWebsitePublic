@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Genres;
 use App\Models\Post;
+use App\Models\Settings;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('queueCount', count(Post::approved(false)->get()));
         View::share('postsCount', count(Post::approved()->approved(true)->get()));
         View::share('usersCount', count(User::all()));
+        View::share('post_types', Settings::$options);
         $role = config('site_settings.admin_role');
         if (Role::where('name', '=', $role)->exists() === false){
             Role::create(['name' => 'Admin']);

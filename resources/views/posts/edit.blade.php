@@ -8,7 +8,7 @@
         <form method="post" action="{{ route("posts.update", $post) }}" x-data="{ title: '{{ old("title") ?? $post->title }}'}">
           @csrf
           @method("PATCH")
-          <label for="title">*Title</label>
+          <label for="title" class="font-bold text-sm">*Title</label>
           <input
             type="text"
             name="title"
@@ -18,7 +18,7 @@
             required
           />
           <p class="text-right text-xs text-gray-500"><span x-text="title.length"></span>/60 characters</p>
-          <h1>*Body</h1>
+          <h1 class="font-bold text-sm">*Body</h1>
           <summernote
             :maxlength="10000"
             :name="'content'"
@@ -47,27 +47,44 @@
 {{--              </select>--}}
 {{--            </div>--}}
             <div class="w-40">
-              <label for="charage" class="">*Min. Character age</label>
+              <label for="charage" class="font-bold text-sm">*Min. Character age</label>
               <br />
               <input
                 type="number"
                 name="charage"
                 id="charage"
                 value="{{ old("charage") ?? $post->charage }}"
-                class="w-full rounded-xl p-2 dark:bg-gray-600"
+                class="h-9 mt-1 w-full rounded-xl p-2 dark:bg-gray-600"
                 required
               />
             </div>
             <div class="w-40">
-              <label for="partnerage">*Min. Partner age</label>
+              <label for="partnerage" class="font-bold text-sm">*Min. Partner age</label>
               <input
                 type="number"
                 name="partnerage"
                 id="partnerage"
                 value="{{ old("partnerage") ?? $post->partnerage }}"
-                class="w-full rounded-xl p-2 dark:bg-gray-600"
+                class="h-9 mt-1 w-full rounded-xl p-2 dark:bg-gray-600"
                 required
               />
+            </div>
+            <div class="w-40">
+              <label for="nsfw" class="font-bold text-sm">* NSFW</label>
+              <select
+                id="nsfw"
+                name="nsfw"
+                class="block h-9 p-2 mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200 w-full"
+                required
+              >
+                @foreach($post_types as $option)
+                  @if ($option !== "all")
+                    <option value="{{ $option }}" {{ old("nsfw", $post->nsfw) === $option ? "selected" : "" }}>
+                    {{ $option }}
+                  @endif
+                @endforeach
+              </select>
+
             </div>
             <div class="w-full lg:w-96 h-24">
               <multiselectrole

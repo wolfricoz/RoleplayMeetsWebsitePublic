@@ -12,28 +12,6 @@
       value="{{ request("search") }}"
       title="Search for a post"
     />
-
-{{--    <label for="genre" class="sr-only">Genre</label>--}}
-{{--    <select--}}
-{{--      class="h-8 w-full rounded-xl p-1 pl-2 lg:w-48 dark:bg-gray-600 dark:text-gray-200"--}}
-{{--      id="genre"--}}
-{{--      name="genre"--}}
-{{--      --}}{{-- onchange="this.form.submit()" --}}
-{{--      title="Select a genre"--}}
-{{--    >--}}
-{{--      <option value="">All Genres</option>--}}
-{{--      @foreach ($genres as $genre)--}}
-{{--        @if (request("genre") === $genre->id)--}}
-{{--          <option value="{{ $genre->id }}" selected>--}}
-{{--            {{ $genre->name }}--}}
-{{--          </option>--}}
-{{--        @else--}}
-{{--          <option value="{{ $genre->id }}">--}}
-{{--            {{ $genre->name }}--}}
-{{--          </option>--}}
-{{--        @endif--}}
-{{--      @endforeach--}}
-{{--    </select>--}}
     <div class="flex items-center h-fit lg:h-12 min-w-56 lg:w-96">
 
       <multisearch
@@ -42,6 +20,17 @@
         :name="'genre'"
       />
     </div>
+    @auth()
+    <select
+      name="nsfw"
+      class="h-9 w-full rounded-xl p-1 pl-2 lg:w-24 dark:bg-gray-600 dark:text-gray-200"
+    >
+      @foreach($post_types as $option)
+        <option value="{{ $option }}" {{ request('nsfw', optional(auth()->user()->settings)->nsfw) === $option ? "selected" : "" }}>
+        {{ $option }}
+      @endforeach
+    </select>
+    @endauth
 
 
     <button

@@ -52,6 +52,9 @@
               Logout
             </button>
           </div>
+          <article class="text-sm text-gray-500 text-center">
+            By creating an account, you agree to the <a href="{{ route('tos') }}" class="text-blue-600">Terms of Service</a> and <a href="{{ route('rules') }}" class="text-blue-600">rules</a>.
+          </article>
         </div>
 
         <div
@@ -199,7 +202,7 @@
             name="nsfw"
             class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
           >
-            @foreach(auth()->user()->settings->options as $option)
+            @foreach($post_types as $option)
               <option value="{{ $option }}" {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}>
               {{ $option }}
             @endforeach
