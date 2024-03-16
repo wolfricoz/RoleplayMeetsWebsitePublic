@@ -31,7 +31,7 @@ class PostObserver
 
   private function auto_mod($post): void
   {
-    if (auth()->user()->hasPermissionTo('bypass_auto_mod')) {
+    if (optional(auth()->user())->hasPermissionTo('bypass_auto_mod')) {
       return;
     }
     if ($this->check_banned_words($post)) {
