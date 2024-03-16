@@ -81,10 +81,29 @@
             </x-post_dropdown_button>
 
             <x-post_dropdown_button>
-              <nsfwtoggle
-                v-bind:post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}"
-                :post_types="{{ json_encode($post_types, JSON_THROW_ON_ERROR) }}"
-              ></nsfwtoggle>
+              <form
+                action="{{ route("admin.nsfw", $post) }}"
+                method="post"
+                name="nsfwchange"
+                id="nsfwchange"
+              >
+                @csrf
+                <select
+                  id="nsfw"
+                  name="nsfw"
+                  class="mt-1 block h-9 w-full rounded-xl p-2 dark:bg-gray-600 dark:text-gray-200"
+                  onchange="this.form.submit()"
+                  required
+                >
+                @foreach($post_types as $option)
+                  @if ($option !== "all")
+                    <option value="{{ $option }}" {{ $post->nsfw === $option ? "selected" : "" }}>
+                    {{ $option }}
+                  @endif
+                @endforeach
+                </select>
+              </form>
+
             </x-post_dropdown_button>
           @endif
 

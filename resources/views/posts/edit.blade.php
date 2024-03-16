@@ -32,32 +32,11 @@
             :value="{{ json_encode(old("content") ?? $post->content, JSON_THROW_ON_ERROR) }}"
           ></summernote>
           <div class="my-3 flex flex-col gap-4 lg:flex-row">
-            {{-- <div class="w-36"> --}}
-            {{-- <label for="genre">Genre</label> --}}
-            {{-- <select --}}
-            {{-- name="genre_id" --}}
-            {{-- id="genre" --}}
-            {{-- class="w-full rounded-xl p-2 dark:bg-gray-600" --}}
-            {{-- required --}}
-            {{-- > --}}
-            {{-- @foreach ($genres as $genre) --}}
-            {{-- @if ($genre->id === $post->genre_id) --}}
-            {{-- <option value="{{ $genre->id }}" selected> --}}
-            {{-- {{ $genre->name }} --}}
-            {{-- </option> --}}
-            {{-- @else --}}
-            {{-- <option value="{{ $genre->id }}"> --}}
-            {{-- {{ $genre->name }} --}}
-            {{-- </option> --}}
-            {{-- @endif --}}
-            {{-- @endforeach --}}
-            {{-- </select> --}}
-            {{-- </div> --}}
             <div class="w-40">
               <label for="charage" class="text-sm font-bold">
                 *Min. Character age
               </label>
-              <br />
+              <br/>
               <input
                 type="number"
                 name="charage"

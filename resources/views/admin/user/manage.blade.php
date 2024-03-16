@@ -240,6 +240,5 @@
       </form>
   </div>
 
-
   @endif
 </x-admin-layout.header>
