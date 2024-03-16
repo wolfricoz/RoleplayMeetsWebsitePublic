@@ -45,7 +45,6 @@
             >
               Save
             </button>
-{{--            Todo: this needs to be a post request--}}
             <button
               formaction="{{ route("logout") }}"
               class="mx-2 rounded-md bg-indigo-900 p-2.5 text-white"

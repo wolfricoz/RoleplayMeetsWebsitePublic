@@ -18,6 +18,9 @@ class checkDobField
      */
     public function handle(Request $request, Closure $next): mixed
     {
+        if (\Route::is(['admin.*', 'logout', 'dashboard'])) {
+            return $next($request);
+        }
         if ($request->user() && $request->user()->profile->dob === null && route('users.dob') !== $request->url() && route('users.settings.update') !== $request->url()) {
             return redirect()->route('users.dob')->with('error', 'Please fill in your date of birth before continuing.');
         }

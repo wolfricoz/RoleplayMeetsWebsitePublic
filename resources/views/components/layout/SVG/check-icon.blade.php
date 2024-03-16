@@ -1,10 +1,10 @@
 <div class="space-x-1">
-  @if ($post->nsfw)
+  @if ($post->nsfw === 'nsfw' || $post->nsfw === 'extreme')
     <span
       class="h6 h-6 cursor-default rounded-full bg-red-400 px-1.5 text-sm"
       title="Not Safe For Work"
     >
-      NSFW
+      {{ $post->nsfw }}
     </span>
   @else
     <span

@@ -38,7 +38,7 @@
         @forelse ($posts as $post)
           <x-post :post="$post" />
         @empty
-          <div class="col-span-2 w-full rounded-xl bg-gray-100 p-6 text-xl">
+          <div class="col-span-2 w-full rounded-xl bg-gray-100 p-6 text-xl dark:bg-gray-700 dark:text-gray-200">
             <p class="text-center">No posts yet!</p>
           </div>
         @endforelse

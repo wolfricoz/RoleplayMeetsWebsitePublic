@@ -81,7 +81,7 @@ export default {
 
 <template>
   <div class="my-2 bg-white">
-    <textarea :id="id" class="h-32" v-bind:name="name" required> </textarea>
+    <textarea :id="id" class="h-32" v-bind:name="name"> </textarea>
   </div>
   <div class="text-right text-xs text-gray-500">
     <span>{{ charCount }}</span> / {{ maxlength }} characters
