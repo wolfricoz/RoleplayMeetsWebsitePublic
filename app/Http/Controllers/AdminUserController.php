@@ -47,25 +47,16 @@ class AdminUserController extends Controller
 
   public function ban(Request $request, User $user): RedirectResponse
   {
-    if ($user->hasRole(config('site_settings.admin_role')) && !auth()->user()->hasRole(config('site_settings.owner'))){
+    if ($user->hasRole(config('site_settings.admin_role')) && !auth()->user()->hasRole(config('site_settings.owner'))) {
       return redirect()->back()->withErrors(['error' => 'You cannot ban an admin']);
     }
 
-    request()->validate([
+    $ban_info = request()->validate([
       'comment' => 'required',
       'expired_at' => 'nullable|date',
     ]);
-    if (!$request->has('expired_at')) {
-      $user->ban([
-        'comment' => $request->comment,
-      ]);
-      return redirect()->route('admin.users.show', $user);
-    }
-    $user->ban([
-      'comment' => $request->comment,
-      'expired_at' => $request->expired_at,
-    ]);
-
+    $user->unban();
+    $user->ban($ban_info);
 
     return redirect()->route('admin.users.show', $user);
   }

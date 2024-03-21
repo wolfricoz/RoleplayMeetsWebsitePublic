@@ -31,6 +31,7 @@ Route::get('/', [PostController::class, 'index'])->name("home");
 
 Route::get('/rules', [RulesController::class, 'index'])->name("rules");
 Route::get('/support', [SiteController::class, 'support'])->name("support");
+Route::get('/tos', [SiteController::class, 'terms_of_service'])->name("tos");
 
 
 Route::group(['prefix' => 'posts'], static function () {
@@ -39,7 +40,7 @@ Route::group(['prefix' => 'posts'], static function () {
   Route::put('create', [PostController::class, 'store'])->middleware('auth')->name("posts.store");
   Route::get('edit/{post}', [PostController::class, 'edit'])->middleware('auth')->name("posts.edit");
   Route::patch('edit/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.update");
-  Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->middleware('auth')->name("admin.nsfw");
+  Route::post('nsfw/{post}', [AdminController::class, 'nsfwchange'])->middleware('auth')->name("admin.nsfw");
   Route::patch('bump/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.bump");
   Route::delete('delete/{post}', [PostController::class, 'destroy'])->middleware('auth')->name("posts.delete");
   Route::get('report/{post}', [ReportController::class, 'index'])->middleware('auth')->name("posts.report");

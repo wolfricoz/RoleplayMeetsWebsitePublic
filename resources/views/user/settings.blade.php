@@ -173,27 +173,28 @@
             </h6>
           </div>
 
-          <span class="w-36 font-bold">NSFW?</span>
-          <label
-            class="ml-3 inline-flex cursor-pointer items-center rounded-md dark:text-gray-800"
+          <x-settings_forum_field
+            name="location"
+            type="hidden"
+            :description="('This setting affects the visibility of NSFW content on the site. By default, NSFW content is hidden.')"
           >
-            <input
-              name="NSFW"
-              type="checkbox"
-              class="peer hidden"
-              {{ auth()->user()->settings->NSFW ? "checked" : "" }}
-            />
-            <span
-              class="rounded-l-md bg-green-500 px-4 peer-checked:bg-gray-500"
-            >
-              Hidden
-            </span>
-            <span
-              class="rounded-r-md bg-gray-500 px-4 peer-checked:bg-blue-400"
-            >
-              Shown
-            </span>
-          </label>
+            NSFW
+          </x-settings_forum_field>
+
+          <select
+            name="nsfw"
+            class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
+          >
+            @foreach ($post_types as $option)
+              <option
+                value="{{ $option }}"
+                {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}
+              >
+                {{ $option }}
+              </option>
+            @endforeach
+          </select>
+
           <button
             type="submit"
             class="mt-2 block rounded-md bg-indigo-900 p-2 text-white"
@@ -211,7 +212,8 @@
             Delete Account
           </h1>
           <h6 class="text-center text-sm">
-            This will remove your account and all your data from the site.
+            This will remove your account and all your personal data from the
+            site.
           </h6>
         </div>
         <form

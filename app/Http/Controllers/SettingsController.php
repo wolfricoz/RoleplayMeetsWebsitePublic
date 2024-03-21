@@ -45,7 +45,7 @@ class SettingsController extends Controller
             return redirect()->back()->withErrors(['bio' => 'Your bio may not exceed 512 characters.']);
         }
 
-        $validated = $request->validate([
+        $profile = $request->validate([
             'dob' => 'required|date',
             'bio' => 'nullable|string',
             'pronouns' => 'nullable|string|max:32',
@@ -59,28 +59,28 @@ class SettingsController extends Controller
             'other' => 'nullable|string|max:32',
         ]);
 
-        if ($validated['dob'] > now()->subYears(18)) {
+        if ($profile['dob'] > now()->subYears(18)) {
             $user->ban([
                 'comment' => 'User is under 18.',
-                'expired_at' => now()->addYears(18 - (new DateTime($validated['dob']))->diff(now())->y ?? 1),
+                'expired_at' => now()->addYears(18 - (new DateTime($profile['dob']))->diff(now())->y ?? 1),
             ]);
             return redirect()->route('home');
         }
 
-        $validated['dob'] = $user->profile->dob ?? $validated['dob'];
-        $validated['bio'] = clean(trim(Helpers::trim_extra_spaces($validated['bio'])));
+        $profile['dob'] = $user->profile->dob ?? $profile['dob'];
+        $profile['bio'] = clean(trim(Helpers::trim_extra_spaces($profile['bio'])));
 
         foreach ($request->all() as $key => $value) {
             if (str_starts_with($key, 'show_')) {
-                $validated[$key] = true;
+                $profile[$key] = true;
             }
         }
 
-        if (isset($request['NSFW'])) {
-            Settings::where('user_id', auth()->id())->first()->update(['NSFW' => true]);
+        if (isset($request['nsfw'])) {
+            Settings::where('user_id', auth()->id())->first()->update(['nsfw'=> $request['nsfw']]);
         }
 
-        Profile::where('user_id', auth()->id())->first()->update($validated);
+        Profile::where('user_id', auth()->id())->first()->update($profile);
 
         return redirect()->route('dashboard')->with('success', 'Your settings were saved.');
     }

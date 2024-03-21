@@ -1,4 +1,8 @@
-@foreach($post->tags()->get() as $genre)
-  <a class="bg-green-500 hover:bg-green-400 text-white text-xs text-center font-semibold py-0.5 my-1 px-2 rounded-xl flex items-center w-26` whitespace-nowrap"
-     href="{{ route("home", ["search" => request("search"), "genre" => $genre->name]) }}">{{ $genre->name }}</a>
+@foreach ($post->tags()->get() as $genre)
+  <a
+    class="w-26` my-1 flex items-center whitespace-nowrap rounded-xl bg-green-500 px-2 py-0.5 text-center text-xs font-semibold text-white hover:bg-green-400"
+    href="{{ route("home", ["search" => request("search"), "genre" => $genre->name]) }}"
+  >
+    {{ $genre->name }}
+  </a>
 @endforeach

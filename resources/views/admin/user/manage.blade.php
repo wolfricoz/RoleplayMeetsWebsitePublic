@@ -150,13 +150,13 @@
       >
         @csrf
         <h6 class="text-lg font-bold text-red-500">Ban</h6>
-        <label for="reason" class="font-bold">Reason</label>
+        <label for="comment" class="font-bold">Reason</label>
         <div class="">
-          <summernote
-            :name="'comment'"
-            :maxlength="512"
-            :value="{{ json_encode(old("reason"), JSON_THROW_ON_ERROR) }}"
-          ></summernote>
+          <textarea
+            id="comment"
+            name="comment"
+            class="w-full rounded-lg border-2 text-sm dark:bg-gray-600 dark:text-gray-200"
+          ></textarea>
         </div>
         <label class="relative me-5 inline-flex cursor-pointer items-center">
           <input
@@ -175,22 +175,31 @@
         <div x-show="!permanent">
           <label for="expires_at" class="ml-3 font-bold">Expires At</label>
           <input
-            id="expires_at"
-            name="expires_at"
-            type="datetime-local"
+            id="expired_at"
+            name="expired_at"
+            type="date"
             value="{{ old("expires_at") }}"
-            class="w-64 rounded-lg border-2 border-gray-400 text-sm"
+            class="ml-2 w-64 rounded-lg border-2 text-sm  dark:bg-gray-700 dark:text-gray-200"
+
           />
         </div>
-        <a
-          onclick="return confirm('Are you sure you want to ban {{ $user->username }}?')"
-        >
-          <x-admin-layout.cms_form_button
-            class="mt-2 block border-red-700 px-5 hover:bg-red-600 dark:text-gray-200"
-          >
-            Ban
-          </x-admin-layout.cms_form_button>
-        </a>
+        <div class="block">
+          <div class="flex flex-row">
+            <a
+              onclick="return confirm('Are you sure you want to ban {{ $user->username }}?')"
+            >
+              <x-admin-layout.cms_form_button
+                class="mt-2 block border-red-700 px-5 hover:bg-red-600 dark:text-gray-200"
+              >
+                Ban
+              </x-admin-layout.cms_form_button>
+            </a>
+
+          </div>
+
+        </div>
+
+
         @if ($errors->any())
           <div class="text-red-500">
             <ul>
@@ -203,6 +212,33 @@
           </div>
         @endif
       </form>
-    @endif
+      <div class="border-b border-gray-200">
+        <h1 id="Remove" class="text-center text-2xl font-bold">
+          Delete Account
+        </h1>
+        <h6 class="text-center text-sm">
+          This will remove the {{ $user->username }}'s account and all personal data from the site.
+        </h6>
+      </div>
+      <form
+        method="POST"
+        action="{{ route("users.delete", auth()->user()) }}"
+        class="mt-5"
+      >
+        @method("DELETE")
+        @csrf
+        <button
+          type="submit"
+          class="mx-auto block rounded-md bg-red-600 p-2 font-bold text-white"
+          onclick="confirm('Are you certain you want to permanently remove {{ $user->username }}\'s account?')"
+        >
+          Permanently delete {{ $user->username }}'s account
+        </button>
+        <p class="text-sm font-bold text-red-500 text-center">
+          Removals take 30 days to complete. If the user logs in during this time, the removal will be cancelled.
+        </p>
+      </form>
   </div>
+
+  @endif
 </x-admin-layout.header>

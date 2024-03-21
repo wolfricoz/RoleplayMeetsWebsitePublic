@@ -2,9 +2,9 @@
   use App\Support\Helpers;
 @endphp
 
-<div class="h-full w-full flex-wrap" style="z-index: 1000" >
+<div class="h-full w-full flex-wrap" style="z-index: 1000">
   <nav
-    class="shadow-2xl flex h-12 w-full basis-full flex-row justify-between bg-gray-100 transition-all dark:bg-zinc-800 dark:text-gray-200"
+    class="flex h-12 w-full basis-full flex-row justify-between bg-gray-100 shadow-2xl transition-all dark:bg-zinc-800 dark:text-gray-200"
   >
     <a
       href="{{ route("home") }}"
@@ -56,7 +56,7 @@
   @auth()
     <div x-show="dropdown" class="" style="z-index: 1000" x-cloak>
       <div
-        class="z-50 absolute right-0 top-12 flex w-52 flex-col border-stone-200 bg-gray-100"
+        class="absolute right-0 top-12 z-50 flex w-52 flex-col border-stone-200 bg-gray-100"
       >
         <x-layout.components.dropdown-button href="{{ route('dashboard') }}">
           Profile
@@ -110,8 +110,7 @@
           </x-slot>
           Support
         </x-layout.components.sidenavbutton>
-        <a class="transition-all hover:cursor-pointer"
-        >
+        <a class="transition-all hover:cursor-pointer">
           <x-layout.SVG.sidebar-icon />
         </a>
       </div>

@@ -45,14 +45,22 @@
             >
               Save
             </button>
-{{--            Todo: this needs to be a post request--}}
-            <a
-              href="{{ route("logout") }}"
+            <button
+              formaction="{{ route("logout") }}"
               class="mx-2 rounded-md bg-indigo-900 p-2.5 text-white"
             >
               Logout
-            </a>
+            </button>
           </div>
+          <article class="text-center text-sm text-gray-500">
+            By creating an account, you agree to the
+            <a href="{{ route("tos") }}" class="text-blue-600">
+              Terms of Service
+            </a>
+            and
+            <a href="{{ route("rules") }}" class="text-blue-600">rules</a>
+            .
+          </article>
         </div>
 
         <div
@@ -188,28 +196,27 @@
               These settings affect your browsing experience on the site.
             </h6>
           </div>
-
-          <span class="w-36 font-bold">NSFW?</span>
-          <label
-            class="ml-3 inline-flex cursor-pointer items-center rounded-md dark:text-gray-800"
+          <x-settings_forum_field
+            name="location"
+            type="hidden"
+            :description="('This setting affects the visibility of NSFW content on the site. By default, NSFW content is hidden.')"
           >
-            <input
-              name="NSFW"
-              type="checkbox"
-              class="peer hidden"
-              {{ auth()->user()->settings->NSFW ? "checked" : "" }}
-            />
-            <span
-              class="rounded-l-md bg-green-500 px-4 peer-checked:bg-gray-500"
-            >
-              Hidden
-            </span>
-            <span
-              class="rounded-r-md bg-gray-500 px-4 peer-checked:bg-blue-400"
-            >
-              Shown
-            </span>
-          </label>
+            NSFW
+          </x-settings_forum_field>
+
+          <select
+            name="nsfw"
+            class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
+          >
+            @foreach ($post_types as $option)
+              <option
+                value="{{ $option }}"
+                {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}
+              >
+                {{ $option }}
+              </option>
+            @endforeach
+          </select>
           <button
             type="submit"
             class="mt-2 block rounded-md bg-indigo-900 p-2 text-white"
@@ -219,7 +226,9 @@
         </div>
       </form>
 
-      <div class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full">
+      <div
+        class="m-5 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+      >
         <div class="border-b border-gray-200">
           <h1 id="Remove" class="text-center text-2xl font-bold">
             Delete Account

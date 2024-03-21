@@ -9,7 +9,9 @@ export default {
   },
   methods: {
     showDropdown(event, postId) {
-      this.dropdown = !this.dropdown;
+      if (!this.dropdown){
+        this.dropdown = !this.dropdown;
+      }
       const postElement = document.getElementById(postId.toString());
       const postPosition = postElement.getBoundingClientRect();
       const dropdownElement = document.getElementById(this.dropdownid);
@@ -43,7 +45,7 @@ export default {
 </script>
 
 <template>
-  <div class="p-1" @mouseleave="dropdown = false" @scroll="dropdown = false">
+  <div class="p-1" @scroll="dropdown = false">
     <a
       title="See more options"
       class="cursor-pointer rounded-full p-1 px-2 tracking-tighter transition-all hover:bg-gray-300 hover:tracking-normal hover:text-indigo-900 focus:tracking-normal"

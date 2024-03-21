@@ -23,6 +23,11 @@
       
     @endisset()
   </div>
+  @isset($description)
+    <p class="text-xs text-gray-500">
+      {{ $description }}
+    </p>
+  @endisset
 
   <label>
     <input

@@ -6,14 +6,14 @@
   x-transition.duration.1000ms
 >
   @if (session()->has("success"))
-    <div class="fixed bottom-0 right-0 m-5 rounded-xl bg-green-300 p-2">
-      {{ session()->get("success") }}
+    <div class="fixed bottom-0 right-0 m-5 rounded-xl bg-green-500 p-2">
+      {!! clean(session()->get("success")) !!}
     </div>
   @endif()
 
   @if (session()->has("error"))
     <div class="fixed bottom-0 right-0 m-5 rounded-xl bg-red-500 p-2">
-      {{ session()->get("error") }}
+      {!! clean(session()->get("error")) !!}
     </div>
   @endif()
 </div>

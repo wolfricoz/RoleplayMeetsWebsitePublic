@@ -7,6 +7,7 @@ use App\Mail\PostApproved;
 use App\Mail\PostRejected;
 use App\Models\Genres;
 use App\Models\Post;
+use App\Models\Settings;
 use App\Support\Charts;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -61,13 +62,16 @@ class AdminController extends Controller
     return redirect()->back()->with('success', 'Post rejected!');
   }
 
-  public function nsfwtoggle(Request $request, Post $post): Response
+  public function nsfwchange(Request $request, Post $post): Response
   {
     if (auth()->user()->id !== $post->user_id && !auth()->user()->hasPermissionTo('manage_posts')) {
       return response('Unauthorized', 401);
     }
-
-    $post->nsfw = !$post->nsfw;
+    if (!in_array(request('nsfw'), Settings::$options, true)){
+      return response('Invalid NSFW status', 400);
+    }
+    $nsfw = $request->validate(['nsfw' => 'required|string']);
+    $post->update($nsfw);
     $post->save();
     return redirect()->back()->with('success', 'NSFW status toggled!');
   }
