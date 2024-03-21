@@ -90,12 +90,21 @@
             </div>
           </div>
 
-          <button
-            type="submit"
-            class="mt-2 rounded-xl bg-blue-600 p-2 text-white hover:bg-blue-400"
-          >
-            Update
-          </button>
+          <div class="flex flex-row justify-between">
+            <a
+              href="{{ route("home") }}"
+              class="mt-2 rounded-xl bg-red-600 p-2 text-white hover:bg-red-400"
+            >
+              Cancel
+            </a>
+
+            <button
+              type="submit"
+              class="mt-2 rounded-xl bg-blue-600 p-2 text-white hover:bg-blue-400"
+            >
+              Create
+            </button>
+          </div>
           <p class="pt-2 text-sm text-gray-500">
             By updating your post, it will be sent to the moderators for
             approval. If you want to simply bump your post, please use the bump

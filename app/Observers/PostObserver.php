@@ -43,7 +43,7 @@ class PostObserver
     if ($post->nsfw === 'sfw') {
       $this->check_nsfw_words($post);
     }
-    mail::to($this->admin_emails)->send(new UpdatedPost($post));
+//    mail::to($this->admin_emails)->send(new UpdatedPost($post));
   }
 
   private function check_banned_words($post): bool|array|string

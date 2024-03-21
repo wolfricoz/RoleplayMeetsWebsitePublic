@@ -1,97 +1,49 @@
 <x-layout.header>
   <div id="app" class="m-1 flex justify-center lg:m-4">
     <div
-      class="h-fit w-full rounded-xl bg-gray-100 p-4 lg:w-2/3 dark:bg-gray-700 dark:text-gray-200"
+      class="h-fit  w-full rounded-xl bg-gray-100 p-4 lg:w-2/3 dark:bg-gray-700 dark:text-gray-200"
     >
-      <div>
-        <h1 class="text-center text-2xl">Create Post</h1>
-        <form method="post" action="{{ route("posts.update", $post) }}" x-data="{ title: '{{ old("title") ?? $post->title }}'}">
+        <h1 class="text-center text-2xl">Report a post</h1>
+        <form method="post" action="{{ route("posts.update", $post) }}" x-data="{ title: '{{ old("title") }}'}" class="space-y-2">
           @csrf
-          @method("PATCH")
-          <label for="title">*Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            x-model="title"
-            class="w-full rounded-xl p-2 dark:bg-gray-600"
+          <label for="reason" class="text-sm font-bold">* Reason</label>
+          <select
+            name="reason"
+            id="reason"
+            class="mt-1 block h-9 w-full rounded-xl px-2 p-1 dark:bg-gray-600 dark:text-gray-200"
             required
-          />
-          <p class="text-right text-xs text-gray-500"><span x-text="title.length"></span>/60 characters</p>
-          <h1>*Body</h1>
+            >
+            @foreach($report_reasons as $reason)
+              <option value="{{ $reason }}" {{ old("reason") === $reason ? "selected" : "" }}>
+                {{ $reason }}
+              </option>
+
+            @endforeach
+          </select>
+          <h1 class="text-sm font-bold">Extra Info</h1>
           <summernote
             :maxlength="10000"
-            :name="'content'"
-            :value="{{ json_encode(old("content") ?? $post->content, JSON_THROW_ON_ERROR) }}"
+            :name="'description'"
+            :value="{{ json_encode(old("content"), JSON_THROW_ON_ERROR) }}"
           ></summernote>
-          <div class="my-3 flex flex-col gap-4 lg:flex-row">
-{{--            <div class="w-36">--}}
-{{--              <label for="genre">Genre</label>--}}
-{{--              <select--}}
-{{--                name="genre_id"--}}
-{{--                id="genre"--}}
-{{--                class="w-full rounded-xl p-2 dark:bg-gray-600"--}}
-{{--                required--}}
-{{--              >--}}
-{{--                @foreach ($genres as $genre)--}}
-{{--                  @if ($genre->id === $post->genre_id)--}}
-{{--                    <option value="{{ $genre->id }}" selected>--}}
-{{--                      {{ $genre->name }}--}}
-{{--                    </option>--}}
-{{--                  @else--}}
-{{--                    <option value="{{ $genre->id }}">--}}
-{{--                      {{ $genre->name }}--}}
-{{--                    </option>--}}
-{{--                  @endif--}}
-{{--                @endforeach--}}
-{{--              </select>--}}
-{{--            </div>--}}
-            <div class="w-40">
-              <label for="charage" class="">*Min. Character age</label>
-              <br />
-              <input
-                type="number"
-                name="charage"
-                id="charage"
-                value="{{ old("charage") ?? $post->charage }}"
-                class="w-full rounded-xl p-2 dark:bg-gray-600"
-                required
-              />
-            </div>
-            <div class="w-40">
-              <label for="partnerage">*Min. Partner age</label>
-              <input
-                type="number"
-                name="partnerage"
-                id="partnerage"
-                value="{{ old("partnerage") ?? $post->partnerage }}"
-                class="w-full rounded-xl p-2 dark:bg-gray-600"
-                required
-              />
-            </div>
-            <div class="w-full lg:w-96 h-24">
-              <multiselectrole
-                :values="{{ json_encode($genres, JSON_THROW_ON_ERROR) }}"
-                :selected="{{ json_encode(old("genres_list") ? explode(",", old("genres_list")) : $post->tags()->get(), JSON_THROW_ON_ERROR) }}"
-                :name="'genres_list'"
-                :title="'Genres'"
-                :max="5"
-              />
+          <div class="flex flex-row justify-between">
+            <a
+              href="{{ route("home") }}"
+              class="mt-2 rounded-xl bg-red-600 p-2 text-white hover:bg-red-400"
+            >
+              Cancel
+            </a>
 
-            </div>
+            <button
+              type="submit"
+              class="mt-2 rounded-xl bg-blue-600 p-2 text-white hover:bg-blue-400"
+            >
+              Create
+            </button>
           </div>
-
-
-          <button
-            type="submit"
-            class="mt-2 rounded-xl bg-blue-600 p-2 text-white hover:bg-blue-400"
-          >
-            Update
-          </button>
           <p class="pt-2 text-sm text-gray-500">
-            By updating your post, it will be sent to the moderators for
-            approval. If you want to simply bump your post, please use the bump
-            button.
+            By submitting this post, you agree to the <a href="{{ route("tos") }}" class="text-blue-600 hover:text-blue-400 hover:underline">terms of service</a> and you acknowledge that the information you've provided is factual. If you
+            report a post that is not in violation of the terms of service or rules, we reserve the right to take action against your account.
           </p>
           @if ($errors->any())
             <div class="text-red-500">
@@ -105,7 +57,7 @@
             </div>
           @endif
         </form>
-      </div>
+
     </div>
   </div>
   <div class="h-60"></div>

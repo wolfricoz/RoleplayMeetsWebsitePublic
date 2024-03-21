@@ -5,14 +5,12 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\GenresController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PublicProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RulesController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
-use App\Models\Post;
 use App\overrides\larascord;
 use Illuminate\Support\Facades\Route;
 

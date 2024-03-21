@@ -6,7 +6,7 @@
   class="w-full rounded-xl bg-gray-100 p-2 text-stone-800 dark:bg-gray-700 dark:text-gray-200"
   x-bind:class="{
     'col-span-1': layout === 'grid',
-    'col-span-2': layout === 'list',
+    'col-span-2': layout === 'list'
   }"
 >
   <div class="flex flex-row flex-wrap items-center justify-end lg:flex-nowrap">
@@ -17,10 +17,10 @@
     <div class="inline-flex">
       @auth()
         <dropdown :post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}">
-          <x-post_dropdown_button href="{{ route("posts.show", $post) }}">
+          <x-post_dropdown_button href="{{ route('posts.show', $post) }}">
             View
           </x-post_dropdown_button>
-          <x-post_dropdown_button href="{{ route("posts.report", $post) }}">
+          <x-post_dropdown_button href="{{ route('posts.report', $post) }}">
             Report
           </x-post_dropdown_button>
 
@@ -158,7 +158,7 @@
           src="{{ $post->user->getAvatar(["extension" => "webp", "size" => 512]) }}"
           alt="{{ $post->user->getTagAttribute() }}"
           x-bind:class="{
-            'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
+            'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
           }"
         />
         <span>
@@ -181,7 +181,7 @@
       <span
         class="px-2 lg:px-6"
         x-bind:class="{
-          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
+          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
         }"
       >
         character age:
@@ -192,7 +192,7 @@
       <span
         class="px-2 lg:px-6"
         x-bind:class="{
-          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
+          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
         }"
       >
         partner Age:
