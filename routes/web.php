@@ -6,6 +6,7 @@ use App\Http\Controllers\GenresController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RulesController;
 use App\Http\Controllers\SettingsController;
@@ -40,7 +41,8 @@ Route::group(['prefix' => 'posts'], static function () {
   Route::patch('edit/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.update");
   Route::post('nsfw/{post}', [AdminController::class, 'nsfwtoggle'])->middleware('auth')->name("admin.nsfw");
   Route::patch('bump/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.bump");
-  Route::delete('delete/{post}', [PostController::class, 'destroy'])->name("posts.delete");
+  Route::delete('delete/{post}', [PostController::class, 'destroy'])->middleware('auth')->name("posts.delete");
+  Route::get('report/{post}', [ReportController::class, 'index'])->middleware('auth')->name("posts.report");
 });
 Route::group(['prefix' => 'users'], static function () {
   Route::get('dashboard', [UserController::class, 'index'])->middleware('auth')->name("dashboard");

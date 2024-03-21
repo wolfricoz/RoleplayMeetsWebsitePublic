@@ -19,6 +19,13 @@
     <div class="inline-flex">
       @auth()
         <dropdown :post="{{ json_encode($post, JSON_THROW_ON_ERROR) }}">
+          <x-post_dropdown_button href="{{ route("posts.show", $post) }}">
+            View
+          </x-post_dropdown_button>
+          <x-post_dropdown_button href="{{ route("posts.report", $post) }}">
+            Report
+          </x-post_dropdown_button>
+
           @if ($post->user_id === auth()->user()->id)
             <x-post_dropdown_button>
               @if ($post->bumped_at === null || Carbon::parse($post->bumped_at)->addMinutes(1440) <= Carbon::now())
@@ -91,7 +98,9 @@
 
           <x-post_dropdown_button>
             @if (auth()->user()->hasPermissionTo("manage_posts") ||($post->user_id === auth()->user()->id &&auth()->user()->hasPermissionTo("delete_posts")))
-              <form action="{{ Route::is("posts.show") ? route('posts.delete', $post) : route("admin.delete", $post)  }}" method="post">
+              <form
+                action="{{ Route::is("posts.show") ? route('posts.delete', $post) : route("admin.delete", $post)  }}"
+                method="post">
                 @method("delete")
                 @csrf
                 <button

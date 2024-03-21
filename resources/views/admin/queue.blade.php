@@ -1,5 +1,5 @@
 <x-admin-layout.header>
-  <div id="app" class="flex flex-col gap-4 p-4" x-data="{ layout: 'list' }">
+  <div id="app" class="flex flex-col gap-4 p-4 dark:text-gray-200" x-data="{ layout: 'list' }">
     @forelse ($posts as $post)
       <x-post :post="$post" />
     @empty
