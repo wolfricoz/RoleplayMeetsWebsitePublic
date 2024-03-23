@@ -55,8 +55,11 @@ class ReportControllerTest extends TestCase
     $this->actingAs($user);
     $report = Report::all()->first();
     $controller = new ReportController();
-    $response = $controller->changeStatus($report, 'approved');
-    $this->assertEquals('approved', $report->status);
+    $request = new Request([
+      'status' => 'completed',
+    ]);
+    $response = $controller->changeStatus($request, $report);
+    $this->assertEquals('completed', $report->status);
     $this->assertEquals(302, $response->getStatusCode());
     $this->assertNotEquals('pending', $report->status);
   }

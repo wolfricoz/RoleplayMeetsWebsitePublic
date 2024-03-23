@@ -48,14 +48,15 @@ class ReportController extends Controller
     public function admin(): View
     {
         return view('admin.reports', [
-          'reports' => Report::all(),
+          'reports' => Report::latest()->paginate(50),
+          'statuses' => Report::$status,
         ]);
     }
 
-    public function changeStatus(Report $report, string $status): RedirectResponse
+    public function changeStatus(Request $request ,Report $report): RedirectResponse
     {
-        $report->update(['status' => $status]);
-        return redirect()->back()->with('message', "Report status updated with: $status");
+        $report->update(['status' => $request->status]);
+        return redirect()->back()->with('message', "Report status updated with: $request->status");
     }
 
 

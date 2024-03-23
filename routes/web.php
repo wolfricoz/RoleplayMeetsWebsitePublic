@@ -94,6 +94,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_d
     Route::get('/', [SiteController::class, 'index'])->name("admin.settings");
     Route::patch('update', [SiteController::class, 'update'])->name("admin.settings.update");
   });
+  Route::group(['prefix' => 'reports', 'middleware' => ['permission:manage_reports']], static function () {
+    Route::get('/', [ReportController::class, 'admin'])->name("admin.reports");
+    Route::patch('change/{report}', [ReportController::class, 'changeStatus'])->name("admin.reports.change");
+  });
+
 });
 
 Route::middleware('auth')->group(function () {
