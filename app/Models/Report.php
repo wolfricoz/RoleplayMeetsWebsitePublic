@@ -9,6 +9,8 @@ class Report extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public static array $options = [
       "User is searching for / posting underage content",
       "User is posting personal information or another user's personal information",

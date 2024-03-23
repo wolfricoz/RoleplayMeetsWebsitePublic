@@ -42,6 +42,7 @@ Route::group(['prefix' => 'posts'], static function () {
   Route::patch('bump/{post}', [PostController::class, 'update'])->middleware('auth')->name("posts.bump");
   Route::delete('delete/{post}', [PostController::class, 'destroy'])->middleware('auth')->name("posts.delete");
   Route::get('report/{post}', [ReportController::class, 'index'])->middleware('auth')->name("posts.report");
+  Route::post('report/{post}', [ReportController::class, 'store'])->middleware('auth')->name("posts.report.store");
 });
 Route::group(['prefix' => 'users'], static function () {
   Route::get('dashboard', [UserController::class, 'index'])->middleware('auth')->name("dashboard");
@@ -50,6 +51,7 @@ Route::group(['prefix' => 'users'], static function () {
   Route::get('settings/finalize', [SettingsController::class, 'dob'])->middleware('auth')->name("users.dob");
   Route::post('settings/update', [SettingsController::class, 'update'])->middleware('auth')->name("users.settings.update");
   Route::delete('delete/{user}', [UserController::class, 'destroy'])->middleware('auth')->name("users.delete");
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_dashboard']], static function () {

@@ -4,7 +4,7 @@
       class="h-fit  w-full rounded-xl bg-gray-100 p-4 lg:w-2/3 dark:bg-gray-700 dark:text-gray-200"
     >
         <h1 class="text-center text-2xl">Report a post</h1>
-        <form method="post" action="{{ route("posts.update", $post) }}" x-data="{ title: '{{ old("title") }}'}" class="space-y-2">
+        <form method="post" action="{{ route("posts.report.store", $post) }}" x-data="{ title: '{{ old("title") }}'}" class="space-y-2">
           @csrf
           <label for="reason" class="text-sm font-bold">* Reason</label>
           <select
