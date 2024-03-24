@@ -9,9 +9,9 @@ export default {
   },
   methods: {
     showDropdown(event, postId) {
-      if (!this.dropdown){
+
         this.dropdown = !this.dropdown;
-      }
+
       const postElement = document.getElementById(postId.toString());
       const postPosition = postElement.getBoundingClientRect();
       const dropdownElement = document.getElementById(this.dropdownid);
