@@ -4,7 +4,6 @@
     class="min-h-full w-full space-y-2 p-2 lg:p-6"
     x-data="{ 'layout': 'list' }"
   >
-    <h1 class="text-xl font-bold">Look ma! im on tv!</h1>
 
     <x-postoptionsnav :genres="$genres" />
     {{-- <div class="inline-flex"> --}}
