@@ -33,7 +33,7 @@ class PostObserver
   /**
    * @throws JsonException
    */
-  private function send_message_discord(Post $post): void
+  private function send_message_discord(Post $post, string $content): void
   {
     $tag = optional($post->tags()->get()->first())->name ?? 'No tag';
     $webhook = config('site_settings.discord_webhook');
@@ -42,7 +42,7 @@ class PostObserver
         'header' => "Content-Type: application/json\r\n",
         'method' => 'POST',
         'content' => json_encode([
-          'content' => "A new post has been detected!",
+          'content' => $content,
           'embeds' => [
             [
               'title' => $post->title,
@@ -115,10 +115,11 @@ class PostObserver
   {
     $this->auto_mod($post);
     try {
-      $this->send_message_discord($post);
+      $this->send_message_discord($post, "New post created");
     } catch (JsonException $e) {
       Log::error($e->getMessage());
     }
+    Log::info("New post created: $post->title by $post->user_id");
   }
 
   /**
@@ -127,13 +128,20 @@ class PostObserver
   public function updated(Post $post): void
   {
     $this->auto_mod($post);
+    try {
+      $this->send_message_discord($post, "Post updated");
+    } catch (JsonException $e) {
+      Log::error($e->getMessage());
+    }
+    Log::info("Post updated: $post->title by $post->user_id");
   }
 
   /**
    * Handle the Post "deleted" event.
    */
   public function deleted(Post $post): void {
-    Log::info("Post soft-deleted: $post->title");
+    $user = auth()->user()->id;
+    Log::info("Post soft-deleted: $post->title by $user");
   }
 
   /**
@@ -149,6 +157,7 @@ class PostObserver
    */
   public function forceDeleted(Post $post): void
   {
-    Log::info("Post permanently deleted: $post->title");
+    $user = auth()->user()->id;
+    Log::info("Post permanently deleted: $post->title by $user");
   }
 }
