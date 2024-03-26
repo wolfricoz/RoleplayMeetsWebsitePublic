@@ -3,10 +3,11 @@
 namespace App\Observers;
 
 use App\Mail\PostRejected;
-use App\Mail\UpdatedPost;
 use App\Models\Post;
 use App\Support\AutoMod;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use JsonException;
 use Spatie\Permission\Models\Role;
 
 /**
@@ -24,9 +25,45 @@ class PostObserver
   {
     $admin = Role::findByName('admin');
     $this->admin_emails = [];
-      foreach ($admin->users as $user) {
-        $this->admin_emails[] = $user->email;
-      }
+    foreach ($admin->users as $user) {
+      $this->admin_emails[] = $user->email;
+    }
+  }
+
+  /**
+   * @throws JsonException
+   */
+  private function send_message_discord(Post $post): void
+  {
+    $tag = optional($post->tags()->get()->first())->name ?? 'No tag';
+    $webhook = config('site_settings.discord_webhook');
+    $options = [
+      'http' => [
+        'header' => "Content-Type: application/json\r\n",
+        'method' => 'POST',
+        'content' => json_encode([
+          'content' => "A new post has been detected!",
+          'embeds' => [
+            [
+              'title' => $post->title,
+              'description' => $post->content,
+              'url' => route('admin.queue'),
+              'color' => hexdec('FF0000'),
+              'author' => [
+                'name' => $post->user->username,
+                'url' => route('users.show', $post->user),
+                'icon_url' => $post->user->avatar,
+              ],
+              'footer' => [
+                'text' => $tag,
+              ],
+            ],
+          ],
+        ], JSON_THROW_ON_ERROR),
+      ],
+    ];
+    $context = stream_context_create($options);
+    file_get_contents($webhook, false, $context);
   }
 
   private function auto_mod($post): void
@@ -77,6 +114,11 @@ class PostObserver
   public function created(Post $post): void
   {
     $this->auto_mod($post);
+    try {
+      $this->send_message_discord($post);
+    } catch (JsonException $e) {
+      Log::error($e->getMessage());
+    }
   }
 
   /**
@@ -90,7 +132,9 @@ class PostObserver
   /**
    * Handle the Post "deleted" event.
    */
-  public function deleted(Post $post): void {}
+  public function deleted(Post $post): void {
+    Log::info("Post soft-deleted: $post->title");
+  }
 
   /**
    * Handle the Post "restored" event.
@@ -105,6 +149,6 @@ class PostObserver
    */
   public function forceDeleted(Post $post): void
   {
-    //
+    Log::info("Post permanently deleted: $post->title");
   }
 }

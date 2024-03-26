@@ -44,8 +44,6 @@ class ReportControllerTest extends TestCase
     $controller = new ReportController();
     $response = $controller->admin();
     $this->assertCount(1, $response->getData()['reports']);
-
-
   }
 
   public function testChangeStatus(): void
