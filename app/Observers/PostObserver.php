@@ -140,8 +140,7 @@ class PostObserver
    * Handle the Post "deleted" event.
    */
   public function deleted(Post $post): void {
-    $user = auth()->user()->id;
-    Log::info("Post soft-deleted: $post->title by $user");
+    Log::info("Post soft-deleted: $post->title by $post->user_id");
   }
 
   /**
@@ -149,7 +148,7 @@ class PostObserver
    */
   public function restored(Post $post): void
   {
-    //
+    Log::info("Post restored: $post->title by $post->user_id");
   }
 
   /**
@@ -157,7 +156,6 @@ class PostObserver
    */
   public function forceDeleted(Post $post): void
   {
-    $user = auth()->user()->id;
-    Log::info("Post permanently deleted: $post->title by $user");
+    Log::warning("Post permanently deleted: $post->title by $post->user_id");
   }
 }
