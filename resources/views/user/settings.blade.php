@@ -197,6 +197,9 @@
         </div>
 <div>
             <label class="w-36 font-bold block" for="allow_email">Email Notifications</label>
+            <p class="text-xs text-gray-500">
+            allow email notifications to be sent to your email, such as updates on your submissions. Important notifications will still be sent regardless of this setting (such as post approvals or rejections).
+            </p>
             <select
               name="allow_email"
               id="allow_email"
