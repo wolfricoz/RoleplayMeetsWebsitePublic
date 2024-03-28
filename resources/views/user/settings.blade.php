@@ -162,7 +162,7 @@
           </div>
         </div>
         <div
-          class="m-5 rounded-xl bg-gray-100 space-y-3 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
+          class="m-5 space-y-3 rounded-xl bg-gray-100 p-4 lg:w-full dark:bg-gray-700 dark:text-gray-200"
         >
           <div class="border-b border-gray-200">
             <h1 id="Setting" class="text-center text-2xl font-bold">
@@ -172,46 +172,58 @@
               These settings affect your browsing experience on the site.
             </h6>
           </div>
-        <div>
-          <x-settings_forum_field
-            name="location"
-            type="hidden"
-            :description="('This setting affects the visibility of NSFW content on the site. By default, NSFW content is hidden.')"
-          >
-            NSFW
-          </x-settings_forum_field>
+          <div>
+            <x-settings_forum_field
+              name="location"
+              type="hidden"
+              :description="('This setting affects the visibility of NSFW content on the site. By default, NSFW content is hidden.')"
+            >
+              NSFW
+            </x-settings_forum_field>
 
-          <select
-            name="nsfw"
-            class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
-          >
-            @foreach ($post_types as $option)
-              <option
-                value="{{ $option }}"
-                {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}
-              >
-                {{ $option }}
-              </option>
-            @endforeach
-          </select>
-        </div>
-<div>
-            <label class="w-36 font-bold block" for="allow_email">Email Notifications</label>
+            <select
+              name="nsfw"
+              class="mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200"
+            >
+              @foreach ($post_types as $option)
+                <option
+                  value="{{ $option }}"
+                  {{ auth()->user()->settings->nsfw === $option ? "selected" : "" }}
+                >
+                  {{ $option }}
+                </option>
+              @endforeach
+            </select>
+          </div>
+          <div>
+            <label class="block w-36 font-bold" for="allow_email">
+              Email Notifications
+            </label>
             <p class="text-xs text-gray-500">
-            allow email notifications to be sent to your email, such as updates on your submissions. Important notifications will still be sent regardless of this setting (such as post approvals or rejections).
+              allow email notifications to be sent to your email, such as
+              updates on your submissions. Important notifications will still be
+              sent regardless of this setting (such as post approvals or
+              rejections).
             </p>
             <select
               name="allow_email"
               id="allow_email"
-              class="block mt-1 rounded-xl dark:bg-gray-600 dark:text-gray-200">
-              <option value="1" {{ auth()->user()->settings->allow_email ? "selected" : "" }}>
+              class="mt-1 block rounded-xl dark:bg-gray-600 dark:text-gray-200"
+            >
+              <option
+                value="1"
+                {{ auth()->user()->settings->allow_email ? "selected" : "" }}
+              >
                 Allow email notifications
               </option>
-              <option value="0" {{ auth()->user()->settings->allow_email ? "" : "selected" }}>
+              <option
+                value="0"
+                {{ auth()->user()->settings->allow_email ? "" : "selected" }}
+              >
                 Do not allow email notifications
               </option>
             </select>
-</div>
+          </div>
 
           <button
             type="submit"

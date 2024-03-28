@@ -13,12 +13,12 @@
       :permission="auth()->user()->hasPermissionTo('access_dashboard')"
     >
       <x-slot name="icon">
-        <x-layout.SVG.home-icon/>
+        <x-layout.SVG.home-icon />
       </x-slot>
 
       Dashboard
     </x-admin-layout.cms_button>
-{{--    Post Management --}}
+    {{-- Post Management --}}
     <div
       class="w-full border-b border-gray-300 text-center text-xs"
       :class="{'hidden': !open, 'w-48': open}"
@@ -31,7 +31,7 @@
       :display="$queueCount"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.queue/>
+        <x-admin-layout.SVG.queue />
       </x-slot>
       Mod Queue
     </x-admin-layout.cms_button>
@@ -41,7 +41,7 @@
       :display="$postsCount"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.posts/>
+        <x-admin-layout.SVG.posts />
       </x-slot>
       Posts
     </x-admin-layout.cms_button>
@@ -51,12 +51,12 @@
       :display="count($genres)"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.categories/>
+        <x-admin-layout.SVG.categories />
       </x-slot>
       Categories
     </x-admin-layout.cms_button>
 
-{{--    User Management --}}
+    {{-- User Management --}}
 
     <div
       class="w-full border-b border-gray-300 text-center text-xs"
@@ -65,16 +65,13 @@
       User Management
     </div>
 
-
-
-
     <x-admin-layout.cms_button
       href="{{ route('admin.users') }}"
       :permission="auth()->user()->hasPermissionTo('manage_users')"
       :display="$usersCount"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.users/>
+        <x-admin-layout.SVG.users />
       </x-slot>
       Users
     </x-admin-layout.cms_button>
@@ -83,7 +80,7 @@
       :permission="auth()->user()->hasPermissionTo('ban_users')"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.bans/>
+        <x-admin-layout.SVG.bans />
       </x-slot>
       Bans
     </x-admin-layout.cms_button>
@@ -92,7 +89,7 @@
       :permission="auth()->user()->hasPermissionTo('manage_groups')"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.groups/>
+        <x-admin-layout.SVG.groups />
       </x-slot>
       Groups
     </x-admin-layout.cms_button>
@@ -102,7 +99,7 @@
       :display="$reportsCount"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.reports/>
+        <x-admin-layout.SVG.reports />
       </x-slot>
       Reports
     </x-admin-layout.cms_button>
@@ -119,7 +116,7 @@
       :permission="auth()->user()->hasPermissionTo('manage_rules')"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.rules/>
+        <x-admin-layout.SVG.rules />
       </x-slot>
       Rules
     </x-admin-layout.cms_button>
@@ -128,12 +125,12 @@
       :permission="auth()->user()->hasPermissionTo('manage_settings')"
     >
       <x-slot name="icon">
-        <x-admin-layout.SVG.settings/>
+        <x-admin-layout.SVG.settings />
       </x-slot>
       Settings
     </x-admin-layout.cms_button>
     <a class="transition-all hover:cursor-pointer">
-      <x-layout.SVG.sidebar-icon/>
+      <x-layout.SVG.sidebar-icon />
     </a>
   </div>
   <x-admin-layout.cms_button
@@ -141,7 +138,7 @@
     :permission="auth()->user()->hasPermissionTo('access_dashboard')"
   >
     <x-slot name="icon">
-      <x-layout.SVG.return/>
+      <x-layout.SVG.return />
     </x-slot>
     Back to Site
   </x-admin-layout.cms_button>

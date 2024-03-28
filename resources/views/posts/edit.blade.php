@@ -36,7 +36,7 @@
               <label for="charage" class="text-sm font-bold">
                 *Min. Character age
               </label>
-              <br/>
+              <br />
               <input
                 type="number"
                 name="charage"

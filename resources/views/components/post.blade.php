@@ -6,7 +6,7 @@
   class="w-full rounded-xl bg-gray-100 p-2 text-stone-800 dark:bg-gray-700 dark:text-gray-200"
   x-bind:class="{
     'col-span-1': layout === 'grid',
-    'col-span-2': layout === 'list'
+    'col-span-2': layout === 'list',
   }"
 >
   <div class="flex flex-row flex-wrap items-center justify-end lg:flex-nowrap">
@@ -102,15 +102,18 @@
                   onchange="this.form.submit()"
                   required
                 >
-                @foreach($post_types as $option)
-                  @if ($option !== "all")
-                    <option value="{{ $option }}" {{ $post->nsfw === $option ? "selected" : "" }}>
-                    {{ $option }}
-                  @endif
-                @endforeach
+                  @foreach ($post_types as $option)
+                    @if ($option !== "all")
+                      <option
+                        value="{{ $option }}"
+                        {{ $post->nsfw === $option ? "selected" : "" }}
+                      >
+                        {{ $option }}
+                      </option>
+                    @endif
+                  @endforeach
                 </select>
               </form>
-
             </x-post_dropdown_button>
           @endif
 
@@ -158,7 +161,7 @@
           src="{{ $post->user->getAvatar(["extension" => "webp", "size" => 512]) }}"
           alt="{{ $post->user->getTagAttribute() }}"
           x-bind:class="{
-            'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
+            'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
           }"
         />
         <span>
@@ -181,7 +184,7 @@
       <span
         class="px-2 lg:px-6"
         x-bind:class="{
-          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
+          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
         }"
       >
         character age:
@@ -192,7 +195,7 @@
       <span
         class="px-2 lg:px-6"
         x-bind:class="{
-          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024
+          'hidden': layout === 'grid' || document.documentElement.clientWidth < 1024,
         }"
       >
         partner Age:
