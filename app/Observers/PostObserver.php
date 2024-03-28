@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Mail\NewPost;
 use App\Mail\PostRejected;
+use App\Mail\UpdatedPost;
 use App\Models\Post;
 use App\Support\AutoMod;
 use Illuminate\Support\Facades\Log;
@@ -82,7 +83,6 @@ class PostObserver
     if ($post->nsfw === 'sfw') {
       $this->check_nsfw_words($post);
     }
-    mail::to($post->user->email)->send(new NewPost($post));
   }
 
   private function check_banned_words($post): bool|array|string
@@ -122,6 +122,10 @@ class PostObserver
       Log::error($e->getMessage());
     }
     Log::info("New post created: $post->title by $post->user_id");
+    if ($post->user->settings->allow_email === 1){
+      mail::to($post->user->email)->send(new NewPost($post));
+    }
+
   }
 
   /**
@@ -134,6 +138,9 @@ class PostObserver
       $this->send_message_discord($post, "Post updated");
     } catch (JsonException $e) {
       Log::error($e->getMessage());
+    }
+    if ($post->user->settings->allow_email === 1){
+      mail::to($post->user->email)->send(new UpdatedPost($post));
     }
     Log::info("Post updated: $post->title by $post->user_id");
   }
