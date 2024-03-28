@@ -51,7 +51,7 @@ Route::group(['prefix' => 'users'], static function () {
   Route::get('settings/finalize', [SettingsController::class, 'dob'])->middleware('auth')->name("users.dob");
   Route::post('settings/update', [SettingsController::class, 'update'])->middleware('auth')->name("users.settings.update");
   Route::delete('delete/{user}', [UserController::class, 'destroy'])->middleware('auth')->name("users.delete");
-
+  route::get('unsubscribe/{user}', [UserController::class, 'unsubscribe'])->name("users.unsubscribe");
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'permission:access_dashboard']], static function () {

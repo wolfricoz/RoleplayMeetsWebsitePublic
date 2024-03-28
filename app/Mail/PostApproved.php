@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,11 +19,23 @@ class PostApproved extends Mailable
     /**
      * Create a new message instance.
      */
-    public Post $post;
+  public Post $post;
+  public string $email_title;
+  public string $title;
+  public string $content;
+  public string $footer;
+  public User $user;
+  public string $url;
 
     public function __construct($post)
     {
-        $this->post = $post;
+      $this->post = $post;
+      $this->email_title = 'Your post has been approved!';
+      $this->title = $post->title;
+      $this->content = $post->content;
+      $this->user = $post->user;
+      $this->url = route('users.show', $post->user);
+      $this->footer = "Your post has been approved! You can view your post below. (Fun fact: You can bump your post every 24 hours!)";
     }
 
     /**
@@ -31,7 +44,6 @@ class PostApproved extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-          from: new Address('rico@roleplaymeets.com', 'Rico'),
             subject: 'Your post has been approved!'
         );
     }
@@ -42,7 +54,7 @@ class PostApproved extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.approved'
+            view: 'mail.Transactional'
         );
     }
 

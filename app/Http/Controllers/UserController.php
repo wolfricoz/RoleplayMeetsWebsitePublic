@@ -40,4 +40,10 @@ class UserController extends Controller
         return redirect()->route('home')->with('success', 'User deleted.');
     }
 
+    public function unsubscribe(User $user)
+  {
+        $user->settings->update(['allow_email' => false]);
+        return redirect()->route('home')->with('success', 'Unsubscribed.');
+    }
+
 }

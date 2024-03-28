@@ -29,7 +29,7 @@
           @csrf
           <label>
             <textarea
-              class="h-24 w-full rounded-md border-2 border-gray-300 p-2"
+              class="h-24 w-full rounded-md border-2 border-gray-300 p-2 dark:bg-gray-600 dark:text-gray-200"
               name="reason"
               id="reason"
               placeholder="Reason for denial"

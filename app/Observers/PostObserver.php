@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Mail\NewPost;
 use App\Mail\PostRejected;
 use App\Models\Post;
 use App\Support\AutoMod;
@@ -42,6 +43,7 @@ class PostObserver
         'header' => "Content-Type: application/json\r\n",
         'method' => 'POST',
         'content' => json_encode([
+          'username' => 'RoleplayMeets.com',
           'content' => $content,
           'embeds' => [
             [
@@ -66,7 +68,7 @@ class PostObserver
     file_get_contents($webhook, false, $context);
   }
 
-  private function auto_mod($post): void
+  private function auto_mod(Post $post): void
   {
     if (optional(auth()->user())->hasPermissionTo('bypass_auto_mod')) {
       return;
@@ -80,7 +82,7 @@ class PostObserver
     if ($post->nsfw === 'sfw') {
       $this->check_nsfw_words($post);
     }
-//    mail::to($this->admin_emails)->send(new UpdatedPost($post));
+    mail::to($post->user->email)->send(new NewPost($post));
   }
 
   private function check_banned_words($post): bool|array|string

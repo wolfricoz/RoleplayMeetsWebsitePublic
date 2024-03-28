@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,10 +19,22 @@ class NewPost extends Mailable
      * Create a new message instance.
      */
     public Post $post;
+    public string $email_title;
+    public string $title;
+    public string $content;
+    public string $footer;
+    public User $user;
+    public string $url;
 
-    public function __construct($post)
+    public function __construct(Post $post)
     {
         $this->post = $post;
+        $this->email_title = 'A new post has been submitted to the queue!';
+        $this->title = $post->title;
+        $this->content = $post->content;
+        $this->user = $post->user;
+        $this->url = route('users.show', $post->user);
+        $this->footer = "Your post will be reviewed by our moderators, we strive to approve posts within 24 hours. You can view the status of your post below.";
     }
 
     /**
@@ -40,7 +53,7 @@ class NewPost extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.NewPosts',
+            view: 'mail.Transactional',
         );
     }
 

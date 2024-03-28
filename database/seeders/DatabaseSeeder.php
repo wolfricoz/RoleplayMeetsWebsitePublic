@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(10)->create();
-        $posts =  Post::factory(20)->create();
+        $posts =  Post::factory(2)->create();
         foreach ($posts as $post) {
             $post->updateTags([Genres::all()->random()->name]);
         }
