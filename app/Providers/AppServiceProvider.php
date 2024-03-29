@@ -8,10 +8,11 @@ use App\Models\Report;
 use App\Models\Settings;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use View;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,8 +44,8 @@ class AppServiceProvider extends ServiceProvider
       Role::findByName($role)->givePermissionTo(Permission::all());
 
 
-    } catch (Exception) {
-      // do nothing
+    } catch (Exception $e) {
+      Log::error("Error in AppServiceProvider: $e");
     }
   }
 }
