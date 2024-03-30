@@ -1,7 +1,3 @@
-@php
-  use App\Support\Helpers;
-@endphp
-
 <div class="h-full w-full flex-wrap" style="z-index: 1000">
   <nav
     class="flex h-12 w-full basis-full flex-row justify-between bg-gray-100 shadow-2xl transition-all dark:bg-zinc-800 dark:text-gray-200"
@@ -30,7 +26,7 @@
         >
           {{ auth()->user()->global_name }}
           <span class="block text-left text-xs text-blue-400">
-            {{ Helpers::get_highest_role(auth()->user())->name }}
+            {{ auth()->user()->get_highest_role()->name }}
           </span>
         </span>
 

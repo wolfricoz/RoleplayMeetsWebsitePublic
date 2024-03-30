@@ -7,7 +7,33 @@
       <h1 class="w-full text-center text-xl font-semibold">Roleplay Meets</h1>
       <h6 class="w-full text-center text-sm font-semibold">CMS Panel</h6>
     </div>
+    <div class="flex flex-row items-center p-2">
 
+
+
+
+    </div>
+    <x-admin-layout.cms_button
+      href="{{ route('dashboard') }}"
+      :permission="auth()->user()->hasPermissionTo('access_dashboard')"
+    >
+      <x-slot name="icon">
+        <img
+          class="h-10 w-10 rounded-full object-cover"
+          src="{{ Auth::user()->getAvatar(["extension" => "webp", "size" => 64]) }}"
+          alt="{{ Auth::user()->getTagAttribute() }}"
+        />
+      </x-slot>
+      <span
+        class="{{ strlen(auth()->user()->global_name) > 15 ? "text-xs" : "" }}  overflow-hidden lg:block dark:text-gray-200"
+      >
+          {{ auth()->user()->global_name }}
+          <span class="block text-left text-xs text-blue-400">
+            {{ auth()->user()->get_highest_role()->name }}
+          </span>
+        </span>
+
+    </x-admin-layout.cms_button>
     <x-admin-layout.cms_button
       href="{{ route('admin.dashboard') }}"
       :permission="auth()->user()->hasPermissionTo('access_dashboard')"
