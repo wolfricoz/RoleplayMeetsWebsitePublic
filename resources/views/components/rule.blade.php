@@ -60,7 +60,7 @@
             <summernote
               :name="'content'"
               :maxlength="2000"
-              :value="'{{ old("content", $rule->content) }}'"
+              :value="`{{ old("content", $rule->content) }}`"
               :id="'{{ $rule->id }}'"
             ></summernote>
             <x-admin-layout.cms_form_button>
