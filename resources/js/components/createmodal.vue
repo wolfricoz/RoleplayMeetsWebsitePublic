@@ -20,7 +20,7 @@ export default {
     v-bind:class="{ hidden: !showModal, fixed: showModal }"
   >
     <div
-      class="absolute inset-0 mx-auto mt-10 h-fit w-1/3 rounded-xl bg-gray-300 p-5 dark:bg-zinc-700 shadow-lg"
+      class="absolute inset-0 mx-auto mt-10 h-fit w-1/3 rounded-xl bg-gray-300 p-5 shadow-lg dark:bg-zinc-700"
     >
       <div class="flex justify-end">
         <div
